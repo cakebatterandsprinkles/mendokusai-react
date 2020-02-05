@@ -1,0 +1,45 @@
+.flexContainerColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexContainerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data {
+  margin-right: 0.5rem;
+}
+
+.bgBlack {
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.addIcon {
+  height: 2rem;
+  width: auto;
+}
+
+.weatherIcon {
+  height: 2rem;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.locationIcon {
+  height: 1.5rem;
+  width: auto;
+  margin-right: 0.5rem;
+}
