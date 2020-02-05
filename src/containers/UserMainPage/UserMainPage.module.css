@@ -1,0 +1,17 @@
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  max-height: 100vh;
+  justify-items: center;
+  margin: 4rem 8rem;
+  padding: 3.5rem;
+}
+
+.half {
+  width: 50%;
+}
+
+.halfImage {
+  height: 100%;
+  width: auto;
+}
