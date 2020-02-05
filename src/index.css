@@ -6,7 +6,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+*,
+img {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
