@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
-import classes from "../UserMainPage/UserMainPage.module.css";
+import classes from "./UserMainPage.module.css";
 import CalendarButton from "../../assets/images/calendar.png";
 import Poster1 from "../../assets/images/poster11.png";
 import Poster2 from "../../assets/images/poster22.png";
 import Poster3 from "../../assets/images/poster33.png";
 import Poster4 from "../../assets/images/poster44.png";
+import Today from "../../components/Today/Today";
 
 class UserMainPage extends Component {
   state = {
@@ -34,8 +35,7 @@ class UserMainPage extends Component {
       <Aux>
         <div className={classes.flexContainer}>
           <div className={classes.wrapper}>
-            <p>Greetings, summoner</p>
-            <p>Today looks like this:</p>
+            <Today />
           </div>
           <div className={classes.posterAndButtonContainer}>
             <div>
