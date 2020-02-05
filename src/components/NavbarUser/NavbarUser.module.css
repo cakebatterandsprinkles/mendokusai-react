@@ -1,0 +1,22 @@
+.logo {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 1.5rem;
+  margin: 1.2rem;
+}
+
+.arrow {
+  height: 5rem;
+  width: auto;
+}
+
+.flexContainerRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settingsIcon {
+  height: 3rem;
+  width: auto;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
