@@ -1,17 +1,33 @@
 .flexContainer {
   display: flex;
-  flex-direction: row;
-  max-height: 100vh;
-  justify-items: center;
-  margin: 4rem 8rem;
-  padding: 3.5rem;
-}
-
-.half {
-  width: 50%;
-}
-
-.halfImage {
   height: 100%;
+  justify-content: space-between;
+}
+
+.posterAndButtonContainer {
+  width: 50%;
+  display: flex;
+}
+
+.wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.calendarButton {
+  width: 4rem;
+}
+
+.poster {
+  height: 90vh;
   width: auto;
+}
+
+.buttonContainer {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
