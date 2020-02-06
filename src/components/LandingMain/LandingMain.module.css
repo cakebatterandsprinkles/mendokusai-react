@@ -1,0 +1,63 @@
+.questions {
+  margin: 2.5rem 0 0 5rem;
+  font-size: 0.9rem;
+}
+
+.heading {
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: auto;
+  margin-right: 0.5rem;
+}
+
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 0.2rem;
+}
+
+.flexContainerColumn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.paragraph {
+  margin-bottom: 0.2rem;
+}
+
+.border {
+  border: 2px solid black;
+  margin-right: 2rem;
+  margin-top: 1rem;
+}
+
+.screenshot {
+  width: 35rem;
+  height: auto;
+}
+
+.email {
+  color: black;
+  text-decoration-color: black;
+}
+
+.footer {
+  margin-left: 5rem;
+  position: absolute;
+  bottom: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.heartIcon {
+  width: 2.5rem;
+  margin-right: 1rem;
+}
