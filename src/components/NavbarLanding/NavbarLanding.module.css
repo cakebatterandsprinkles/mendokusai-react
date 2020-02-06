@@ -1,0 +1,36 @@
+.logo {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 1.5rem;
+  margin: 1.2rem;
+  color: white;
+  background-color: black;
+  padding: 0.5rem;
+}
+
+.arrow {
+  height: 5rem;
+  width: auto;
+}
+
+.flexContainerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexContainerRowRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 11rem;
+}
+
+.skewedArrow {
+  height: 3rem;
+  width: auto;
+  margin-right: 2rem;
+}
+
+.welcomeText {
+  margin-left: 1rem;
+}
