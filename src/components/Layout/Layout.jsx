@@ -6,7 +6,7 @@ import classes from "./Layout.module.css";
 
 const layout = props => (
   <Aux>
-    <NavbarUser />
+    <NavbarLanding />
     <main>{props.children}</main>
   </Aux>
 );
