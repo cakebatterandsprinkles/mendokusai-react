@@ -1,14 +1,11 @@
 import React from "react";
-import Layout from "./components/Layout/Layout";
-import UserMainPage from "./containers/UserMainPage/UserMainPage";
-import LandingMain from "./components/LandingMain/LandingMain";
+import LandingLayout from "./layouts/LandingLayout";
+import UserMainPageLayout from "./layouts/UserMainPageLayout";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <LandingMain />
-      </Layout>
+      <UserMainPageLayout />
     </div>
   );
 }
