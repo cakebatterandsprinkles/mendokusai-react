@@ -3,3 +3,19 @@
   border: 1px solid black;
   margin-right: 2rem;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  background-color: rgb(224, 224, 224);
+  transition-duration: 0.5s;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: rgb(224, 224, 224);
+  transition-duration: 0.5s;
+}
