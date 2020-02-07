@@ -1,5 +1,5 @@
 .logo {
-  font-family: 'Inconsolata', sans-serif;
+  font-family: "Inconsolata", sans-serif;
   font-size: 1.5rem;
   margin: 1.2rem;
   color: white;
@@ -33,4 +33,9 @@
 
 .welcomeText {
   margin-left: 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }

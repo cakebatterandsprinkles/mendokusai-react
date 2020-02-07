@@ -8,7 +8,11 @@ const NavbarLanding = props => {
   return (
     <div className={classes.flexContainerRow}>
       <div className={classes.flexContainerRow}>
-        <p className={classes.logo}> Mendokusai </p>
+        <p className={classes.logo}>
+          <a href="http://localhost:3000/" className={classes.link}>
+            Mendokusai
+          </a>
+        </p>
         <img src={downarrow} alt="down arrow" className={classes.arrow} />
         <p className={classes.welcomeText}>Welcome.</p>
       </div>
@@ -18,8 +22,8 @@ const NavbarLanding = props => {
           alt="skewed arrow pointing out login and signup buttons"
           className={classes.skewedArrow}
         />
-        <Button name="SignUp" />
-        <Button name="Login" />
+        <Button name="Sign Up" link="/signup" />
+        <Button name="Login" link="/login" />
       </div>
     </div>
   );
