@@ -11,11 +11,11 @@ class LoginForm extends Component {
         </div>
         <form className={classes.loginForm} action="/user" method="POST">
           <div className={`${classes.formGroupContainer} ${classes.margin}`}>
-            <label for="email">Email:</label>
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" id="email"></input>
           </div>
           <div className={classes.formGroupContainer}>
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" id="password"></input>
           </div>
           <div className={classes.resetPasswordLink}>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import classes from "./SignUpForm.module.css";
-import { Link } from "react-router-dom";
 
 class SignUpForm extends Component {
   render() {
@@ -13,7 +12,7 @@ class SignUpForm extends Component {
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="name">Name:</label>
+            <label htmlFor="name">Name:</label>
             <input type="name" name="name" id="name"></input>
           </div>
           <div className={classes.subText}>
@@ -25,7 +24,7 @@ class SignUpForm extends Component {
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="email">Email:</label>
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" id="email"></input>
           </div>
           <div className={classes.subText}>
@@ -34,15 +33,15 @@ class SignUpForm extends Component {
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" id="password"></input>
           </div>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="repeat-password">Repeat Password:</label>
+            <label htmlFor="repeat-password">Repeat Password:</label>
             <input
-              type="repeat-password"
+              type="password"
               name="repeat-password"
               id="repeat-password"
             ></input>
@@ -50,18 +49,18 @@ class SignUpForm extends Component {
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="country">Country:</label>
+            <label htmlFor="country">Country:</label>
             <input type="country" name="country" id="country"></input>
           </div>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label for="city">City:</label>
+            <label htmlFor="city">City:</label>
             <input type="city" name="city" id="city"></input>
           </div>
           <div>
             <input type="checkbox" name="vehicle1" value="Bike" />
-            <label for="vehicle1">
+            <label htmlFor="vehicle1">
               {" "}
               I dislike filling forms. Use telepathy next time.{" "}
             </label>
