@@ -39,3 +39,59 @@
   text-decoration: none;
   color: white;
 }
+
+/* Large Screens */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* Medium Screens */
+@media (min-width: 768px) and (max-width: 992px) {
+  .skewedArrow {
+    display: none;
+  }
+
+  .flexContainerRowRight {
+    margin-right: 2rem;
+  }
+}
+
+/* Small Screens */
+@media (min-width: 600px) and (max-width: 768px) {
+  .skewedArrow {
+    display: none;
+  }
+
+  .flexContainerRowRight {
+    margin-right: 2rem;
+  }
+}
+
+/* Xsmall Screens */
+@media (max-width: 600px) {
+  .skewedArrow {
+    display: none;
+  }
+
+  .flexContainerRowRight {
+    margin-right: 1rem;
+  }
+
+  .logo {
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1rem;
+    margin: 0.8rem;
+    color: white;
+    background-color: black;
+    padding: 0.3rem;
+  }
+
+  .arrow {
+    height: 3rem;
+    width: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcomeText {
+    display: none;
+  }
+}

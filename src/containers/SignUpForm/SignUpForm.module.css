@@ -65,3 +65,15 @@
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
+
+/* Large Screens */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* Medium Screens */
+@media (min-width: 768px) and (max-width: 992px) {}
+
+/* Small Screens */
+@media (min-width: 600px) and (max-width: 768px) {}
+
+/* Xsmall Screens */
+@media (max-width: 600px) {}
