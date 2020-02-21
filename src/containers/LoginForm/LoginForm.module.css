@@ -36,11 +36,11 @@
 
 .formGroupContainer {
   display: flex;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .margin {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
 }
 
 .formGroupContainer input {
@@ -150,5 +150,9 @@
     font-family: 'inconsolata', monospace;
     font-weight: bold;
     font-size: 0.9rem;
+  }
+
+  .resetPasswordLink {
+    font-size: 0.8rem;
   }
 }
