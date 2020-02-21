@@ -1,7 +1,7 @@
 import React from "react";
 import Aux from "../hoc/Aux";
 import LandingNavbar from "../components/NavbarLanding/NavbarLanding";
-import ForgotPasswordForm from "../components/ForgotPasswordForm/ForgotPasswordForm";
+import ForgotPasswordForm from "../containers/ForgotPasswordForm/ForgotPasswordForm";
 
 const ForgotPasswordLayout = () => {
   return (
