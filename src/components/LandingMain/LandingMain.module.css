@@ -1,3 +1,7 @@
+.mainContainer {
+  padding-bottom: 5rem;
+}
+
 .questions {
   margin: 2.5rem 0 0 5rem;
   font-size: 0.9rem;
@@ -42,22 +46,134 @@
   height: auto;
 }
 
-.email {
+.link {
   color: black;
   text-decoration-color: black;
 }
 
+.link:hover {
+  font-weight: bold;
+  color: red;
+  text-decoration-color: red;
+}
+
 .footer {
-  margin-left: 5rem;
-  position: absolute;
-  bottom: 1rem;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
   font-size: 0.9rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-top: 0.05rem solid red;
 }
 
 .heartIcon {
   width: 2.5rem;
   margin-right: 1rem;
+}
+
+@media (max-width: 1275px) {
+  .flexContainerSmallerScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .questions {
+    margin: 2rem 2rem 0 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width:855px) and (max-width:1275px) {
+  .screenshot {
+    width: 50rem;
+    height: auto;
+  }
+}
+
+@media (min-width:710px) and (max-width: 855px) {
+  .heartIcon {
+    height: 1rem;
+    width: auto;
+    align-self: center;
+  }
+
+  .mainContainer {
+    padding-bottom: 7rem;
+  }
+
+  .footerText {
+    font-size: 0.8rem;
+  }
+
+  .screenshot {
+    width: 40rem;
+    height: auto;
+  }
+}
+
+@media (min-width:550px) and (max-width:710px) {
+  .heartIcon {
+    height: 1rem;
+    width: auto;
+    align-self: center;
+  }
+
+  .screenshot {
+    width: 30rem;
+    height: auto;
+  }
+
+  .mainContainer {
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width:550px) and (max-width:710px) {
+  .screenshot {
+    width: 30rem;
+    height: auto;
+  }
+
+  .heartIcon {
+    height: 1rem;
+    width: auto;
+    align-self: center;
+  }
+}
+
+@media (max-width: 550px) {
+  .questions {
+    margin: 2rem 0 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .heartIcon {
+    display: none;
+  }
+
+  .screenshot {
+    width: 25rem;
+    height: auto;
+  }
+
+  .paragraph,
+  .flexContainer>p {
+    font-size: 0.8rem
+  }
+
+  .checkbox {
+    width: 1rem;
+    height: auto;
+    margin-right: 0.5rem;
+    align-self: flex-start;
+  }
+
+  .mainContainer {
+    padding-bottom: 8rem;
+  }
 }

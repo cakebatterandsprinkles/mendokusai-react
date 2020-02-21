@@ -1,14 +1,13 @@
 import React from "react";
 import classes from "./LandingMain.module.css";
 import Checkbox from "../../assets/images/donecheckbox.png";
-import Aux from "../../hoc/Aux";
 import LandingCalendarScreenshot from "../../assets/images/landingcalendar.png";
 import LandingMainPageScreenshot from "../../assets/images/landingmainpage.png";
 import HeartIcon from "../../assets/images/heart.png";
 
 const LandingMain = () => {
   return (
-    <Aux>
+    <div className={classes.mainContainer}>
       <div className={classes.questions}>
         <p className={classes.heading}>This website exists because:</p>
         <div className={classes.flexContainerRow}>
@@ -47,7 +46,9 @@ const LandingMain = () => {
             it that much. It might be lying. (Like your cat.)
           </p>
         </div>
-        <div className={classes.flexContainerRow}>
+        <div
+          className={`${classes.flexContainerRow} ${classes.flexContainerSmallerScreen}`}
+        >
           <div className={classes.border}>
             <img
               src={LandingMainPageScreenshot}
@@ -66,15 +67,32 @@ const LandingMain = () => {
       </div>
       <div className={classes.footer}>
         <img src={HeartIcon} alt="heart icon" className={classes.heartIcon} />
-        <p>
-          I’m still not sure if it works, so if it doesn’t send me an e-mail, I
-          will try to check it out:
-          <a href="mailto:yagmurcetin@gmail.com" className={classes.email}>
-            yagmurcetin@gmail.com
-          </a>
-        </p>
+        <div>
+          <p className={classes.footerText}>
+            You might be able to reach me from:{" "}
+            <a
+              href="mailto:yagmurcetin@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.link}
+            >
+              yagmurcetin@gmail.com
+            </a>{" "}
+          </p>
+          <p className={classes.footerText}>
+            Source code of this project can be found at:{" "}
+            <a
+              href="https://github.com/cakebatterandsprinkles/mendokusai-react"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.link}
+            >
+              https://github.com/cakebatterandsprinkles/mendokusai-react
+            </a>
+          </p>
+        </div>
       </div>
-    </Aux>
+    </div>
   );
 };
 
