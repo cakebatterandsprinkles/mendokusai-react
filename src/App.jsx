@@ -4,6 +4,7 @@ import LandingLayout from "./layouts/LandingLayout";
 import UserMainPageLayout from "./layouts/UserMainPageLayout";
 import SignUpLayout from "./layouts/SignUpLayout";
 import LoginLayout from "./layouts/LoginLayout";
+import ResetPasswordLayout from "./layouts/ResetPasswordLayout";
 import "./App.css";
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       <Route exact path="/signup" component={SignUpLayout} />
       <Route exact path="/login" component={LoginLayout} />
       <Route exact path="/user" component={UserMainPageLayout} />
+      <Route exact path="/reset-password" component={ResetPasswordLayout} />
     </Switch>
   </BrowserRouter>
 );
