@@ -39,6 +39,10 @@
   margin-bottom: 0.5rem;
 }
 
+.resetButton {
+  margin-top: 1.5rem;
+}
+
 .margin {
   margin-bottom: 0.9rem;
 }
@@ -61,15 +65,49 @@
 .resetPasswordLink {
   display: flex;
   justify-content: flex-end;
-  font-size: 0.9rem;
   margin-bottom: 2rem;
 }
 
 .link {
   color: #8d09f7;
+  background-color: transparent;
+  border: none;
+  font-size: 0.85rem;
+  font-family: 'Inconsolata', monospace;
+  text-decoration: underline;
 }
 
-.btn:focus {
+.modalText {
+  color: #8d09f7;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal {
+  background-color: white;
+  z-index: 10000;
+  padding: 2.5rem 3.5rem;
+}
+
+.overlay {
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(19, 19, 19, 0.2);
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+.btn:focus,
+.modal:focus {
   outline: none !important;
   border-color: #8d09f7;
   box-shadow: 0 0 5px #8d09f7;
