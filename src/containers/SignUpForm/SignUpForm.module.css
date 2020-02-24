@@ -1,7 +1,7 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
   margin-left: 12rem;
   margin-top: 4rem;
 }
@@ -10,6 +10,14 @@
   width: 40%;
   border-bottom: 2px solid black;
   margin-bottom: 2rem;
+}
+
+.checkboxInput {
+  margin-right: 0.5rem;
+}
+
+.checkboxLabel {
+  display: inline;
 }
 
 .heading {
@@ -68,6 +76,7 @@ input:focus,
 
 .subTextContainer {
   display: flex;
+  flex-direction: row;
   margin-bottom: 2rem;
   justify-content: flex-end;
 }
@@ -85,14 +94,6 @@ input:focus,
   .formGroupContainer label {
     width: 25%;
     margin-right: 2.5rem;
-  }
-}
-
-
-/* Large Screens */
-@media (min-width: 992px) and (max-width: 1200px) {
-  .mainContainer {
-    width: 50%;
   }
 }
 

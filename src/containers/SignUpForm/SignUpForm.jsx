@@ -66,9 +66,9 @@ class SignUpForm extends Component {
                 type="checkbox"
                 name="dislike"
                 value="justforfun"
-                className={classes.checkboxLabel}
+                className={classes.checkboxInput}
               />
-              <label htmlFor="dislike">
+              <label htmlFor="dislike" className={classes.checkboxLabel}>
                 {" "}
                 I dislike filling forms. Use telepathy next time.{" "}
               </label>
