@@ -4,7 +4,37 @@
   width: 40%;
   margin-left: 12rem;
   margin-top: 4rem;
+}
 
+.modalMainContainer {
+  display: flex;
+}
+
+.submitModalContainer {
+  display: flex;
+  align-items: center;
+}
+
+.closingButton {
+  height: 2rem;
+  width: auto;
+}
+
+.birbImage {
+  height: 2.5rem;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.closingButton:hover {
+  cursor: pointer;
+  outline: none !important;
+  border-radius: 50px;
+  box-shadow: 0 0 3px #5e5e5e;
+}
+
+.closingButtonContainer {
+  margin-left: 1rem;
 }
 
 .headingContainer {
@@ -21,7 +51,7 @@
 .btn {
   padding: 0.5rem;
   margin-left: auto;
-  font-family: 'inconsolata', monospace;
+  font-family: "inconsolata", monospace;
   font-size: 1rem;
   color: white;
   background-color: black;
@@ -73,7 +103,7 @@
   background-color: transparent;
   border: none;
   font-size: 0.85rem;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
   text-decoration: underline;
 }
 
@@ -86,7 +116,9 @@
 .modal {
   background-color: white;
   z-index: 10000;
-  padding: 2.5rem 3.5rem;
+  padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+  border-radius: 2rem;
+  border: 1px solid black;
 }
 
 .overlay {
@@ -99,7 +131,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(19, 19, 19, 0.2);
+  background-color: rgba(12, 12, 12, 0.315);
 }
 
 .link:hover {
@@ -123,7 +155,6 @@
     margin-right: 2.5rem;
   }
 }
-
 
 /* Large Screens */
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -185,7 +216,7 @@
 
   .btn {
     padding: 0.4rem;
-    font-family: 'inconsolata', monospace;
+    font-family: "inconsolata", monospace;
     font-weight: bold;
     font-size: 0.9rem;
   }
