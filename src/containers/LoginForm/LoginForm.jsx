@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import classes from "./LoginForm.module.css";
 import Aux from "../../hoc/Aux";
 import Modal from "react-modal";
+import ClosingButton from "../../assets/images/closeButton.png";
+import BirbImage from "../../assets/images/birb.png";
+import Sun from "../../assets/images/sunny.png";
 
 class LoginForm extends Component {
   constructor() {
@@ -45,31 +48,56 @@ class LoginForm extends Component {
     if (!this.state.isSubmitting && !this.state.isSubmitted) {
       return (
         <Aux>
-          <div className={classes.headingContainer}>
-            <p className={classes.heading}>Reset Password</p>
-          </div>
-          <p className={classes.modalText}> Tell me more about yourself... </p>
-          <form className={classes.loginForm} action="/login" method="POST">
-            <div className={classes.formGroupContainer}>
-              <label htmlFor="reset-password-email">E-mail address:</label>
-              <input
-                type="email"
-                name="reset-password-email"
-                id="reset-password-email"
-              ></input>
+          <div className={classes.modalMainContainer}>
+            <div>
+              <div className={classes.headingContainer}>
+                <p className={classes.heading}>Reset Password</p>
+              </div>
+              <p className={classes.modalText}>
+                {" "}
+                Tell me more about yourself...{" "}
+              </p>
+              <form className={classes.loginForm} action="/login" method="POST">
+                <div className={classes.formGroupContainer}>
+                  <label htmlFor="reset-password-email">E-mail address:</label>
+                  <input
+                    type="email"
+                    name="reset-password-email"
+                    id="reset-password-email"
+                  ></input>
+                </div>
+              </form>
+              <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
+                <button onClick={this.handleSubmit} className={classes.btn}>
+                  Reset Password
+                </button>
+              </div>
             </div>
-          </form>
-          <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
-            <button onClick={this.handleSubmit} className={classes.btn}>
-              Reset Password
-            </button>
+            <div className={classes.closingButtonContainer}>
+              <img
+                src={ClosingButton}
+                alt="closing button"
+                className={classes.closingButton}
+                onClick={this.handleCloseModal}
+              />
+            </div>
           </div>
         </Aux>
       );
     } else if (this.state.isSubmitting && !this.state.isSubmitted) {
-      return <p>Omg, is your request being submitted or what?</p>;
+      return (
+        <div className={classes.submitModalContainer}>
+          <img src={BirbImage} alt="birdimage" className={classes.birbImage} />
+          <p>Omg, is your request being submitted or what?</p>
+        </div>
+      );
     } else if (!this.state.isSubmitting && this.state.isSubmitted) {
-      return <p>Congrats, you've got an email! Check your inbox.</p>;
+      return (
+        <div className={classes.submitModalContainer}>
+          <img src={Sun} alt="sunimage" className={classes.birbImage} />
+          <p>Congrats, you've got an email! Check your inbox.</p>
+        </div>
+      );
     }
     return <p>Oops something is wrong!</p>;
   }
