@@ -5,7 +5,7 @@ import classes from "./NavbarInfoBox.module.css";
 const NavbarInfoBox = props => {
   return (
     <div className={classes.flexContainerColumn}>
-      <p> Welcome, {props.name}.</p>
+      <p className={classes.welcomeText}> Welcome, {props.name}.</p>
       <KiteInfo />
     </div>
   );

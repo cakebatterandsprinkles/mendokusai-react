@@ -3,3 +3,9 @@
   flex-direction: column;
   margin: 1.2rem 2rem;
 }
+
+@media (max-width: 600px) {
+  .welcomeText {
+    font-size: 0.8rem;
+  }
+}
