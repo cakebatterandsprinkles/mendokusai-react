@@ -38,7 +38,7 @@ class UserMainPage extends Component {
             <Today />
           </div>
           <div className={classes.posterAndButtonContainer}>
-            <div>
+            <div className={classes.posterContainer}>
               <img
                 src={this.state.chosenPoster}
                 alt="poster"

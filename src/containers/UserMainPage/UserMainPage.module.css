@@ -31,3 +31,25 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 1460px) {
+  .posterContainer {
+    display: none;
+  }
+
+  .posterAndButtonContainer {
+    width: 10%;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 0.05rem solid rgb(43, 43, 43);
+    border-top: 0.05rem solid rgb(43, 43, 43);
+    border-bottom: 0.05rem solid rgb(43, 43, 43);
+    box-shadow: 0px 8px 16px 0px rgba(56, 56, 56, 0.384);
+  }
+
+  .buttonContainer {
+    width: 100%;
+  }
+}
