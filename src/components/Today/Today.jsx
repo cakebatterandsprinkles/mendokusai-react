@@ -15,9 +15,8 @@ import Snowy from "../../assets/images/snowy.png";
 
 class Today extends Component {
   state = {
-    date: "January 1st, 2020",
-    city: "Orlando, FL",
-    country: "USA",
+    date: "",
+    location: "",
     weatherStatus: "",
     weatherImage: "",
     temperature: 32,
@@ -26,11 +25,11 @@ class Today extends Component {
       { todo: "Eat cakes", status: "not done", date: "" },
       { todo: "Kiss the chicken", status: "not done", date: "" },
       { todo: "Call Arisi", status: "not done", date: "" },
-      { todo: "Do some clay stuffs", status: "not done", date: "" }
-    ]
+      { todo: "Do some clay stuffs", status: "not done", date: "" },
+    ],
   };
 
-  renderTodoCheckbox = item => {
+  renderTodoCheckbox = (item) => {
     switch (item.status) {
       case "not done":
         return NotDoneCheckbox;
@@ -43,12 +42,12 @@ class Today extends Component {
     }
   };
 
-  renderTodos = item => {
+  renderTodos = (item) => {
     return item.todo;
   };
 
-  renderTodoList = array => {
-    array.map(item => {
+  renderTodoList = (array) => {
+    array.map((item) => {
       return (
         <div>
           <img src={this.renderTodoCheckbox(item)} alt="checkbox icon" />
@@ -58,11 +57,77 @@ class Today extends Component {
     });
   };
 
+  setDate = () => {
+    const today = new Date();
+    const day = new Date().getDate();
+    const year = today.getFullYear();
+    let month;
+    switch (today.getMonth()) {
+      case 0:
+        month = "January";
+        break;
+      case 1:
+        month = "February";
+        break;
+      case 2:
+        month = "March";
+        break;
+      case 3:
+        month = "April";
+        break;
+      case 4:
+        month = "May";
+        break;
+      case 5:
+        month = "June";
+        break;
+      case 6:
+        month = "July";
+        break;
+      case 7:
+        month = "August";
+        break;
+      case 8:
+        month = "September";
+        break;
+      case 9:
+        month = "October";
+        break;
+      case 10:
+        month = "November";
+        break;
+      case 11:
+        month = "December";
+        break;
+      default:
+        month = "Month";
+        break;
+    }
+    this.setState({ date: `${month} ${day}, ${year}` });
+  };
+
+  getUserLocation() {
+    return fetch("https://geoip.edelkrone.com/json/").then((blob) =>
+      blob.json()
+    );
+  }
+
+  componentDidMount() {
+    this.setDate();
+    this.getUserLocation().then((data) => {
+      this.setState({
+        location: `${data.city}, ${data.region_name}, ${data.country_code}`,
+      });
+    });
+  }
+
   render() {
     return (
       <Aux>
         <div className={classes.flexContainerColumn}>
-          <p className={classes.date}>{this.state.date}</p>
+          <p className={classes.date}>
+            {this.state.date ? this.state.date : this.setDate()}
+          </p>
           <div className={classes.bgBlack}>
             <p>Today Looks Like This: </p>
           </div>
@@ -73,7 +138,7 @@ class Today extends Component {
                 className={classes.locationIcon}
                 alt="location icon"
               />
-              <p className={classes.data}>{this.state.city}</p>
+              <p className={classes.data}>{this.state.location}</p>
               <img
                 src={SunnyIcon}
                 className={classes.weatherIcon}
