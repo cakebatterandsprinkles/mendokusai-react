@@ -1,22 +1,25 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LandingLayout from "./layouts/LandingLayout";
-import UserMainPageLayout from "./layouts/UserMainPageLayout";
-import SignUpLayout from "./layouts/SignUpLayout";
-import LoginLayout from "./layouts/LoginLayout";
-import ResetPasswordLayout from "./layouts/ResetPasswordLayout";
-import SettingsLayout from "./layouts/SettingsLayout";
+import LandingMain from "./components/LandingMain/LandingMain";
+import UserMainPage from "./containers/UserMainPage/UserMainPage";
+import LoginForm from "./containers/LoginForm/LoginForm";
+import SignUpForm from "./containers/SignUpForm/SignUpForm";
+import ResetPassword from "./containers/ResetPassword/ResetPassword";
+import Settings from "./containers/Settings/Settings";
+import Layout from "./components/Layout/Layout";
 import "./App.css";
 
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={LandingLayout} />
-      <Route exact path="/signup" component={SignUpLayout} />
-      <Route exact path="/login" component={LoginLayout} />
-      <Route exact path="/user" component={UserMainPageLayout} />
-      <Route exact path="/reset-password" component={ResetPasswordLayout} />
-      <Route exact path="/settings" component={SettingsLayout} />
+      <Layout isAuthenticated={false}>
+        <Route exact path="/" component={LandingMain} />
+        <Route exact path="/signup" component={SignUpForm} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route path="/user" component={UserMainPage} />
+        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route exact path="/settings" component={Settings} />
+      </Layout>
     </Switch>
   </BrowserRouter>
 );
