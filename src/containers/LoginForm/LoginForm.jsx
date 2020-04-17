@@ -12,7 +12,7 @@ class LoginForm extends Component {
     this.state = {
       showModal: false,
       isSubmitting: false,
-      isSubmitted: false
+      isSubmitted: false,
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -33,12 +33,12 @@ class LoginForm extends Component {
     setTimeout(() => {
       this.setState({
         isSubmitting: false,
-        isSubmitted: true
+        isSubmitted: true,
       });
       setTimeout(() => {
         this.handleCloseModal();
         this.setState({
-          isSubmitted: false
+          isSubmitted: false,
         });
       }, 2000);
     }, 2000);

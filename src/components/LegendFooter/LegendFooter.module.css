@@ -1,0 +1,30 @@
+.footer {
+  position: fixed;
+  font-weight: bold;
+  bottom: 0;
+  padding: 1.2rem;
+  width: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(230, 228, 228, 0.808);
+  border-top: 2px solid black;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-right: 3rem
+}
+
+.legendItem>img {
+  width: 1.5rem;
+  margin-right: .5rem
+}
+
+@media (max-width: 855px) {
+  .footerText {
+    font-size: 0.8rem;
+  }
+}

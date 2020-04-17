@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import classes from "./UserMainPage.module.css";
-import CalendarButton from "../../assets/images/calendar.png";
 import Img1 from "../../assets/images/img1.jpg";
 import Img2 from "../../assets/images/img2.jpg";
 import Img3 from "../../assets/images/img3.jpg";
@@ -9,6 +8,7 @@ import Img5 from "../../assets/images/img5.jpg";
 import Img6 from "../../assets/images/img6.jpg";
 import Img12 from "../../assets/images/img12.jpg";
 import Today from "../../components/Today/Today";
+import LegendFooter from "../../components/LegendFooter/LegendFooter";
 
 class UserMainPage extends Component {
   state = {
@@ -62,6 +62,7 @@ class UserMainPage extends Component {
             <Today />
           </div>
         </div>
+        <LegendFooter />
       </div>
     );
   }

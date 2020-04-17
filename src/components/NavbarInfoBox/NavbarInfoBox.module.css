@@ -1,6 +1,7 @@
 .flexContainerColumn {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin: 1.2rem 2rem;
 }
 
