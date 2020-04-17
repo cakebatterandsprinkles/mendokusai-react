@@ -71,6 +71,31 @@
   margin-top: 2rem;
 }
 
+.changeColorBtn {
+  font-size: 3rem;
+  padding: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.calendarBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin: 0 .5rem .5rem .5rem;
+  padding: 1rem 2rem;
+  background-color: rgb(231, 231, 231);
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.calendarBtn:hover {
+  background: whitesmoke;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(167, 167, 167, 0.76);
+}
+
 @media (max-width: 1460px) {
   .settingsIcon {
     height: 2rem;
