@@ -5,7 +5,7 @@ import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
 import SettingsIcon from "../../assets/images/settingsicon.png";
 import { Link } from "react-router-dom";
 
-const NavbarUser = props => {
+const NavbarUser = (props) => {
   return (
     <div className={classes.flexContainerRow}>
       <div className={classes.flexContainerRow}>
@@ -28,7 +28,7 @@ const NavbarUser = props => {
               to="/settings"
               style={{
                 textDecoration: "none",
-                color: "black"
+                color: "black",
               }}
             >
               Settings
@@ -39,7 +39,7 @@ const NavbarUser = props => {
               to="/"
               style={{
                 textDecoration: "none",
-                color: "black"
+                color: "black",
               }}
             >
               Logout
