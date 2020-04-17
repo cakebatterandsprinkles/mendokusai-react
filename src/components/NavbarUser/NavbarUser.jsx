@@ -6,6 +6,10 @@ import SettingsIcon from "../../assets/images/settingsicon.png";
 import { Link } from "react-router-dom";
 
 class NavbarUser extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   reverseColor = () => {
     alert("reversed color!");
   };
@@ -23,9 +27,15 @@ class NavbarUser extends Component {
           <div className={classes.changeColorBtn} onClick={this.reverseColor}>
             <p>☯</p>
           </div>
-          <div className={classes.calendarBtn}>
-            <p>Calendar»</p>
-          </div>
+          {window.location.href.includes("user") ? (
+            <Link className={classes.calendarBtn} to="/calendar">
+              <p>Calendar»</p>
+            </Link>
+          ) : (
+            <Link className={classes.calendarBtn} to="/user">
+              <p>Main Page»</p>
+            </Link>
+          )}
         </div>
         <div className={classes.dropdown}>
           <img
