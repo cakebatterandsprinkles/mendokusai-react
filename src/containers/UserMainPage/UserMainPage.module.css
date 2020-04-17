@@ -1,12 +1,8 @@
-.flexContainer {
+.mainContainer {
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  max-height: 100vh;
   justify-content: space-between;
-}
-
-.posterAndButtonContainer {
-  width: 50%;
-  display: flex;
 }
 
 .wrapper {
@@ -15,41 +11,35 @@
   justify-content: center;
 }
 
+.flexRowContainer {
+  display: flex;
+}
+
 .calendarButton {
   width: 4rem;
 }
 
 .poster {
-  height: 90vh;
-  width: auto;
+  max-height: 90vh;
+  max-width: 60vw;
+  margin-top: .5rem;
 }
 
 .buttonContainer {
-  width: 30%;
+  max-height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: rotate(90deg);
 }
 
-@media (max-width: 1460px) {
+@media (max-width: 1200px) {
   .posterContainer {
     display: none;
   }
 
-  .posterAndButtonContainer {
-    width: 10%;
-    height: 90vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-left: 0.05rem solid rgb(43, 43, 43);
-    border-top: 0.05rem solid rgb(43, 43, 43);
-    border-bottom: 0.05rem solid rgb(43, 43, 43);
-    box-shadow: 0px 8px 16px 0px rgba(56, 56, 56, 0.384);
-  }
-
-  .buttonContainer {
+  .wrapper {
     width: 100%;
   }
 }

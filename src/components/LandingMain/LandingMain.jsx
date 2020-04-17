@@ -69,7 +69,7 @@ const LandingMain = () => {
         <img src={HeartIcon} alt="heart icon" className={classes.heartIcon} />
         <div>
           <p className={classes.footerText}>
-            You might be able to reach me from:{" "}
+            Reach me from:{" "}
             <a
               href="mailto:yagmurcetin@gmail.com"
               target="_blank"
@@ -80,7 +80,7 @@ const LandingMain = () => {
             </a>{" "}
           </p>
           <p className={classes.footerText}>
-            Source code of this project can be found at:{" "}
+            Source code:{" "}
             <a
               href="https://github.com/cakebatterandsprinkles/mendokusai-react"
               target="_blank"
