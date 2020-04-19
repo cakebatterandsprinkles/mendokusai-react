@@ -15,6 +15,7 @@
 .flexContainerRow {
   display: flex;
   justify-content: space-between;
+  background-color: white !important;
 }
 
 .dropdown {
@@ -76,24 +77,25 @@
   padding: 1.5rem;
   margin-right: 1rem;
   cursor: pointer;
+  color: black !important;
 }
 
 .calendarBtn {
   text-decoration: none;
+  height: 5rem;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.2rem;
   margin: 0 .5rem .5rem .5rem;
   padding: 1rem 2rem;
-  background-color: rgb(231, 231, 231);
+  background: linear-gradient(to bottom, rgba(174, 235, 214, 0.473), #4bc0c886);
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 
 .calendarBtn:hover {
-  background: whitesmoke;
   cursor: pointer;
   box-shadow: 2px 2px 3px rgba(167, 167, 167, 0.76);
 }
@@ -107,7 +109,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .settingsIcon {
     margin-right: 1rem;
     margin-top: 1rem;
@@ -115,7 +117,7 @@
 
   .logo {
     font-family: "Inconsolata", sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 0.8rem;
     padding: 0.3rem;
     border-bottom: 0.05rem solid black;
@@ -124,5 +126,20 @@
   .arrow {
     height: 3rem;
     width: auto;
+  }
+
+  .changeColorBtn {
+    font-size: 2.8rem;
+    padding: .2rem .5rem .8rem .5rem;
+    margin: 0 1rem;
+    cursor: pointer;
+  }
+
+  .calendarBtn {
+    font-size: 1rem;
+    height: 3.2rem;
+    color: black;
+    margin: 0 .5rem 0 .5rem;
+    padding: 1rem 1.2rem;
   }
 }

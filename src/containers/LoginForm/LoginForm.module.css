@@ -43,6 +43,10 @@
   margin-bottom: 2rem;
 }
 
+:global(.dark-bg) .headingContainer {
+  border-bottom: 2px solid white;
+}
+
 .heading {
   font-size: 2rem;
   margin-bottom: 0.5rem;

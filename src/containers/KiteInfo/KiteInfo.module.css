@@ -1,4 +1,8 @@
-@media (max-width: 600px) {
+.kiteInfoText {
+  color: black !important;
+}
+
+@media (max-width: 900px) {
   .kiteInfoText {
     font-size: 0.8rem;
   }

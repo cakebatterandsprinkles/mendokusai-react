@@ -6,12 +6,15 @@ import SettingsIcon from "../../assets/images/settingsicon.png";
 import { Link } from "react-router-dom";
 
 class NavbarUser extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   reverseColor = () => {
-    alert("reversed color!");
+    const page = document.body;
+    const hc = document.querySelectorAll(".headingContainer");
+    page.classList.toggle("dark-bg");
+    const hcArray = Array.from(hc);
+    console.log(hc, hcArray);
+    hcArray.forEach((hc) => {
+      hc.classList.toggle("light-border");
+    });
   };
 
   render() {
