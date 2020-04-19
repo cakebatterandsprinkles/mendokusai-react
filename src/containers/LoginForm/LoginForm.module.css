@@ -8,6 +8,7 @@
 
 .modalMainContainer {
   display: flex;
+  color: black !important;
 }
 
 .submitModalContainer {
@@ -45,6 +46,11 @@
 
 :global(.dark-bg) .headingContainer {
   border-bottom: 2px solid white;
+}
+
+:global(.dark-bg) .link {
+  color: deeppink;
+  text-decoration: none;
 }
 
 .heading {

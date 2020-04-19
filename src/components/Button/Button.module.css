@@ -7,7 +7,7 @@
 .link {
   padding: 0.5rem;
   text-decoration: none;
-  color: black;
+  color: black !important;
 }
 
 .link:hover {
