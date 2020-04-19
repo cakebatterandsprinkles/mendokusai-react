@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Aux from "../../hoc/Aux";
 import classes from "./KiteInfo.module.css";
 
 class KiteInfo extends Component {

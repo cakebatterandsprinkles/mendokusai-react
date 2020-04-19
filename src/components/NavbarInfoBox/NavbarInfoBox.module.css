@@ -1,12 +1,19 @@
 .flexContainerColumn {
+  color: black !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 1.2rem 2rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .welcomeText {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .flexContainerColumn {
+    display: none;
   }
 }

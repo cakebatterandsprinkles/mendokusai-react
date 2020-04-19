@@ -12,6 +12,11 @@
   margin-bottom: 2rem;
 }
 
+:global(.dark-bg) .headingContainer {
+  border-bottom: 2px solid white;
+}
+
+
 .checkboxInput {
   margin-right: 0.5rem;
 }
