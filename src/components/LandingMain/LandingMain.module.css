@@ -58,6 +58,7 @@
 }
 
 .footer {
+  color: black !important;
   position: fixed;
   bottom: 0;
   padding: 1rem;
