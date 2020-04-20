@@ -27,9 +27,6 @@ class NavbarUser extends Component {
           </Link>
           <img src={downarrow} alt="down arrow" className={classes.arrow} />
           <NavbarInfoBox name={"Ari Sensei"} />
-          <div className={classes.changeColorBtn} onClick={this.reverseColor}>
-            <p>☯</p>
-          </div>
           {window.location.href.includes("user") ? (
             <Link className={classes.calendarBtn} to="/calendar">
               <p>Calendar»</p>
@@ -57,6 +54,9 @@ class NavbarUser extends Component {
               >
                 Settings
               </Link>
+            </div>
+            <div className={classes.linkContainer} onClick={this.reverseColor}>
+              <p>Change Mode</p>
             </div>
             <div className={classes.linkContainerBottom}>
               <Link

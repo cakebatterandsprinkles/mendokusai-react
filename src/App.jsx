@@ -13,7 +13,7 @@ import "./App.css";
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Layout isAuthenticated={false}>
+      <Layout isAuthenticated={true}>
         <Route exact path="/" component={LandingMain} />
         <Route exact path="/signup" component={SignUpForm} />
         <Route exact path="/login" component={LoginForm} />
