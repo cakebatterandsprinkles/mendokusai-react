@@ -17,6 +17,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: white !important;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .flexContainerRowRight {
