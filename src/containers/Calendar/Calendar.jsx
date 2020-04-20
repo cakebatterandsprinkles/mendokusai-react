@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import LegendFooter from "../../components/LegendFooter/LegendFooter";
 
 class Calendar extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <LegendFooter />
+      </div>
+    );
   }
 }
 
