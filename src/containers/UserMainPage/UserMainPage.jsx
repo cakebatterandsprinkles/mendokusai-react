@@ -61,63 +61,64 @@ class UserMainPage extends Component {
 
   updateChosenPoster = (chosenPoster) => {
     this.setState({ chosenPoster: chosenPoster });
-  };
 
-  componentDidMount(props) {
-    if (!this.state.chosenPoster) {
-      this.changePosterRandom();
-    } else if (this.state.chosenPoster === Img1) {
+    if (chosenPoster === Img1) {
       this.setState({ posterText: "Sahara Desert" });
-    } else if (this.state.chosenPoster === Img2) {
+    } else if (chosenPoster === Img2) {
       this.setState({ posterText: "Valley of the Moon, Jordan" });
-    } else if (this.state.chosenPoster === Img3) {
+    } else if (chosenPoster === Img3) {
       this.setState({ posterText: "Milford Lake, Kansas, USA" });
-    } else if (this.state.chosenPoster === Img4) {
+    } else if (chosenPoster === Img4) {
       this.setState({ posterText: "Skeiðarárjökull, Iceland" });
-    } else if (this.state.chosenPoster === Img5) {
+    } else if (chosenPoster === Img5) {
       this.setState({ posterText: "Egypt" });
-    } else if (this.state.chosenPoster === Img6) {
+    } else if (chosenPoster === Img6) {
       this.setState({ posterText: "Cerro Guachiscota, Camarones, Chile" });
-    } else if (this.state.chosenPoster === Img7) {
+    } else if (chosenPoster === Img7) {
       this.setState({
         posterText: "Demini River, Barcelos - State of Amazonas, Brazil",
       });
-    } else if (this.state.chosenPoster === Img8) {
+    } else if (chosenPoster === Img8) {
       this.setState({ posterText: "Siberia, Russia" });
-    } else if (this.state.chosenPoster === Img9) {
+    } else if (chosenPoster === Img9) {
       this.setState({ posterText: "Gulf of Mexico, Florida, USA" });
-    } else if (this.state.chosenPoster === Img10) {
+    } else if (chosenPoster === Img10) {
       this.setState({
         posterText: "Mackenzie River, Northwest Territories, Canada",
       });
-    } else if (this.state.chosenPoster === Img11) {
+    } else if (chosenPoster === Img11) {
       this.setState({ posterText: "Queen Fabiola Mountains, Antarctica" });
-    } else if (this.state.chosenPoster === Img12) {
+    } else if (chosenPoster === Img12) {
       this.setState({ posterText: "Sudan" });
-    } else if (this.state.chosenPoster === Img13) {
+    } else if (chosenPoster === Img13) {
       this.setState({ posterText: "Foxe Basin, Nunavut, Canada" });
-    } else if (this.state.chosenPoster === Img14) {
+    } else if (chosenPoster === Img14) {
       this.setState({ posterText: "Edrengiyn Nuruu, Mongolia" });
-    } else if (this.state.chosenPoster === Img15) {
+    } else if (chosenPoster === Img15) {
       this.setState({ posterText: "Great Sandy Desert, Telfer WA, Australia" });
-    } else if (this.state.chosenPoster === Img16) {
+    } else if (chosenPoster === Img16) {
       this.setState({ posterText: "Mississippi, USA" });
-    } else if (this.state.chosenPoster === Img17) {
+    } else if (chosenPoster === Img17) {
       this.setState({ posterText: "Eyjafjörður, Iceland" });
-    } else if (this.state.chosenPoster === Img18) {
+    } else if (chosenPoster === Img18) {
       this.setState({
         posterText: "Sierra de Velasco, La Rioja Province, Argentina",
       });
-    } else if (this.state.chosenPoster === Img19) {
+    } else if (chosenPoster === Img19) {
       this.setState({ posterText: "Campeche, Mexico" });
-    } else if (this.state.chosenPoster === Img20) {
+    } else if (chosenPoster === Img20) {
       this.setState({ posterText: "Xinjiang, China" });
-    } else if (this.state.chosenPoster === Img21) {
+    } else if (chosenPoster === Img21) {
       this.setState({ posterText: "Himalaya Mountains" });
     } else {
       this.setState({ posterText: "Somewhere on Earth" });
     }
-    console.log(this.state.posterText);
+  };
+
+  componentDidMount() {
+    if (!this.state.chosenPoster) {
+      this.changePosterRandom();
+    }
   }
 
   render() {
@@ -126,6 +127,17 @@ class UserMainPage extends Component {
         <div className={classes.flexRowContainer}>
           <div className={classes.posterContainer}>
             <p className={classes.posterText}>{this.state.posterText}</p>
+            <p className={classes.credit}>
+              Photo by{" "}
+              <a
+                href="https://unsplash.com/@usgs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                USGS
+              </a>{" "}
+              on Unsplash
+            </p>
             <img
               src={this.state.chosenPoster}
               alt="poster"
