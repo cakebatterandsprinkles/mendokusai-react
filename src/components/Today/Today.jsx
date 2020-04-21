@@ -5,6 +5,9 @@ import InProgressCheckbox from "../../assets/images/inprogresscheckbox.png";
 import DoneCheckbox from "../../assets/images/donecheckbox.png";
 import AddIcon from "../../assets/images/addbutton.png";
 import SunnyIcon from "../../assets/images/sunny.png";
+import Modal from "react-modal";
+import Aux from "../../hoc/Aux";
+import ClosingButton from "../../assets/images/closeButton.png";
 import CloudyIcon from "../../assets/images/cloudy.png";
 import LocationIcon from "../../assets/images/location1.png";
 import CloudyAndSunnyIcon from "../../assets/images/sunandclouds.png";
@@ -13,20 +16,68 @@ import TooRainyIcon from "../../assets/images/toorainy.png";
 import Snowy from "../../assets/images/snowy.png";
 
 class Today extends Component {
-  state = {
-    date: "",
-    location: "",
-    weatherStatus: "",
-    weatherImage: "",
-    temperature: 32,
-    todoList: [
-      { todo: "Buy cakes", status: "not done", date: "" },
-      { todo: "Eat cakes", status: "not done", date: "" },
-      { todo: "Kiss the chicken", status: "not done", date: "" },
-      { todo: "Call Arisi", status: "not done", date: "" },
-      { todo: "Do some clay stuffs", status: "not done", date: "" },
-    ],
-  };
+  constructor() {
+    super();
+    this.state = {
+      expirationDate: "",
+      weatherStatus: "",
+      weatherImage: "",
+      temperature: 32,
+      todoList: [
+        { todo: "Buy cakes", status: "not done", date: "" },
+        { todo: "Eat cakes", status: "not done", date: "" },
+        { todo: "Kiss the chicken", status: "not done", date: "" },
+        { todo: "Call Arisi", status: "not done", date: "" },
+        { todo: "Do some clay stuffs", status: "not done", date: "" },
+      ],
+      showModal: false,
+      isSubmitted: false,
+    };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.renderModalContent = this.renderModalContent.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
+
+  handleSubmit() {
+    this.setState({ isSubmitted: true });
+  }
+
+  renderModalContent() {
+    return (
+      <div className={classes.modalMainContainer}>
+        <div className={classes.addToDoForm}>
+          <form action="/user" method="POST">
+            <div className={classes.formGroupContainer}>
+              <label htmlFor="add-item">Add an item to your list:</label>
+              <input type="email" name="add-item" id="add-item"></input>
+            </div>
+          </form>
+          <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
+            <button onClick={this.handleSubmit} className={classes.btn}>
+              Add
+            </button>
+          </div>
+        </div>
+        <div className={classes.closingButtonContainer}>
+          <img
+            src={ClosingButton}
+            alt="closing button"
+            className={classes.closingButton}
+            onClick={this.handleCloseModal}
+          />
+        </div>
+      </div>
+    );
+  }
 
   renderTodoCheckbox = (item) => {
     switch (item.status) {
@@ -125,38 +176,55 @@ class Today extends Component {
   }
 
   render() {
+    let currentModal = this.renderModalContent();
     return (
-      <div className={classes.mainContainer}>
-        <div className={classes.flexContainerColumn}>
-          <p className={classes.date}>{this.state.date}</p>
-          <div className={classes.bgBlack}>
-            <p>Today Looks Like This: </p>
-          </div>
-          <div className={classes.flexContainerRow}>
+      <Aux>
+        <div className={classes.mainContainer}>
+          <div className={classes.flexContainerColumn}>
+            <p className={classes.date}>{this.state.date}</p>
+            <div className={classes.bgBlack}>
+              <p>Today Looks Like This: </p>
+            </div>
             <div className={classes.flexContainerRow}>
-              <img
-                src={LocationIcon}
-                className={classes.locationIcon}
-                alt="location icon"
-              />
-              <p className={classes.data}>{this.state.location}</p>
-              <img
-                src={SunnyIcon}
-                className={classes.weatherIcon}
-                alt="weather icon"
-              />
-              <p className={classes.data}>Sunny</p>
-              <p className={classes.data}>{this.state.temperature}°C</p>
-            </div>
-            <div>
-              <img src={AddIcon} alt="add icon" className={classes.addIcon} />
+              <div className={classes.flexContainerRow}>
+                <img
+                  src={LocationIcon}
+                  className={classes.locationIcon}
+                  alt="location icon"
+                />
+                <p className={classes.data}>{this.state.location}</p>
+                <img
+                  src={SunnyIcon}
+                  className={classes.weatherIcon}
+                  alt="weather icon"
+                />
+                <p className={classes.data}>Sunny</p>
+                <p className={classes.data}>{this.state.temperature}°C</p>
+              </div>
+              <div>
+                <img
+                  src={AddIcon}
+                  alt="add icon"
+                  className={classes.addIcon}
+                  onClick={this.handleOpenModal}
+                />
+              </div>
             </div>
           </div>
+          <div className={classes.flexContainerColumn}>
+            {this.renderTodoList(this.state.todoList)}
+          </div>
         </div>
-        <div className={classes.flexContainerColumn}>
-          {this.renderTodoList(this.state.todoList)}
-        </div>
-      </div>
+        <Modal
+          isOpen={this.state.showModal}
+          onRequestClose={this.handleCloseModal}
+          className={classes.modal}
+          overlayClassName={classes.overlay}
+          ariaHideApp={false}
+        >
+          {currentModal}
+        </Modal>
+      </Aux>
     );
   }
 }
