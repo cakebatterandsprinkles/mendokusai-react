@@ -24,11 +24,11 @@ class Today extends Component {
       weatherImage: "",
       temperature: 32,
       todoList: [
-        { todo: "Buy cakes", status: "not done", date: "" },
-        { todo: "Eat cakes", status: "not done", date: "" },
-        { todo: "Kiss the chicken", status: "not done", date: "" },
-        { todo: "Call Arisi", status: "not done", date: "" },
-        { todo: "Do some clay stuffs", status: "not done", date: "" },
+        { todo: "Buy cakes", status: "not done" },
+        { todo: "Eat cakes", status: "not done" },
+        { todo: "Kiss the chicken", status: "not done" },
+        { todo: "Call Arisi", status: "not done" },
+        { todo: "Do some clay stuffs", status: "not done" },
       ],
       showModal: false,
       isSubmitted: false,
@@ -37,6 +37,7 @@ class Today extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addToDo = this.addToDo.bind(this);
   }
 
   handleOpenModal() {
@@ -49,6 +50,15 @@ class Today extends Component {
 
   handleSubmit() {
     this.setState({ isSubmitted: true });
+    this.addToDo();
+    this.handleCloseModal();
+  }
+
+  addToDo() {
+    const newItem = document.querySelector("#add-item").value;
+    this.setState({
+      todoList: [...this.state.todoList, { todo: newItem, status: "not done" }],
+    });
   }
 
   renderModalContent() {
@@ -58,7 +68,7 @@ class Today extends Component {
           <form action="/user" method="POST">
             <div className={classes.formGroupContainer}>
               <label htmlFor="add-item">Add an item to your list:</label>
-              <input type="email" name="add-item" id="add-item"></input>
+              <input type="text" name="add-item" id="add-item"></input>
             </div>
           </form>
           <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
