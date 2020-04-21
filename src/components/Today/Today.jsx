@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Aux from "../../hoc/Aux";
 import classes from "./Today.module.css";
 import NotDoneCheckbox from "../../assets/images/notdonecheckbox.png";
 import InProgressCheckbox from "../../assets/images/inprogresscheckbox.png";
@@ -47,10 +46,14 @@ class Today extends Component {
   };
 
   renderTodoList = (array) => {
-    array.map((item) => {
+    return array.map((item, index) => {
       return (
-        <div>
-          <img src={this.renderTodoCheckbox(item)} alt="checkbox icon" />
+        <div key={index} className={classes.todo}>
+          <img
+            className={classes.checkboxIcon}
+            src={this.renderTodoCheckbox(item)}
+            alt="checkbox icon"
+          />
           <p>{this.renderTodos(item)}</p>
         </div>
       );
@@ -123,11 +126,9 @@ class Today extends Component {
 
   render() {
     return (
-      <Aux>
+      <div className={classes.mainContainer}>
         <div className={classes.flexContainerColumn}>
-          <p className={classes.date}>
-            {this.state.date ? this.state.date : this.setDate()}
-          </p>
+          <p className={classes.date}>{this.state.date}</p>
           <div className={classes.bgBlack}>
             <p>Today Looks Like This: </p>
           </div>
@@ -155,7 +156,7 @@ class Today extends Component {
         <div className={classes.flexContainerColumn}>
           {this.renderTodoList(this.state.todoList)}
         </div>
-      </Aux>
+      </div>
     );
   }
 }
