@@ -38,6 +38,7 @@ class Today extends Component {
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addToDo = this.addToDo.bind(this);
+    this.deleteToDo = this.deleteToDo.bind(this);
   }
 
   handleOpenModal() {
@@ -122,6 +123,8 @@ class Today extends Component {
             src={ClosingButton}
             alt="delete button"
             className={classes.deleteButton}
+            data-value={this.renderTodos(item)}
+            onClick={this.deleteToDo}
           />
         </div>
       );
@@ -181,6 +184,15 @@ class Today extends Component {
     return fetch("https://geoip.edelkrone.com/json/").then((blob) =>
       blob.json()
     );
+  }
+
+  deleteToDo(e) {
+    const clicked = e.target;
+    const value = clicked.dataset.value;
+    const currentList = this.state.todoList;
+    const newList = currentList.filter((item) => item.todo !== value);
+    this.setState({ todoList: newList });
+    console.log(clicked, value);
   }
 
   componentDidMount() {
