@@ -110,12 +110,19 @@ class Today extends Component {
     return array.map((item, index) => {
       return (
         <div key={index} className={classes.todo}>
+          <div className={classes.todoWrapper}>
+            <img
+              className={classes.checkboxIcon}
+              src={this.renderTodoCheckbox(item)}
+              alt="checkbox icon"
+            />
+            <p>{this.renderTodos(item)}</p>
+          </div>
           <img
-            className={classes.checkboxIcon}
-            src={this.renderTodoCheckbox(item)}
-            alt="checkbox icon"
+            src={ClosingButton}
+            alt="delete button"
+            className={classes.deleteButton}
           />
-          <p>{this.renderTodos(item)}</p>
         </div>
       );
     });

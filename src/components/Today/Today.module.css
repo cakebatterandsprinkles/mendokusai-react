@@ -29,6 +29,15 @@
 
 .todo {
   display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.377);
+  margin-top: .25rem;
+  padding-top: .5rem;
+  padding-bottom: .25rem;
+}
+
+.todoWrapper {
+  display: flex;
 }
 
 .bgBlack {
@@ -87,6 +96,12 @@
   outline: none !important;
   border-radius: 50px;
   box-shadow: 0 0 3px #5e5e5e;
+}
+
+.deleteButton {
+  height: 1.2rem;
+  width: auto;
+  margin-right: .4rem;
 }
 
 .addToDoForm {
