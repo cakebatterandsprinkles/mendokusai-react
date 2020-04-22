@@ -39,6 +39,7 @@ class Today extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addToDo = this.addToDo.bind(this);
     this.deleteToDo = this.deleteToDo.bind(this);
+    this.changeStatus = this.changeStatus.bind(this);
   }
 
   handleOpenModal() {
@@ -116,8 +117,15 @@ class Today extends Component {
               className={classes.checkboxIcon}
               src={this.renderTodoCheckbox(item)}
               alt="checkbox icon"
+              onClick={this.changeStatus}
+              data-todo-value={this.renderTodos(item)}
             />
-            <p>{this.renderTodos(item)}</p>
+            <p
+              onClick={this.changeStatus}
+              data-todo-value={this.renderTodos(item)}
+            >
+              {this.renderTodos(item)}
+            </p>
           </div>
           <img
             src={ClosingButton}
@@ -189,10 +197,32 @@ class Today extends Component {
   deleteToDo(e) {
     const clicked = e.target;
     const value = clicked.dataset.value;
-    const currentList = this.state.todoList;
+    const currentList = [...this.state.todoList];
     const newList = currentList.filter((item) => item.todo !== value);
     this.setState({ todoList: newList });
     console.log(clicked, value);
+  }
+
+  changeStatus(e) {
+    const clicked = e.target;
+    const value = clicked.dataset.todoValue;
+    const currentList = [...this.state.todoList];
+    const changed = currentList.filter((item) => item.todo === value)[0];
+    const status = changed.status;
+    switch (status) {
+      case "not done":
+        changed.status = "in progress";
+        break;
+      case "in progress":
+        changed.status = "done";
+        break;
+      case "done":
+        changed.status = "not done";
+        break;
+      default:
+        changed.status = "not done";
+    }
+    this.setState({ todoList: currentList });
   }
 
   componentDidMount() {

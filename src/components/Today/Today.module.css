@@ -38,6 +38,7 @@
 
 .todoWrapper {
   display: flex;
+  cursor: pointer
 }
 
 .bgBlack {
@@ -75,9 +76,10 @@
 
 .checkboxIcon {
   width: 1rem;
-  height: auto;
+  height: 1rem;
   margin-right: .5rem;
   margin-bottom: .5rem;
+  background: rgba(255, 255, 255, 0.452);
 }
 
 /* Modal */
@@ -101,7 +103,8 @@
 .deleteButton {
   height: 1.2rem;
   width: auto;
-  margin-right: .4rem;
+  margin: 0 .4rem;
+  cursor: pointer;
 }
 
 .addToDoForm {
