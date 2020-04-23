@@ -1,0 +1,26 @@
+.drawerRight {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30rem;
+  height: 100%;
+  background-color: rgb(240, 240, 240);
+  box-shadow: -5px 0px 5px -5px rgba(0, 0, 0, 0.55);
+  z-index: 100;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 99;
+}
+
+@media (max-width: 600px) {
+  .drawerRight {
+    width: 20rem;
+  }
+}
