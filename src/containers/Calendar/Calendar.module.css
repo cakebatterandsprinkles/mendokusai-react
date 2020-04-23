@@ -22,7 +22,7 @@
 
 .month {
   font-size: 1.5rem;
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 }
 
 .days {
@@ -33,33 +33,46 @@
   display: grid;
   width: 84vw;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr;
   height: 66vh;
   border: 1px solid black;
   border-radius: 10px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
-.calendarContainer>* {
+.calendarContainer > * {
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Inconsolata;
 }
 
-#saturday {
-  background-color: linear-gradient(to right, #40e0d0, #ff8c00);
+.closebtn {
+  height: 3rem;
+  width: auto;
+  padding: 0.75rem;
 }
 
-#sunday {
-  background-color: linear-gradient(to right, #ff8c00, #ff0080);
+.closebtn:hover {
+  cursor: pointer;
+}
+
+.saturday {
+  background: linear-gradient(to right, #40e0d0, #ff8c00);
+  color: white;
+}
+
+.sunday {
+  background: linear-gradient(to right, #ff8c00, #ff0080);
+  color: white;
+  border-top-right-radius: 10px;
 }
 
 @media (max-width: 600px) {
   .weekday {
     border-bottom: 1px solid black;
     font-weight: bold;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -67,6 +80,6 @@
   .weekday {
     border-bottom: 1px solid black;
     font-weight: bold;
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
 }
