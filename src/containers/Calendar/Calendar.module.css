@@ -1,0 +1,72 @@
+.mainContainer {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weekday {
+  border-bottom: 1px solid black;
+  font-weight: bold;
+}
+
+.heading {
+  display: flex;
+  font-size: 2rem;
+  font-family: Inconsolata;
+  justify-content: space-between;
+  width: 15rem;
+  font-weight: bold;
+}
+
+.month {
+  font-size: 1.5rem;
+  margin-bottom: .3rem;
+}
+
+.days {
+  font-weight: bold;
+}
+
+.calendarContainer {
+  display: grid;
+  width: 84vw;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  height: 66vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: .5rem;
+}
+
+.calendarContainer>* {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inconsolata;
+}
+
+#saturday {
+  background-color: linear-gradient(to right, #40e0d0, #ff8c00);
+}
+
+#sunday {
+  background-color: linear-gradient(to right, #ff8c00, #ff0080);
+}
+
+@media (max-width: 600px) {
+  .weekday {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .weekday {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-size: .5rem;
+  }
+}
