@@ -40,7 +40,7 @@
   margin-top: 0.5rem;
 }
 
-.calendarContainer > * {
+.calendarContainer>* {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,6 +66,20 @@
   background: linear-gradient(to right, #ff8c00, #ff0080);
   color: white;
   border-top-right-radius: 10px;
+}
+
+.arrow {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 .4rem .1rem .4rem;
+}
+
+.arrow:hover {
+  color: white;
+  background: rgb(31, 31, 31);
+  border-radius: 50%;
+  transition-property: background, color;
+  transition-duration: .75s;
 }
 
 @media (max-width: 600px) {
