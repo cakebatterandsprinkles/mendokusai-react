@@ -4,15 +4,26 @@ import Aux from "../../hoc/Aux";
 import classes from "./Calendar.module.css";
 import Drawer from "../Drawer/Drawer";
 import CloseButton from "../../assets/images/closeButton.png";
+import { getMonthName } from "../../util/date";
 
 class Calendar extends Component {
   constructor() {
     super();
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = getMonthName(today.getMonth());
+
     this.state = {
       drawerOpen: false,
+      monthName: month,
+      month: today.getMonth(),
+      year: year,
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
+    this.getPrevMonth = this.getPrevMonth.bind(this);
+    this.getNextMonth = this.getNextMonth.bind(this);
   }
 
   toggleDrawer() {
@@ -22,14 +33,54 @@ class Calendar extends Component {
     this.setState({ drawerOpen: false });
   }
 
+  getPrevMonth() {
+    let newMonth = this.state.month - 1;
+    let newYear;
+    if (newMonth < 0) {
+      newMonth = 11;
+      newYear = this.state.year - 1;
+    } else {
+      newYear = this.state.year;
+    }
+    this.setState({
+      month: newMonth,
+      year: newYear,
+      monthName: getMonthName(newMonth),
+    });
+  }
+
+  getNextMonth() {
+    let newMonth = this.state.month + 1;
+    let newYear;
+    if (newMonth > 11) {
+      newMonth = 0;
+      newYear = this.state.year + 1;
+    } else {
+      newYear = this.state.year;
+    }
+    this.setState({
+      month: newMonth,
+      year: newYear,
+      monthName: getMonthName(newMonth),
+    });
+  }
+
   render() {
     return (
       <Aux>
         <div className={classes.mainContainer}>
           <div className={classes.month}>
-            <h2>↞ January ↠</h2>
+            <h2>
+              <span onClick={this.getPrevMonth} className={classes.arrow}>
+                ↞
+              </span>{" "}
+              {this.state.monthName}{" "}
+              <span onClick={this.getNextMonth} className={classes.arrow}>
+                ↠
+              </span>
+            </h2>
           </div>
-          <h2 className={classes.year}>2020</h2>
+          <h2 className={classes.year}>{this.state.year}</h2>
           <div className={classes.calendarContainer}>
             <div className={classes.weekday}>Monday</div>
             <div className={classes.weekday}>Tuesday</div>

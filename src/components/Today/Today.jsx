@@ -14,12 +14,13 @@ import CloudyAndSunnyIcon from "../../assets/images/sunandclouds.png";
 import RainyIcon from "../../assets/images/rainy.png";
 import TooRainyIcon from "../../assets/images/toorainy.png";
 import Snowy from "../../assets/images/snowy.png";
+import { getMonthName } from "../../util/date";
 
 class Today extends Component {
   constructor() {
     super();
     this.state = {
-      expirationDate: "",
+      date: "",
       weatherStatus: "",
       weatherImage: "",
       temperature: 32,
@@ -141,50 +142,10 @@ class Today extends Component {
 
   setDate = () => {
     const today = new Date();
+    const monthNum = today.getMonth();
     const day = new Date().getDate();
     const year = today.getFullYear();
-    let month;
-    switch (today.getMonth()) {
-      case 0:
-        month = "January";
-        break;
-      case 1:
-        month = "February";
-        break;
-      case 2:
-        month = "March";
-        break;
-      case 3:
-        month = "April";
-        break;
-      case 4:
-        month = "May";
-        break;
-      case 5:
-        month = "June";
-        break;
-      case 6:
-        month = "July";
-        break;
-      case 7:
-        month = "August";
-        break;
-      case 8:
-        month = "September";
-        break;
-      case 9:
-        month = "October";
-        break;
-      case 10:
-        month = "November";
-        break;
-      case 11:
-        month = "December";
-        break;
-      default:
-        month = "Month";
-        break;
-    }
+    const month = getMonthName(monthNum);
     this.setState({ date: `${month} ${day}, ${year}` });
   };
 
