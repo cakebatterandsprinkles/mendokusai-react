@@ -44,3 +44,11 @@ export function getMonthName(monthNum) {
 
   return month;
 }
+
+export function getDaysInMonth(month, year) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+export function getFirstDayOfMonth(month, year) {
+  return (new Date(year, month, 1).getDay() + 6) % 7;
+}

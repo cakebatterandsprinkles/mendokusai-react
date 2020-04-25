@@ -1,10 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import Aux from "../../hoc/Aux";
 import classes from "./Calendar.module.css";
 import Drawer from "../Drawer/Drawer";
 import CloseButton from "../../assets/images/closeButton.png";
-import { getMonthName } from "../../util/date";
+import {
+  getMonthName,
+  getDaysInMonth,
+  getFirstDayOfMonth,
+} from "../../util/date";
 
 class Calendar extends Component {
   constructor() {
@@ -65,6 +69,60 @@ class Calendar extends Component {
     });
   }
 
+  renderPadding() {
+    const paddingArr = [];
+    const paddingNum = getFirstDayOfMonth(this.state.month, this.state.year);
+    for (let i = 0; i < paddingNum; i++) {
+      paddingArr.push(i);
+    }
+
+    return (
+      <Fragment>
+        {paddingArr.map((padding) => {
+          return <div key={padding}></div>;
+        })}
+      </Fragment>
+    );
+  }
+
+  renderDays() {
+    const daysInCurrentMonth = getDaysInMonth(
+      this.state.month,
+      this.state.year
+    );
+
+    const dateArray = [];
+
+    for (let day = 1; day <= daysInCurrentMonth; day++) {
+      dateArray.push(day);
+    }
+
+    return (
+      <Fragment>
+        {dateArray.map((date) => {
+          return (
+            <div
+              className={classes.days}
+              onClick={this.toggleDrawer}
+              key={date}
+            >
+              {date}
+            </div>
+          );
+        })}
+      </Fragment>
+    );
+  }
+
+  renderCalendar() {
+    return (
+      <Fragment>
+        {this.renderPadding()}
+        {this.renderDays()}
+      </Fragment>
+    );
+  }
+
   render() {
     return (
       <Aux>
@@ -91,38 +149,7 @@ class Calendar extends Component {
               Saturday
             </div>
             <div className={`${classes.weekday} ${classes.sunday}`}>Sunday</div>
-            <div className={classes.days} onClick={this.toggleDrawer}>
-              1
-            </div>
-            <div className={classes.days}>2</div>
-            <div className={classes.days}>3</div>
-            <div className={classes.days}>4</div>
-            <div className={classes.days}>5</div>
-            <div className={classes.days}>6</div>
-            <div className={classes.days}>7</div>
-            <div className={classes.days}>8</div>
-            <div className={classes.days}>9</div>
-            <div className={classes.days}>10</div>
-            <div className={classes.days}>11</div>
-            <div className={classes.days}>12</div>
-            <div className={classes.days}>13</div>
-            <div className={classes.days}>14</div>
-            <div className={classes.days}>15</div>
-            <div className={classes.days}>16</div>
-            <div className={classes.days}>17</div>
-            <div className={classes.days}>18</div>
-            <div className={classes.days}>19</div>
-            <div className={classes.days}>20</div>
-            <div className={classes.days}>21</div>
-            <div className={classes.days}>22</div>
-            <div className={classes.days}>23</div>
-            <div className={classes.days}>24</div>
-            <div className={classes.days}>25</div>
-            <div className={classes.days}>26</div>
-            <div className={classes.days}>27</div>
-            <div className={classes.days}>28</div>
-            <div className={classes.days}>29</div>
-            <div className={classes.days}>30</div>
+            {this.renderCalendar()}
           </div>
           <LegendFooter />
           {this.state.drawerOpen ? (
