@@ -34,7 +34,8 @@
   width: 84vw;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr;
-  height: 66vh;
+  grid-auto-rows: 1fr;
+  height: 68vh;
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 0.5rem;
