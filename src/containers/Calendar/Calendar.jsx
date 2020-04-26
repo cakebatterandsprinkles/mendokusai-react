@@ -24,6 +24,7 @@ class Calendar extends Component {
     const day = new Date().getDate();
 
     this.state = {
+      entered: true,
       drawerOpen: false,
       monthName: month,
       month: today.getMonth(),
@@ -41,6 +42,7 @@ class Calendar extends Component {
     this.setState({
       drawerOpen: !this.state.drawerOpen,
       date: `${this.state.monthName} ${day}, ${this.state.year}`,
+      entered: !this.state.entered,
     });
   }
   closeDrawer() {
@@ -113,7 +115,9 @@ class Calendar extends Component {
           return (
             <div
               className={classes.days}
-              onClick={(e) => this.toggleDrawer(e)}
+              onClick={(e) => {
+                this.toggleDrawer(e);
+              }}
               key={date}
             >
               {date}
@@ -162,70 +166,68 @@ class Calendar extends Component {
             {this.renderCalendar()}
           </div>
           <LegendFooter />
-          {this.state.drawerOpen ? (
-            <Drawer open={this.state.drawerOpen} closeDrawer={this.closeDrawer}>
-              <img
-                src={CloseButton}
-                alt="closing button"
-                className={classes.closebtn}
-                onClick={this.closeDrawer}
-              />
-              <div className={classes.drawerContent}>
-                <div className={classes.heading}>{this.state.date}</div>
-                <div className={classes.notDoneContainer}>
-                  <div className={classes.wrapper}>
-                    <img
-                      src={Circle}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
-                    <div className={classes.headerContainer}>
-                      <p>To Be Done:</p>
-                    </div>
-                    <img
-                      src={AddIcon}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
+          <Drawer closeDrawer={this.closeDrawer} in={this.state.drawerOpen}>
+            <img
+              src={CloseButton}
+              alt="closing button"
+              className={classes.closebtn}
+              onClick={this.closeDrawer}
+            />
+            <div className={classes.drawerContent}>
+              <div className={classes.heading}>{this.state.date}</div>
+              <div className={classes.notDoneContainer}>
+                <div className={classes.wrapper}>
+                  <img
+                    src={Circle}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
+                  <div className={classes.headerContainer}>
+                    <p>To Be Done:</p>
                   </div>
-                </div>
-                <div className={classes.inProgressContainer}>
-                  <div className={classes.wrapper}>
-                    <img
-                      src={Triangle}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
-                    <div className={classes.headerContainer}>
-                      <p>In Progress:</p>
-                    </div>
-                    <img
-                      src={AddIcon}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
-                  </div>
-                </div>
-                <div className={classes.doneContainer}>
-                  <div className={classes.wrapper}>
-                    <img
-                      src={Star}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
-                    <div className={classes.headerContainer}>
-                      <p>Done:</p>
-                    </div>
-                    <img
-                      src={AddIcon}
-                      alt="closing button"
-                      className={classes.icon}
-                    />
-                  </div>
+                  <img
+                    src={AddIcon}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
                 </div>
               </div>
-            </Drawer>
-          ) : null}
+              <div className={classes.inProgressContainer}>
+                <div className={classes.wrapper}>
+                  <img
+                    src={Triangle}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
+                  <div className={classes.headerContainer}>
+                    <p>In Progress:</p>
+                  </div>
+                  <img
+                    src={AddIcon}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
+                </div>
+              </div>
+              <div className={classes.doneContainer}>
+                <div className={classes.wrapper}>
+                  <img
+                    src={Star}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
+                  <div className={classes.headerContainer}>
+                    <p>Done:</p>
+                  </div>
+                  <img
+                    src={AddIcon}
+                    alt="closing button"
+                    className={classes.icon}
+                  />
+                </div>
+              </div>
+            </div>
+          </Drawer>
         </div>
       </Aux>
     );

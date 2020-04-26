@@ -1,3 +1,7 @@
+.mainWrapper {
+  z-index: 101;
+}
+
 .drawerRight {
   position: fixed;
   top: 0;
@@ -20,6 +24,50 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
   z-index: 99;
+}
+
+:global .roll-appear {
+  opacity: 0;
+}
+
+:global(.roll-appear) .drawerRight {
+  transform: translateX(+30rem);
+}
+
+:global(.roll-enter) .drawerRight {
+  transform: translateX(+30rem);
+}
+
+:global(.roll-enter-done) .drawerRight {
+  transform: translateX(0);
+  transition: transform 750ms;
+}
+
+:global .roll-enter {
+  opacity: 0;
+}
+
+:global .roll-enter-done {
+  opacity: 1;
+  transition: opacity 750ms;
+}
+
+:global(.roll-exit) .drawerRight {
+  transform: translateX(0);
+}
+
+:global .roll-exit {
+  opacity: 1;
+}
+
+:global(.roll-exit-active) .drawerRight {
+  transform: translateX(+30rem);
+  transition: transform 750ms;
+}
+
+:global .roll-exit-active {
+  opacity: 0;
+  transition: opacity 750ms;
 }
 
 @media (max-width: 600px) {
