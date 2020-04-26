@@ -4,6 +4,10 @@ import Aux from "../../hoc/Aux";
 import classes from "./Calendar.module.css";
 import Drawer from "../Drawer/Drawer";
 import CloseButton from "../../assets/images/closeButton.png";
+import Circle from "../../assets/images/circle.png";
+import Triangle from "../../assets/images/triangle.png";
+import Star from "../../assets/images/star.png";
+import AddIcon from "../../assets/images/addbutton.png";
 import {
   getMonthName,
   getDaysInMonth,
@@ -17,12 +21,14 @@ class Calendar extends Component {
     const today = new Date();
     const year = today.getFullYear();
     const month = getMonthName(today.getMonth());
+    const day = new Date().getDate();
 
     this.state = {
       drawerOpen: false,
       monthName: month,
       month: today.getMonth(),
       year: year,
+      date: `${month} ${day}, ${year}`,
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
@@ -30,8 +36,12 @@ class Calendar extends Component {
     this.getNextMonth = this.getNextMonth.bind(this);
   }
 
-  toggleDrawer() {
-    this.setState({ drawerOpen: !this.state.drawerOpen });
+  toggleDrawer(e) {
+    const day = e.target.innerText;
+    this.setState({
+      drawerOpen: !this.state.drawerOpen,
+      date: `${this.state.monthName} ${day}, ${this.state.year}`,
+    });
   }
   closeDrawer() {
     this.setState({ drawerOpen: false });
@@ -103,7 +113,7 @@ class Calendar extends Component {
           return (
             <div
               className={classes.days}
-              onClick={this.toggleDrawer}
+              onClick={(e) => this.toggleDrawer(e)}
               key={date}
             >
               {date}
@@ -161,9 +171,58 @@ class Calendar extends Component {
                 onClick={this.closeDrawer}
               />
               <div className={classes.drawerContent}>
-                <div className={classes.notDoneContainer}></div>
-                <div className={classes.inProgressContainer}></div>
-                <div className={classes.doneContainer}></div>
+                <div className={classes.heading}>{this.state.date}</div>
+                <div className={classes.notDoneContainer}>
+                  <div className={classes.wrapper}>
+                    <img
+                      src={Circle}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                    <div className={classes.headerContainer}>
+                      <p>To Be Done:</p>
+                    </div>
+                    <img
+                      src={AddIcon}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                  </div>
+                </div>
+                <div className={classes.inProgressContainer}>
+                  <div className={classes.wrapper}>
+                    <img
+                      src={Triangle}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                    <div className={classes.headerContainer}>
+                      <p>In Progress:</p>
+                    </div>
+                    <img
+                      src={AddIcon}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                  </div>
+                </div>
+                <div className={classes.doneContainer}>
+                  <div className={classes.wrapper}>
+                    <img
+                      src={Star}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                    <div className={classes.headerContainer}>
+                      <p>Done:</p>
+                    </div>
+                    <img
+                      src={AddIcon}
+                      alt="closing button"
+                      className={classes.icon}
+                    />
+                  </div>
+                </div>
               </div>
             </Drawer>
           ) : null}
