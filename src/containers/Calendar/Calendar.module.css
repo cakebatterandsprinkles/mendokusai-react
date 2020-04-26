@@ -11,15 +11,6 @@
   font-weight: bold;
 }
 
-.heading {
-  display: flex;
-  font-size: 2rem;
-  font-family: Inconsolata;
-  justify-content: space-between;
-  width: 15rem;
-  font-weight: bold;
-}
-
 .month {
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
@@ -27,13 +18,14 @@
 
 .days {
   font-weight: bold;
+  cursor: pointer;
 }
 
 .calendarContainer {
   display: grid;
   width: 84vw;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr;
   grid-auto-rows: 1fr;
   height: 68vh;
   border: 1px solid black;
@@ -52,6 +44,7 @@
   height: 3rem;
   width: auto;
   padding: 0.75rem;
+  margin-left: auto;
 }
 
 .closebtn:hover {
@@ -83,11 +76,53 @@
   transition-duration: .75s;
 }
 
+.heading {
+  display: inline-block;
+  font-family: Inconsolata;
+  font-size: 1.5rem;
+  color: white;
+  background: rgb(24, 24, 24);
+  padding: .4rem .8rem;
+  margin-left: 2rem;
+  border-radius: 10px;
+}
+
+.notDoneContainer,
+.inProgressContainer,
+.doneContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin: 1.2rem .5rem .5rem 1.2rem;
+}
+
+.headerContainer {
+  width: 70%;
+  border-bottom: 1px solid black;
+  margin: 0 1rem;
+  font-size: 1rem;
+  padding-bottom: .4rem
+}
+
+.icon {
+  height: 1.2rem;
+  width: auto;
+}
+
 @media (max-width: 600px) {
   .weekday {
     border-bottom: 1px solid black;
     font-weight: bold;
     font-size: 0.75rem;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+    padding: .3rem .6rem;
   }
 }
 
