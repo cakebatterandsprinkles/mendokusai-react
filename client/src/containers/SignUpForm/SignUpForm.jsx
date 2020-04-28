@@ -1,19 +1,58 @@
 import React, { Component } from "react";
+import axios from "axios";
 import classes from "./SignUpForm.module.css";
 
 class SignUpForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  submitForm = () => {
+    axios
+      .post("/user", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        repeatPassword: this.state.repeatPassword,
+      })
+      .then((response) => console.log(response))
+      .catch((error) => {
+        const errors = error.response.data.errors;
+        if (errors.length) {
+          alert(errors[0].msg);
+        }
+      });
+  };
+
   render() {
     return (
       <div className={classes.mainContainer}>
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Sign Up</p>
         </div>
-        <form className={classes.loginForm} action="/user" method="POST">
+        <form className={classes.loginForm}>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="name">Name:</label>
-            <input type="name" name="name" id="name"></input>
+            <input
+              type="name"
+              name="name"
+              id="name"
+              onChange={this.handleInputChange}
+            ></input>
           </div>
           <div className={classes.subTextContainer}>
             <p className={classes.subText}>
@@ -25,7 +64,12 @@ class SignUpForm extends Component {
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email"></input>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={this.handleInputChange}
+            ></input>
           </div>
           <div className={classes.subTextContainer}>
             <p className={classes.subText}>
@@ -36,7 +80,12 @@ class SignUpForm extends Component {
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="password">Password:</label>
-            <input type="password" name="password" id="password"></input>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={this.handleInputChange}
+            ></input>
           </div>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
@@ -44,8 +93,9 @@ class SignUpForm extends Component {
             <label htmlFor="repeat-password">Repeat Password:</label>
             <input
               type="password"
-              name="repeat-password"
+              name="repeatPassword"
               id="repeat-password"
+              onChange={this.handleInputChange}
             ></input>
           </div>
           <div className={classes.subTextContainer}>
@@ -64,7 +114,11 @@ class SignUpForm extends Component {
           </div>
           <input type="hidden" name="_csrf" value="csrfToken" />
           <div className={classes.btnWrapper}>
-            <button className={classes.btn} type="submit">
+            <button
+              className={classes.btn}
+              type="button"
+              onClick={this.submitForm}
+            >
               Sign Up
             </button>
           </div>

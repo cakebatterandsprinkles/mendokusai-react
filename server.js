@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path");
+const bodyParser = require('body-parser');
+const userRoutes = require("./routes/users");
+const cors = require("cors");
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
@@ -18,8 +23,18 @@ mongoose.connect(MONGODB_URI, {
   console.log(error);
 });
 
+app.use(cors());
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static(path.join(__dirname, 'client/build', 'index.html')));
 }
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+app.use(bodyParser.json());
+
+app.use('/user', userRoutes);
+
 
 app.listen(PORT, () => console.log(`Backend server started on port: ${PORT}`));
