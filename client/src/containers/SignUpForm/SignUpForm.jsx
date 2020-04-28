@@ -30,9 +30,7 @@ class SignUpForm extends Component {
       .then((response) => console.log(response))
       .catch((error) => {
         const errors = error.response.data.errors;
-        if (errors.length) {
-          alert(errors[0].msg);
-        }
+        console.log(errors);
       });
   };
 
