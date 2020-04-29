@@ -3,8 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require('body-parser');
-const userRoutes = require("./routes/users");
 const cors = require("cors");
+const registrationRoutes = require("./routes/users");
 
 require("dotenv").config();
 
@@ -13,6 +13,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 const MONGODB_PASS = process.env.MONGODB_PASS;
 
+// connect db
 mongoose.connect(MONGODB_URI, {
   auth: {
     user: MONGODB_USERNAME,
@@ -23,18 +24,28 @@ mongoose.connect(MONGODB_URI, {
   console.log(error);
 });
 
-app.use(cors());
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, 'client/build', 'index.html')));
-}
+// parse incoming request bodies and stick them in req.body
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-
+// parse application/json
 app.use(bodyParser.json());
 
-app.use('/user', userRoutes);
+app.use(cors());
+
+// serve static files
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, 'client/build', 'index.html')));
+}
+
+// routes
+app.use(registrationRoutes);
+
+// 404 route
+app.use("/", (req, res, next) => {
+  res.status(404).redirect("/404");
+})
 
 
 app.listen(PORT, () => console.log(`Backend server started on port: ${PORT}`));
