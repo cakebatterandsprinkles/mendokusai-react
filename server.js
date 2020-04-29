@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const registrationRoutes = require("./routes/users");
+const flash = require('connect-flash');
+const authRoutes = require("./routes/auth");
 const errorController = require("./controllers/error");
 
 require("dotenv").config();
@@ -43,7 +44,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // routes
-app.use(registrationRoutes);
+app.use(authRoutes);
+
+app.use(flash());
 
 // 404 route
 app.use(errorController.get404);
