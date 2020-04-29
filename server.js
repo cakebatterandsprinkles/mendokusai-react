@@ -5,6 +5,7 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const registrationRoutes = require("./routes/users");
+const errorController = require("./controllers/error");
 
 require("dotenv").config();
 
@@ -12,6 +13,8 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 const MONGODB_PASS = process.env.MONGODB_PASS;
+
+
 
 // connect db
 mongoose.connect(MONGODB_URI, {
@@ -43,9 +46,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(registrationRoutes);
 
 // 404 route
-app.use("/", (req, res, next) => {
-  res.status(404).redirect("/404");
-})
+app.use(errorController.get404);
 
 
 app.listen(PORT, () => console.log(`Backend server started on port: ${PORT}`));
