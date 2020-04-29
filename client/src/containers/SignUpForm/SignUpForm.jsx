@@ -21,7 +21,7 @@ class SignUpForm extends Component {
 
   submitForm = () => {
     axios
-      .post("/user", {
+      .post("/signup", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
@@ -29,8 +29,7 @@ class SignUpForm extends Component {
       })
       .then((response) => console.log(response))
       .catch((error) => {
-        const errors = error.response.data.errors;
-        console.log(errors);
+        console.log(error);
       });
   };
 
