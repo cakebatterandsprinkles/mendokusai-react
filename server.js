@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const flash = require('connect-flash');
 const authRoutes = require("./routes/auth");
 const errorController = require("./controllers/error");
 
@@ -14,8 +13,6 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 const MONGODB_PASS = process.env.MONGODB_PASS;
-
-
 
 // connect db
 mongoose.connect(MONGODB_URI, {
@@ -45,8 +42,6 @@ if (process.env.NODE_ENV === "production") {
 
 // routes
 app.use(authRoutes);
-
-app.use(flash());
 
 // 404 route
 app.use(errorController.get404);

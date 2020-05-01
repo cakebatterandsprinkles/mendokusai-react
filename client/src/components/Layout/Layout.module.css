@@ -1,0 +1,12 @@
+.wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 80;
+}
+
+.invisible {
+  /* transform: translateY(-3rem); */
+}

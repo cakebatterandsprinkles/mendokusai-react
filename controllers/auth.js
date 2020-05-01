@@ -12,6 +12,23 @@ const transporter = nodemailer.createTransport(
   })
 );
 
+const validation = (name, email, password, repeatPassword) => {
+  if (name.length < 2) {
+    return "Username must be at least 2 characters long."
+  }
+  if (!email.includes("@")) {
+    return "Please enter a valid e-mail address";
+  }
+  if (password.length < 8) {
+    return 'Please enter a password with 8 or more characters';
+  }
+  if (password !== repeatPassword) {
+    return 'Entered passwords should match!';
+  }
+
+  return "Success";
+}
+
 exports.postSignup = (req, res, next) => {
   const {
     name,
@@ -20,23 +37,17 @@ exports.postSignup = (req, res, next) => {
     repeatPassword
   } = req.body;
 
+  const validationResult = validation(name, email, password, repeatPassword);
+
+  if (validationResult !== "Success") {
+    return res.status(400).send(validationResult);
+  }
+
   User.findOne({
       email: email
     }).then(userInfo => {
       if (userInfo) {
-        return req.flash(
-          'error',
-          "User already exists"
-        );
-      }
-      if (password.length < 8) {
-        return req.flash('error', 'Please enter a password with 8 or more characters');
-      }
-      if (!email.includes("@")) {
-        return req.flash('error', 'Please enter a valid e-mail address');
-      }
-      if (password !== repeatPassword) {
-        return req.flash('error', 'Entered passwords should match!');
+        return res.status(400).send("User already exists.");
       }
       return bcrypt
         .hash(password, 12)
@@ -49,17 +60,19 @@ exports.postSignup = (req, res, next) => {
           return user.save();
         })
         .then(result => {
-          res.redirect('/login');
-          return transporter.sendMail({
+          transporter.sendMail({
             to: email,
-            from: 'shop@node-complete.com',
+            from: 'hello@mendokusai.com',
             subject: 'Signup succeeded!',
             html: '<h1>You successfully signed up!</h1>'
           });
+
+          return res.status(200).end();
         })
         .catch(err => {
           console.log(err);
         });
+
     })
     .catch(err => {
       console.log(err);

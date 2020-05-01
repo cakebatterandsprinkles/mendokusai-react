@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import classes from "./SignUpForm.module.css";
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -29,7 +31,9 @@ class SignUpForm extends Component {
       })
       .then((response) => console.log(response))
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          this.props.setError(error.response.data);
+        }
       });
   };
 
@@ -125,4 +129,14 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setError: (errorMessage) =>
+      dispatch({
+        type: actionTypes.setErrorMessage,
+        payload: { errorMessage: errorMessage },
+      }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignUpForm);
