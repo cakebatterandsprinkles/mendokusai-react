@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import classes from "./Today.module.css";
 import NotDoneCheckbox from "../../assets/images/notdonecheckbox.png";
 import InProgressCheckbox from "../../assets/images/inprogresscheckbox.png";
@@ -13,17 +13,17 @@ import LocationIcon from "../../assets/images/location1.png";
 import CloudyAndSunnyIcon from "../../assets/images/sunandclouds.png";
 import RainyIcon from "../../assets/images/rainy.png";
 import TooRainyIcon from "../../assets/images/toorainy.png";
-import Snowy from "../../assets/images/snowy.png";
+import SnowyIcon from "../../assets/images/snowy.png";
 import { getMonthName } from "../../util/date";
+import { connect } from "react-redux";
+import { getCelcius } from "../../util/temp";
 
 class Today extends Component {
   constructor() {
     super();
     this.state = {
-      date: "",
-      weatherStatus: "",
-      weatherImage: "",
-      temperature: 32,
+      temp: "",
+      tempUnit: "c",
       todoList: [
         { todo: "Buy cakes", status: "not done" },
         { todo: "Eat cakes", status: "not done" },
@@ -41,6 +41,7 @@ class Today extends Component {
     this.addToDo = this.addToDo.bind(this);
     this.deleteToDo = this.deleteToDo.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
+    this.convertTemp = this.convertTemp.bind(this);
   }
 
   handleOpenModal() {
@@ -62,6 +63,45 @@ class Today extends Component {
     this.setState({
       todoList: [...this.state.todoList, { todo: newItem, status: "not done" }],
     });
+  }
+
+  convertTemp() {
+    if (!this.props.weatherData.main) {
+      return;
+    }
+
+    if (this.state.tempUnit === "f") {
+      const newTemp = getCelcius(this.props.weatherData.main.temp);
+      this.setState({ temp: newTemp, tempUnit: "c" });
+    } else if (this.state.tempUnit === "c") {
+      const newTemp = this.props.weatherData.main.temp;
+      this.setState({ temp: newTemp, tempUnit: "f" });
+    }
+  }
+
+  getWeatherIcon() {
+    if (!this.props.weatherData.weather) {
+      return;
+    }
+
+    const weatherStatus = this.props.weatherData.weather[0].main;
+    switch (weatherStatus) {
+      case "Clear":
+        return SunnyIcon;
+      case "Snow":
+        return SnowyIcon;
+      case "Rain":
+      case "Drizzle":
+        return RainyIcon;
+      case "Thunderstorm":
+        return TooRainyIcon;
+      case "Clouds":
+        return CloudyAndSunnyIcon;
+      default:
+        return CloudyIcon;
+    }
+    {
+    }
   }
 
   renderModalContent() {
@@ -196,6 +236,9 @@ class Today extends Component {
   }
 
   render() {
+    if (this.state.temp === "" && this.props.weatherData.main) {
+      this.convertTemp();
+    }
     let currentModal = this.renderModalContent();
     return (
       <Aux>
@@ -213,13 +256,24 @@ class Today extends Component {
                   alt="location icon"
                 />
                 <p className={classes.data}>{this.state.location}</p>
-                <img
-                  src={SunnyIcon}
-                  className={classes.weatherIcon}
-                  alt="weather icon"
-                />
-                <p className={classes.data}>Sunny</p>
-                <p className={classes.data}>{this.state.temperature}°C</p>
+                {this.props.weatherData.weather ? (
+                  <Fragment>
+                    <img
+                      src={this.getWeatherIcon()}
+                      className={classes.weatherIcon}
+                      alt="weather icon"
+                    />
+                    <p className={classes.data}>
+                      {this.props.weatherData.weather[0].main}
+                    </p>
+                  </Fragment>
+                ) : null}
+                {this.state.temp ? (
+                  <p className={classes.data} onClick={this.convertTemp}>
+                    {this.state.temp ? this.state.temp : "..."}°
+                    {this.state.tempUnit.toUpperCase()}
+                  </p>
+                ) : null}
               </div>
               <div>
                 <img
@@ -249,4 +303,10 @@ class Today extends Component {
   }
 }
 
-export default Today;
+const mapStateToProps = (state) => {
+  return {
+    weatherData: state.weatherData,
+  };
+};
+
+export default connect(mapStateToProps)(Today);

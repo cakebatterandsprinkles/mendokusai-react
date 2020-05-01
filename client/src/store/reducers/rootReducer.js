@@ -1,31 +1,40 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  windSpeed: 12,
-  windText: '',
-  userName: '',
-  city: '',
-  currentDate: '',
-  errorMessage: '',
+  userName: "",
+  errorMessage: "",
   itemsToBeDone: [],
   itemsInProgress: [],
-  itemsDone: []
-}
+  itemsDone: [],
+  weatherData: {},
+  location: {},
+};
 
 const rootReducer = (state = initialState, action) => {
-  if (action.type === actionTypes.addItemsToBeDone) {
-    return {
-      ...state,
-      itemsToBeDone: [...state.itemsToBeDone, action.payload.item]
-    }
+  switch (action.type) {
+    case actionTypes.addItemsToBeDone:
+      return {
+        ...state,
+        itemsToBeDone: [...state.itemsToBeDone, action.payload.item],
+      };
+    case actionTypes.setErrorMessage:
+      return {
+        ...state,
+        errorMessage: action.payload.errorMessage,
+      };
+    case actionTypes.setWeatherData:
+      return {
+        ...state,
+        weatherData: action.payload.weatherData,
+      };
+    case actionTypes.setLocation:
+      return {
+        ...state,
+        location: action.payload.location,
+      };
+    default:
+      return state;
   }
-  if (action.type === actionTypes.setErrorMessage) {
-    return {
-      ...state,
-      errorMessage: action.payload.errorMessage
-    }
-  }
-  return state;
-}
+};
 
 export default rootReducer;

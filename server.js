@@ -5,6 +5,7 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
+const weatherRoutes = require("./routes/weather");
 const errorController = require("./controllers/error");
 
 require("dotenv").config();
@@ -42,6 +43,7 @@ if (process.env.NODE_ENV === "production") {
 
 // routes
 app.use(authRoutes);
+app.use('/weather', weatherRoutes);
 
 // 404 route
 app.use(errorController.get404);

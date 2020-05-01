@@ -13,8 +13,8 @@
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1",
-    "react-transition-group": "^4.3.0",
+    "react-scripts": "^3.4.1",
+    "react-transition-group": "^4.4.1",
     "redux": "^4.0.5"
   },
   "scripts": {
@@ -38,5 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0"
+  }
 }
