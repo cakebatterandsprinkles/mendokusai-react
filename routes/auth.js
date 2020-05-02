@@ -12,8 +12,6 @@ router.post("/signup", authController.postSignup);
 // @desc   Login User
 // @access public
 
-// router.post('/login', (req, res, next) => {
-
-// })
+router.post("/login", authController.postLogin);
 
 module.exports = router;
