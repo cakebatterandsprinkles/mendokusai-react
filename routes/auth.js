@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
+const verifyToken = require("../middleware/verifyToken");
 
 // @route  POST /signup
 // @desc   Register User
@@ -13,5 +14,11 @@ router.post("/signup", authController.postSignup);
 // @access public
 
 router.post("/login", authController.postLogin);
+
+// @route  GET /me
+// @desc   Get User
+// @access private
+
+router.post("/me", authController.getMe, verifyToken);
 
 module.exports = router;

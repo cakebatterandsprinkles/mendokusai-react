@@ -100,3 +100,7 @@ exports.postLogin = (res, req, next) => {
     return res.status(500).json(err.toString());
   }
 };
+
+exports.getMe = (res, req, next) => {
+  return res.json(req.user);
+};

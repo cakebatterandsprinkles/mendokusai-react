@@ -44,7 +44,8 @@ app.use(bodyParser.json());
 // parse cookies
 app.use(cookieParser());
 
-app.use(cors());
+// allow cookies
+app.use(cors({ credentials: true }));
 
 // serve static files
 if (process.env.NODE_ENV === "production") {
