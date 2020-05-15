@@ -5,6 +5,9 @@ import Modal from "react-modal";
 import ClosingButton from "../../assets/images/closeButton.png";
 import BirbImage from "../../assets/images/birb.png";
 import Sun from "../../assets/images/sunny.png";
+import axios from "axios";
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
 
 class LoginForm extends Component {
   constructor() {
@@ -13,12 +16,22 @@ class LoginForm extends Component {
       showModal: false,
       isSubmitting: false,
       isSubmitted: false,
+      email: "",
+      password: "",
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleForgotPasswordSubmit = this.handleForgotPasswordSubmit.bind(
+      this
+    );
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
+
+  handleInputChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   handleOpenModal() {
     this.setState({ showModal: true });
@@ -28,7 +41,7 @@ class LoginForm extends Component {
     this.setState({ showModal: false });
   }
 
-  handleSubmit() {
+  handleForgotPasswordSubmit() {
     this.setState({ isSubmitting: true });
     setTimeout(() => {
       this.setState({
@@ -42,6 +55,26 @@ class LoginForm extends Component {
         });
       }, 2000);
     }, 2000);
+  }
+
+  handleLoginSubmit() {
+    axios
+      .post(
+        "/login",
+        {
+          email: this.state.email,
+          password: this.state.password,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.props.setUserData(response.data.id, response.data.name);
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.props.setError(error.response.data);
+        }
+      });
   }
 
   renderModalContent() {
@@ -68,7 +101,10 @@ class LoginForm extends Component {
                 </div>
               </form>
               <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
-                <button onClick={this.handleSubmit} className={classes.btn}>
+                <button
+                  onClick={this.handleForgotPasswordSubmit}
+                  className={classes.btn}
+                >
                   Reset Password
                 </button>
               </div>
@@ -110,23 +146,36 @@ class LoginForm extends Component {
           <div className={classes.headingContainer}>
             <p className={classes.heading}>Login</p>
           </div>
-          <form className={classes.loginForm} action="/user" method="POST">
+          <form className={classes.loginForm}>
             <div className={`${classes.formGroupContainer} ${classes.margin}`}>
               <label htmlFor="email">Email:</label>
-              <input type="email" name="email" id="email"></input>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={this.handleInputChange}
+              ></input>
             </div>
             <div className={classes.formGroupContainer}>
               <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password"></input>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={this.handleInputChange}
+              ></input>
             </div>
             <div className={classes.resetPasswordLink}>
               <p className={classes.link} onClick={this.handleOpenModal}>
                 Remembering passwords is bothersome.
               </p>
             </div>
-            <input type="hidden" name="_csrf" value="csrfToken" />
             <div className={classes.btnWrapper}>
-              <button className={classes.btn} type="submit">
+              <button
+                className={classes.btn}
+                type="button"
+                onClick={this.handleLoginSubmit}
+              >
                 Login
               </button>
             </div>
@@ -146,4 +195,19 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUserData: (userId, userName) =>
+      dispatch({
+        type: actionTypes.setUserData,
+        payload: { id: userId, name: userName },
+      }),
+    setError: (errorMessage) =>
+      dispatch({
+        type: actionTypes.setErrorMessage,
+        payload: { errorMessage: errorMessage },
+      }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);

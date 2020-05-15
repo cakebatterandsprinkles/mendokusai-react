@@ -31,11 +31,7 @@ class NavbarUser extends Component {
             <Link className={classes.calendarBtn} to="/calendar">
               <p>Calendar»</p>
             </Link>
-          ) : (
-            <Link className={classes.calendarBtn} to="/user">
-              <p>Main Page»</p>
-            </Link>
-          )}
+          ) : null}
         </div>
         <div className={classes.dropdown}>
           <img

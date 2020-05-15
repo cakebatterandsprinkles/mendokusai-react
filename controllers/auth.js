@@ -74,7 +74,7 @@ exports.postSignup = (req, res, next) => {
     });
 };
 
-exports.postLogin = (res, req, next) => {
+exports.postLogin = (req, res, next) => {
   const { email, password } = req.body;
 
   try {
@@ -93,7 +93,7 @@ exports.postLogin = (res, req, next) => {
         }
 
         generateToken(res, userInfo.id, userInfo.name);
-        res.status(200).end();
+        res.json({ id: userInfo.id, name: userInfo.name });
       });
     });
   } catch (err) {
@@ -101,6 +101,6 @@ exports.postLogin = (res, req, next) => {
   }
 };
 
-exports.getMe = (res, req, next) => {
+exports.getMe = (req, res, next) => {
   return res.json(req.user);
 };

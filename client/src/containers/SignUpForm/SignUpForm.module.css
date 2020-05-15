@@ -16,7 +16,6 @@
   border-bottom: 2px solid white;
 }
 
-
 .checkboxInput {
   margin-right: 0.5rem;
 }
@@ -33,7 +32,7 @@
 .btn {
   padding: 0.5rem;
   margin-left: auto;
-  font-family: 'inconsolata', monospace;
+  font-family: "inconsolata", monospace;
   font-size: 1rem;
   color: white;
   background-color: black;
@@ -73,7 +72,8 @@
 }
 
 input:focus,
-.btn:focus {
+.btn:focus,
+.modal:focus {
   outline: none !important;
   border-color: #8d09f7;
   box-shadow: 0 0 5px #8d09f7;
@@ -89,6 +89,65 @@ input:focus,
 .subText {
   font-size: 0.9rem;
   width: 70%;
+}
+
+.modalText {
+  color: #8d09f7;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal {
+  background-color: white;
+  z-index: 10000;
+  padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+  border-radius: 2rem;
+  border: 1px solid black;
+}
+
+.overlay {
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(12, 12, 12, 0.315);
+}
+
+.modalMainContainer {
+  display: flex;
+  color: black !important;
+}
+
+.submitModalContainer {
+  display: flex;
+  align-items: center;
+}
+
+.closingButton {
+  height: 2rem;
+  width: auto;
+}
+
+.birbImage {
+  height: 2.5rem;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.closingButton:hover {
+  cursor: pointer;
+  outline: none !important;
+  border-radius: 50px;
+  box-shadow: 0 0 3px #5e5e5e;
+}
+
+.closingButtonContainer {
+  margin-left: 1rem;
 }
 
 @media (max-width: 1400px) {
@@ -155,7 +214,7 @@ input:focus,
 
   .btn {
     padding: 0.4rem;
-    font-family: 'inconsolata', monospace;
+    font-family: "inconsolata", monospace;
     font-weight: bold;
     font-size: 0.9rem;
   }

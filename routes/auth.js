@@ -19,6 +19,6 @@ router.post("/login", authController.postLogin);
 // @desc   Get User
 // @access private
 
-router.post("/me", authController.getMe, verifyToken);
+router.get("/me", verifyToken, authController.getMe);
 
 module.exports = router;

@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   userName: "",
+  userId: "",
   errorMessage: "",
   itemsToBeDone: [],
   itemsInProgress: [],
@@ -31,6 +32,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         location: action.payload.location,
+      };
+    case actionTypes.setUserData:
+      return {
+        ...state,
+        userName: action.payload.name,
+        userId: action.payload.id,
       };
     default:
       return state;

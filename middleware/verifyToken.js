@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
       return res.status(401).send("You need to login");
     }
 
-    jwt.verify(token, process.env.JWT_SECRET).then((decrypt) => {
+    jwt.verify(token, process.env.JWT_SECRET, (error, decrypt) => {
       req.user = {
         id: decrypt.id,
         name: decrypt.name,

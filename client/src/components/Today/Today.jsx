@@ -100,8 +100,6 @@ class Today extends Component {
       default:
         return CloudyIcon;
     }
-    {
-    }
   }
 
   renderModalContent() {
