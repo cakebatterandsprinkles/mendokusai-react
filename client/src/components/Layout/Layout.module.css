@@ -4,9 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 80;
+  z-index: 1;
+  position: absolute;
+  top: 0.9rem;
 }
 
-/* .invisible {
-  /* transform: translateY(-3rem); 
-} */
+.visible {
+  z-index: 80;
+}

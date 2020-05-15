@@ -6,7 +6,6 @@ import DoneCheckbox from "../../assets/images/donecheckbox.png";
 import AddIcon from "../../assets/images/addbutton.png";
 import SunnyIcon from "../../assets/images/sunny.png";
 import Modal from "react-modal";
-import Aux from "../../hoc/Aux";
 import ClosingButton from "../../assets/images/closeButton.png";
 import CloudyIcon from "../../assets/images/cloudy.png";
 import LocationIcon from "../../assets/images/location1.png";
@@ -239,7 +238,7 @@ class Today extends Component {
     }
     let currentModal = this.renderModalContent();
     return (
-      <Aux>
+      <Fragment>
         <div className={classes.mainContainer}>
           <div className={classes.flexContainerColumn}>
             <p className={classes.date}>{this.state.date}</p>
@@ -296,7 +295,7 @@ class Today extends Component {
         >
           {currentModal}
         </Modal>
-      </Aux>
+      </Fragment>
     );
   }
 }

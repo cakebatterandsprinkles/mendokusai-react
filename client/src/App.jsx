@@ -8,8 +8,9 @@ import SignUpForm from "./containers/SignUpForm/SignUpForm";
 import ResetPassword from "./containers/ResetPassword/ResetPassword";
 import Settings from "./containers/Settings/Settings";
 import Calendar from "./containers/Calendar/Calendar";
-import Lost from "./components/404/404";
+import Error404 from "./components/404/404";
 import Layout from "./components/Layout/Layout";
+import BucketList from "./containers/BucketList/BucketList";
 import * as actionTypes from "./store/actions/actionTypes";
 import "./App.css";
 
@@ -62,7 +63,8 @@ const App = (props) => {
           <Route path="/calendar" component={Calendar} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/settings" component={Settings} />
-          <Route path="/" component={Lost} />
+          <Route exact path="/bucketlist" component={BucketList} />
+          <Route path="/" component={Error404} />
         </Switch>
       </Layout>
     </BrowserRouter>
