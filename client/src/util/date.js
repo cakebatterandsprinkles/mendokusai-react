@@ -52,3 +52,12 @@ export function getDaysInMonth(month, year) {
 export function getFirstDayOfMonth(month, year) {
   return (new Date(year, month, 1).getDay() + 6) % 7;
 }
+
+export function setDate() {
+  const today = new Date();
+  const monthNum = today.getMonth();
+  const day = new Date().getDate();
+  const year = today.getFullYear();
+  const month = getMonthName(monthNum);
+  return `${month} ${day}, ${year}`;
+}

@@ -13,7 +13,7 @@ import CloudyAndSunnyIcon from "../../assets/images/sunandclouds.png";
 import RainyIcon from "../../assets/images/rainy.png";
 import TooRainyIcon from "../../assets/images/toorainy.png";
 import SnowyIcon from "../../assets/images/snowy.png";
-import { getMonthName } from "../../util/date";
+import { setDate } from "../../util/date";
 import { connect } from "react-redux";
 import { getCelcius } from "../../util/temp";
 
@@ -177,15 +177,6 @@ class Today extends Component {
     });
   };
 
-  setDate = () => {
-    const today = new Date();
-    const monthNum = today.getMonth();
-    const day = new Date().getDate();
-    const year = today.getFullYear();
-    const month = getMonthName(monthNum);
-    this.setState({ date: `${month} ${day}, ${year}` });
-  };
-
   getUserLocation() {
     return fetch("https://geoip.edelkrone.com/json/").then((blob) =>
       blob.json()
@@ -224,7 +215,8 @@ class Today extends Component {
   }
 
   componentDidMount() {
-    this.setDate();
+    const today = setDate();
+    this.setState({ date: today });
     this.getUserLocation().then((data) => {
       this.setState({
         location: `${data.city}, ${data.region_name}, ${data.country_code}`,

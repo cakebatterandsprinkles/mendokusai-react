@@ -6,19 +6,16 @@ import DoneCheckbox from "../../assets/images/donecheckbox.png";
 import AddIcon from "../../assets/images/addbutton.png";
 import Modal from "react-modal";
 import ClosingButton from "../../assets/images/closeButton.png";
-import image from "../../assets/images/lifeisshort.jpg";
+import LegendFooter from "../../components/LegendFooter/LegendFooter";
+import { setDate } from "../../util/date";
 
 class BucketList extends Component {
   constructor() {
     super();
     this.state = {
-      todoList: [
-        { todo: "Buy cakes", status: "not done" },
-        { todo: "Eat cakes", status: "not done" },
-        { todo: "Kiss the chicken", status: "not done" },
-        { todo: "Call Arisi", status: "not done" },
-        { todo: "Do some clay stuffs", status: "not done" },
-      ],
+      date: "",
+      sortBy: "All",
+      todoList: [],
       showModal: false,
       isSubmitted: false,
     };
@@ -29,6 +26,7 @@ class BucketList extends Component {
     this.addToDo = this.addToDo.bind(this);
     this.deleteToDo = this.deleteToDo.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
+    this.setSortBy = this.setSortBy.bind(this);
   }
 
   handleOpenModal() {
@@ -48,7 +46,15 @@ class BucketList extends Component {
   addToDo() {
     const newItem = document.querySelector("#add-item").value;
     this.setState({
-      todoList: [...this.state.todoList, { todo: newItem, status: "not done" }],
+      todoList: [
+        ...this.state.todoList,
+        {
+          todo: newItem,
+          status: "not done",
+          addDate: this.state.date,
+          finishDate: "",
+        },
+      ],
     });
   }
 
@@ -101,7 +107,7 @@ class BucketList extends Component {
     return array.map((item, index) => {
       return (
         <div key={index} className={classes.todo}>
-          <div className={classes.todoWrapper}>
+          <div className={classes.mainWrapper}>
             <img
               className={classes.checkboxIcon}
               src={this.renderTodoCheckbox(item)}
@@ -109,12 +115,22 @@ class BucketList extends Component {
               onClick={this.changeStatus}
               data-todo-value={this.renderTodos(item)}
             />
-            <p
-              onClick={this.changeStatus}
-              data-todo-value={this.renderTodos(item)}
-            >
-              {this.renderTodos(item)}
-            </p>
+            <div className={classes.todoWrapper}>
+              <p
+                onClick={this.changeStatus}
+                data-todo-value={this.renderTodos(item)}
+              >
+                {this.renderTodos(item)}
+              </p>
+              <div className={classes.dateContainer}>
+                <p className={classes.date}>
+                  Added: <span> {item.addDate}</span>
+                </p>
+                <p className={classes.date}>
+                  Finished: <span> Not yet! </span>
+                </p>
+              </div>
+            </div>
           </div>
           <img
             src={ClosingButton}
@@ -159,6 +175,15 @@ class BucketList extends Component {
     this.setState({ todoList: currentList });
   }
 
+  setSortBy(e) {
+    this.setState({ sortBy: e.target.dataset.name });
+  }
+
+  componentDidMount() {
+    const today = setDate();
+    this.setState({ date: today });
+  }
+
   render() {
     let currentModal = this.renderModalContent();
     return (
@@ -176,19 +201,42 @@ class BucketList extends Component {
                 logged.
               </p>
             </div>
-            <div>
-              <img
-                src={AddIcon}
-                alt="add icon"
-                className={classes.addIcon}
-                onClick={this.handleOpenModal}
-              />
+            <div className={classes.flexContainerRow}>
+              <button className={classes.addBtn}>
+                <img
+                  src={AddIcon}
+                  alt="add icon"
+                  className={classes.addIcon}
+                  onClick={this.handleOpenModal}
+                />
+                <p onClick={this.handleOpenModal}>Add items</p>
+              </button>
+              <div className={classes.dropdown}>
+                <button className={classes.dropbtn}>
+                  Sort by: <span>{this.state.sortBy} ▼</span>
+                </button>
+                <div className={classes.dropdownContent}>
+                  <a href="#" onClick={this.setSortBy} data-name="All">
+                    All
+                  </a>
+                  <a href="#" onClick={this.setSortBy} data-name="Not Done">
+                    Not Done
+                  </a>
+                  <a href="#" onClick={this.setSortBy} data-name="In progress">
+                    In progress
+                  </a>
+                  <a href="#" onClick={this.setSortBy} data-name="Done">
+                    Done
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           <div className={classes.flexContainerColumn}>
             {this.renderTodoList(this.state.todoList)}
           </div>
         </div>
+        <LegendFooter />
         <Modal
           isOpen={this.state.showModal}
           onRequestClose={this.handleCloseModal}

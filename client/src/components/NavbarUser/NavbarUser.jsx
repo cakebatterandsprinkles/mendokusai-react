@@ -42,6 +42,17 @@ class NavbarUser extends Component {
           <div className={classes.dropdownContent}>
             <div className={classes.linkContainer}>
               <Link
+                to="/bucketlist"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                Bucket List
+              </Link>
+            </div>
+            <div className={classes.linkContainer}>
+              <Link
                 to="/settings"
                 style={{
                   textDecoration: "none",
