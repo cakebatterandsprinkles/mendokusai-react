@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-height: 90vh;
+  height: 90vh;
   padding: 1.5rem 3rem;
-  margin: 0.5rem 3rem 0 3rem;
+  margin: 0.5rem 3rem 5rem 3rem;
   border-radius: 10px;
   background-color: rgba(185, 185, 185, 0.26);
   overflow: scroll;
@@ -187,7 +187,7 @@
 
 @media (max-width: 1150px) {
   .mainContainer {
-    margin: 1.5rem 4rem 0 4rem;
+    margin: 1.5rem 4rem 5rem 4rem;
   }
 
   .modal {
@@ -198,7 +198,7 @@
 
 @media (max-width: 600px) {
   .mainContainer {
-    margin: 1.5rem 2rem 0 2rem;
+    margin: 1.5rem 2rem 5rem 2rem;
   }
 
   .modal {

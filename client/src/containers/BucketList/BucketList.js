@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from "react";
 import classes from "./BucketList.module.css";
-import NotDoneCheckbox from "../../assets/images/notdonecheckbox.png";
-import InProgressCheckbox from "../../assets/images/inprogresscheckbox.png";
-import DoneCheckbox from "../../assets/images/donecheckbox.png";
 import AddIcon from "../../assets/images/addbutton.png";
 import Modal from "react-modal";
 import ClosingButton from "../../assets/images/closeButton.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import { setDate } from "../../util/date";
+import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 
 class BucketList extends Component {
   constructor() {
@@ -86,19 +84,6 @@ class BucketList extends Component {
     );
   }
 
-  renderTodoCheckbox = (item) => {
-    switch (item.status) {
-      case "not done":
-        return NotDoneCheckbox;
-      case "in progress":
-        return InProgressCheckbox;
-      case "done":
-        return DoneCheckbox;
-      default:
-        return NotDoneCheckbox;
-    }
-  };
-
   renderTodos = (item) => {
     return item.todo;
   };
@@ -110,17 +95,17 @@ class BucketList extends Component {
           <div className={classes.mainWrapper}>
             <img
               className={classes.checkboxIcon}
-              src={this.renderTodoCheckbox(item)}
+              src={renderTodoCheckbox(item)}
               alt="checkbox icon"
               onClick={this.changeStatus}
-              data-todo-value={this.renderTodos(item)}
+              data-todo-value={renderTodos(item)}
             />
             <div className={classes.todoWrapper}>
               <p
                 onClick={this.changeStatus}
-                data-todo-value={this.renderTodos(item)}
+                data-todo-value={renderTodos(item)}
               >
-                {this.renderTodos(item)}
+                {renderTodos(item)}
               </p>
               <div className={classes.dateContainer}>
                 <p className={classes.date}>
@@ -136,7 +121,7 @@ class BucketList extends Component {
             src={ClosingButton}
             alt="delete button"
             className={classes.deleteButton}
-            data-value={this.renderTodos(item)}
+            data-value={renderTodos(item)}
             onClick={this.deleteToDo}
           />
         </div>
@@ -190,7 +175,6 @@ class BucketList extends Component {
       <Fragment>
         <div className={classes.mainContainer}>
           <div className={classes.flexContainerColumn}>
-            <p className={classes.date}>{this.state.date}</p>
             <div className={classes.bgBlack}>
               <p className={classes.header}>Your bucket list: </p>
             </div>

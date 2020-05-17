@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import classes from "./Today.module.css";
-import NotDoneCheckbox from "../../assets/images/notdonecheckbox.png";
-import InProgressCheckbox from "../../assets/images/inprogresscheckbox.png";
-import DoneCheckbox from "../../assets/images/donecheckbox.png";
 import AddIcon from "../../assets/images/addbutton.png";
 import SunnyIcon from "../../assets/images/sunny.png";
 import Modal from "react-modal";
@@ -14,8 +12,8 @@ import RainyIcon from "../../assets/images/rainy.png";
 import TooRainyIcon from "../../assets/images/toorainy.png";
 import SnowyIcon from "../../assets/images/snowy.png";
 import { setDate } from "../../util/date";
-import { connect } from "react-redux";
 import { getCelcius } from "../../util/temp";
+import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 
 class Today extends Component {
   constructor() {
@@ -129,23 +127,6 @@ class Today extends Component {
     );
   }
 
-  renderTodoCheckbox = (item) => {
-    switch (item.status) {
-      case "not done":
-        return NotDoneCheckbox;
-      case "in progress":
-        return InProgressCheckbox;
-      case "done":
-        return DoneCheckbox;
-      default:
-        return NotDoneCheckbox;
-    }
-  };
-
-  renderTodos = (item) => {
-    return item.todo;
-  };
-
   renderTodoList = (array) => {
     return array.map((item, index) => {
       return (
@@ -153,23 +134,20 @@ class Today extends Component {
           <div className={classes.todoWrapper}>
             <img
               className={classes.checkboxIcon}
-              src={this.renderTodoCheckbox(item)}
+              src={renderTodoCheckbox(item)}
               alt="checkbox icon"
               onClick={this.changeStatus}
-              data-todo-value={this.renderTodos(item)}
+              data-todo-value={renderTodos(item)}
             />
-            <p
-              onClick={this.changeStatus}
-              data-todo-value={this.renderTodos(item)}
-            >
-              {this.renderTodos(item)}
+            <p onClick={this.changeStatus} data-todo-value={renderTodos(item)}>
+              {renderTodos(item)}
             </p>
           </div>
           <img
             src={ClosingButton}
             alt="delete button"
             className={classes.deleteButton}
-            data-value={this.renderTodos(item)}
+            data-value={renderTodos(item)}
             onClick={this.deleteToDo}
           />
         </div>
@@ -189,7 +167,6 @@ class Today extends Component {
     const currentList = [...this.state.todoList];
     const newList = currentList.filter((item) => item.todo !== value);
     this.setState({ todoList: newList });
-    console.log(clicked, value);
   }
 
   changeStatus(e) {
