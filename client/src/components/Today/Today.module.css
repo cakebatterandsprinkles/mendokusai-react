@@ -27,6 +27,13 @@
   margin-right: 1rem;
 }
 
+.tempData:hover {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
 .todo {
   display: flex;
   justify-content: space-between;

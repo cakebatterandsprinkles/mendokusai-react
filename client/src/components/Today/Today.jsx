@@ -235,7 +235,7 @@ class Today extends Component {
                   </Fragment>
                 ) : null}
                 {this.state.temp ? (
-                  <p className={classes.data} onClick={this.convertTemp}>
+                  <p className={classes.tempData} onClick={this.convertTemp}>
                     {this.state.temp ? this.state.temp : "..."}°
                     {this.state.tempUnit.toUpperCase()}
                   </p>
