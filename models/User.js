@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: Date.now(),
+    default: new Date().toISOString(),
   },
   resetToken: String,
   resetTokenExpiration: Date,

@@ -2,11 +2,12 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token || "";
+  if (!token) {
+    return res
+      .status(401)
+      .send("We know it's cumbersome, but you need to login!");
+  }
   try {
-    if (!token) {
-      return res.status(401).send("You need to login");
-    }
-
     jwt.verify(token, process.env.JWT_SECRET, (error, decrypt) => {
       req.user = {
         id: decrypt.id,

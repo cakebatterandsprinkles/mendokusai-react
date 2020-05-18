@@ -25,6 +25,7 @@ class SignUpForm extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleOpenModal() {
@@ -93,6 +94,13 @@ class SignUpForm extends Component {
     return <p>Oops something is wrong!</p>;
   }
 
+  handleFormSubmit = () => {
+    this.setState({ isSubmitting: true });
+    setTimeout(() => {
+      this.setState({ isSubmitted: true });
+    }, 2000);
+  };
+
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -105,7 +113,12 @@ class SignUpForm extends Component {
         password: this.state.password,
         repeatPassword: this.state.repeatPassword,
       })
-      .then((response) => console.log(response))
+      .then((response) => {
+        if (response.status === 200) {
+          this.handleOpenModal();
+          this.handleFormSubmit();
+        }
+      })
       .catch((error) => {
         if (error.response) {
           this.props.setError(error.response.data);

@@ -54,7 +54,7 @@ const App = (props) => {
 
   return (
     <BrowserRouter>
-      <Layout isAuthenticated={props.isAuthenticated}>
+      <Layout isAuthenticated={false}>
         <Switch>
           <Route exact path="/" component={LandingMain} />
           <Route exact path="/signup" component={SignUpForm} />
