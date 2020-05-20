@@ -16,7 +16,7 @@ const BucketListSchema = new mongoose.Schema({
       },
       addDate: {
         type: Date,
-        default: Date.now,
+        default: new Date().toISOString().substring(0, 10),
       },
       finishDate: {
         type: Date,

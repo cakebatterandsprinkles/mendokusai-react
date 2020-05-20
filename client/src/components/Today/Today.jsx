@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
 import classes from "./Today.module.css";
 import AddIcon from "../../assets/images/addbutton.png";
 import SunnyIcon from "../../assets/images/sunny.png";
@@ -20,25 +21,76 @@ class Today extends Component {
     super();
     this.state = {
       temp: "",
-      tempUnit: "c",
-      todoList: [
-        { todo: "Buy cakes", status: "not done" },
-        { todo: "Eat cakes", status: "not done" },
-        { todo: "Kiss the chicken", status: "not done" },
-        { todo: "Call Arisi", status: "not done" },
-        { todo: "Do some clay stuffs", status: "not done" },
-      ],
+      tempUnit: "f",
       showModal: false,
       isSubmitted: false,
+      addInput: "",
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addToDo = this.addToDo.bind(this);
+    this.updateToDo = this.updateToDo.bind(this);
     this.deleteToDo = this.deleteToDo.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
     this.convertTemp = this.convertTemp.bind(this);
+  }
+
+  getToDos() {
+    fetch("/todo/today", {
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        this.props.updateToDos(response);
+      });
+  }
+
+  deleteToDo(id) {
+    fetch("/todo", {
+      method: "DELETE",
+      body: JSON.stringify({ id: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then(() =>
+      this.props.updateToDos(this.props.todos.filter((todo) => todo._id !== id))
+    );
+  }
+
+  updateToDo(todo) {
+    fetch("/todo/today", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const todoList = [
+      ...this.props.todos.filter((oldToDo) => todo._id !== oldToDo._id),
+      todo,
+    ];
+    this.props.updateToDos(todoList);
+  }
+
+  addToDo(todo) {
+    fetch("/todo/today", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        const todoList = [...this.props.todos, response];
+        this.props.updateToDos(todoList);
+      });
   }
 
   handleOpenModal() {
@@ -49,30 +101,34 @@ class Today extends Component {
     this.setState({ showModal: false });
   }
 
+  handleInputChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   handleSubmit() {
     this.setState({ isSubmitted: true });
-    this.addToDo();
+    this.addToDo({ todo: this.state.addInput, status: "not done" });
+    this.setState({ addInput: "" });
     this.handleCloseModal();
   }
 
-  addToDo() {
-    const newItem = document.querySelector("#add-item").value;
-    this.setState({
-      todoList: [...this.state.todoList, { todo: newItem, status: "not done" }],
-    });
+  convertTemp() {
+    if (this.state.tempUnit === "f") {
+      this.setState({ tempUnit: "c" });
+    } else if (this.state.tempUnit === "c") {
+      this.setState({ tempUnit: "f" });
+    }
   }
 
-  convertTemp() {
+  calculateTemp() {
     if (!this.props.weatherData.main) {
-      return;
+      return "";
     }
 
     if (this.state.tempUnit === "f") {
-      const newTemp = getCelcius(this.props.weatherData.main.temp);
-      this.setState({ temp: newTemp, tempUnit: "c" });
+      return this.props.weatherData.main.temp;
     } else if (this.state.tempUnit === "c") {
-      const newTemp = this.props.weatherData.main.temp;
-      this.setState({ temp: newTemp, tempUnit: "f" });
+      return getCelcius(this.props.weatherData.main.temp);
     }
   }
 
@@ -103,17 +159,23 @@ class Today extends Component {
     return (
       <div className={classes.modalMainContainer}>
         <div className={classes.addToDoForm}>
-          <form action="/user" method="POST">
+          <form onSubmit={this.handleSubmit}>
             <div className={classes.formGroupContainer}>
               <label htmlFor="add-item">Add an item to your list:</label>
-              <input type="text" name="add-item" id="add-item"></input>
+              <input
+                onChange={this.handleInputChange}
+                value={this.state.addInput}
+                type="text"
+                name="addInput"
+                id="addInput"
+              ></input>
+            </div>
+            <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
+              <button type="submit" className={classes.btn}>
+                Add
+              </button>
             </div>
           </form>
-          <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
-            <button onClick={this.handleSubmit} className={classes.btn}>
-              Add
-            </button>
-          </div>
         </div>
         <div className={classes.closingButtonContainer}>
           <img
@@ -127,28 +189,24 @@ class Today extends Component {
     );
   }
 
-  renderTodoList = (array) => {
-    return array.map((item, index) => {
+  renderToDoList = (array) => {
+    return array.map((item) => {
       return (
-        <div key={index} className={classes.todo}>
+        <div key={item._id} className={classes.todo}>
           <div className={classes.todoWrapper}>
             <img
               className={classes.checkboxIcon}
               src={renderTodoCheckbox(item)}
               alt="checkbox icon"
-              onClick={this.changeStatus}
-              data-todo-value={renderTodos(item)}
+              onClick={() => this.changeStatus(item)}
             />
-            <p onClick={this.changeStatus} data-todo-value={renderTodos(item)}>
-              {renderTodos(item)}
-            </p>
+            <p onClick={() => this.changeStatus(item)}>{renderTodos(item)}</p>
           </div>
           <img
             src={ClosingButton}
             alt="delete button"
             className={classes.deleteButton}
-            data-value={renderTodos(item)}
-            onClick={this.deleteToDo}
+            onClick={() => this.deleteToDo(item._id)}
           />
         </div>
       );
@@ -161,34 +219,22 @@ class Today extends Component {
     );
   }
 
-  deleteToDo(e) {
-    const clicked = e.target;
-    const value = clicked.dataset.value;
-    const currentList = [...this.state.todoList];
-    const newList = currentList.filter((item) => item.todo !== value);
-    this.setState({ todoList: newList });
-  }
-
-  changeStatus(e) {
-    const clicked = e.target;
-    const value = clicked.dataset.todoValue;
-    const currentList = [...this.state.todoList];
-    const changed = currentList.filter((item) => item.todo === value)[0];
-    const status = changed.status;
+  changeStatus(item) {
+    const status = item.status;
     switch (status) {
       case "not done":
-        changed.status = "in progress";
+        item.status = "in progress";
         break;
       case "in progress":
-        changed.status = "done";
+        item.status = "done";
         break;
       case "done":
-        changed.status = "not done";
+        item.status = "not done";
         break;
       default:
-        changed.status = "not done";
+        item.status = "not done";
     }
-    this.setState({ todoList: currentList });
+    this.updateToDo(item);
   }
 
   componentDidMount() {
@@ -199,12 +245,10 @@ class Today extends Component {
         location: `${data.city}, ${data.region_name}, ${data.country_code}`,
       });
     });
+    this.getToDos();
   }
 
   render() {
-    if (this.state.temp === "" && this.props.weatherData.main) {
-      this.convertTemp();
-    }
     let currentModal = this.renderModalContent();
     return (
       <Fragment>
@@ -234,10 +278,9 @@ class Today extends Component {
                     </p>
                   </Fragment>
                 ) : null}
-                {this.state.temp ? (
+                {this.calculateTemp() ? (
                   <p className={classes.tempData} onClick={this.convertTemp}>
-                    {this.state.temp ? this.state.temp : "..."}°
-                    {this.state.tempUnit.toUpperCase()}
+                    {this.calculateTemp()}°{this.state.tempUnit.toUpperCase()}
                   </p>
                 ) : null}
               </div>
@@ -252,7 +295,7 @@ class Today extends Component {
             </div>
           </div>
           <div className={classes.flexContainerColumn}>
-            {this.renderTodoList(this.state.todoList)}
+            {this.renderToDoList(this.props.todos)}
           </div>
         </div>
         <Modal
@@ -269,10 +312,22 @@ class Today extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    weatherData: state.weatherData,
+    updateToDos: (newToDoList) => {
+      dispatch({
+        type: actionTypes.setTodayList,
+        payload: { todos: newToDoList },
+      });
+    },
   };
 };
 
-export default connect(mapStateToProps)(Today);
+const mapStateToProps = (state) => {
+  return {
+    weatherData: state.weatherData,
+    todos: state.todayTodos,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Today);

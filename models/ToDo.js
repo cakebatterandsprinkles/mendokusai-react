@@ -14,7 +14,7 @@ const ToDoSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
+    default: new Date().toISOString().substring(0, 10),
   },
 });
 

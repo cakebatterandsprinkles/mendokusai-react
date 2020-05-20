@@ -127,10 +127,10 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.getMe = (req, res, next) => {
-  try {
-    const user = User.findById({ id: req.user.id }).populate("user", ["name"]);
-    res.json(user);
-  } catch (err) {
-    return res.status(500).json(err.toString());
-  }
+  User.findById({ _id: req.user.id }, "name", function (err, user) {
+    if (err) {
+      return res.status(500).json(err.toString());
+    }
+    res.json(user.name);
+  });
 };

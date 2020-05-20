@@ -4,6 +4,7 @@ import classes from "./NavbarUser.module.css";
 import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
 import SettingsIcon from "../../assets/images/settingsicon.png";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class NavbarUser extends Component {
   reverseColor = () => {
@@ -26,7 +27,7 @@ class NavbarUser extends Component {
             Mendokusai{" "}
           </Link>
           <img src={downarrow} alt="down arrow" className={classes.arrow} />
-          <NavbarInfoBox name={"Ari Sensei"} />
+          <NavbarInfoBox name={this.props.username} />
           {window.location.href.includes("user") ? (
             <Link className={classes.calendarBtn} to="/calendar">
               <p>Calendar»</p>
@@ -83,4 +84,10 @@ class NavbarUser extends Component {
   }
 }
 
-export default NavbarUser;
+const mapStateToProps = (state) => {
+  return {
+    username: state.userName,
+  };
+};
+
+export default connect(mapStateToProps)(NavbarUser);

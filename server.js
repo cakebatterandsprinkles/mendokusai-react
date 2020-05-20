@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const todoRoutes = require("./routes/todo");
 const weatherRoutes = require("./routes/weather");
 const errorController = require("./controllers/error");
 
@@ -35,7 +37,7 @@ mongoose.connect(
 // parse application/x-www-form-urlencoded
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: true,
   })
 );
 // parse application/json
@@ -55,6 +57,8 @@ if (process.env.NODE_ENV === "production") {
 // routes
 app.use(authRoutes);
 app.use("/weather", weatherRoutes);
+app.use("/user", userRoutes);
+app.use("/todo", todoRoutes);
 
 // 404 route
 app.use(errorController.get404);

@@ -2,22 +2,14 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   userName: "",
-  userId: "",
   errorMessage: "",
-  itemsToBeDone: [],
-  itemsInProgress: [],
-  itemsDone: [],
+  todayTodos: [],
   weatherData: {},
   location: {},
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.addItemsToBeDone:
-      return {
-        ...state,
-        itemsToBeDone: [...state.itemsToBeDone, action.payload.item],
-      };
     case actionTypes.setErrorMessage:
       return {
         ...state,
@@ -37,7 +29,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userName: action.payload.name,
-        userId: action.payload.id,
+      };
+    case actionTypes.setTodayList:
+      return {
+        ...state,
+        todayTodos: [
+          ...action.payload.todos.sort((a, b) => (a._id > b._id ? 1 : -1)),
+        ],
       };
     default:
       return state;

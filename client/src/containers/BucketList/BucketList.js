@@ -200,16 +200,16 @@ class BucketList extends Component {
                   Sort by: <span>{this.state.sortBy} ▼</span>
                 </button>
                 <div className={classes.dropdownContent}>
-                  <a href="#" onClick={this.setSortBy} data-name="All">
+                  <a href="/" onClick={this.setSortBy} data-name="All">
                     All
                   </a>
-                  <a href="#" onClick={this.setSortBy} data-name="Not Done">
+                  <a href="/" onClick={this.setSortBy} data-name="Not Done">
                     Not Done
                   </a>
-                  <a href="#" onClick={this.setSortBy} data-name="In progress">
+                  <a href="/" onClick={this.setSortBy} data-name="In progress">
                     In progress
                   </a>
-                  <a href="#" onClick={this.setSortBy} data-name="Done">
+                  <a href="/" onClick={this.setSortBy} data-name="Done">
                     Done
                   </a>
                 </div>

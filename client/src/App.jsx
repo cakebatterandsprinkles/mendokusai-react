@@ -36,12 +36,12 @@ const App = (props) => {
   };
 
   const getUser = () => {
-    fetch("/me", {
+    fetch("/user/info", {
       credentials: "include",
     })
       .then((blob) => blob.json())
       .then((response) => {
-        props.setUserData(response.id, response.name);
+        props.setUserData(response);
       });
   };
 
@@ -54,7 +54,7 @@ const App = (props) => {
 
   return (
     <BrowserRouter>
-      <Layout isAuthenticated={false}>
+      <Layout isAuthenticated={props.isAuthenticated}>
         <Switch>
           <Route exact path="/" component={LandingMain} />
           <Route exact path="/signup" component={SignUpForm} />
@@ -73,10 +73,10 @@ const App = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUserData: (userId, userName) =>
+    setUserData: (userName) =>
       dispatch({
         type: actionTypes.setUserData,
-        payload: { id: userId, name: userName },
+        payload: { name: userName },
       }),
     setLocation: (location) =>
       dispatch({
@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.userId !== "",
+    isAuthenticated: state.userName !== "",
   };
 };
 
