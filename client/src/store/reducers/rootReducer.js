@@ -4,6 +4,7 @@ const initialState = {
   userName: "",
   errorMessage: "",
   todayTodos: [],
+  bucketlist: [],
   weatherData: {},
   location: {},
 };
@@ -35,6 +36,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         todayTodos: [
           ...action.payload.todos.sort((a, b) => (a._id > b._id ? 1 : -1)),
+        ],
+      };
+    case actionTypes.setBucketlist:
+      return {
+        ...state,
+        bucketlist: [
+          ...action.payload.bucketlist.sort((a, b) => (a._id > b._id ? 1 : -1)),
         ],
       };
     default:

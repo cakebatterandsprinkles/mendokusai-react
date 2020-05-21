@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
 import classes from "./BucketList.module.css";
 import AddIcon from "../../assets/images/addbutton.png";
 import Modal from "react-modal";
@@ -11,20 +13,78 @@ class BucketList extends Component {
   constructor() {
     super();
     this.state = {
-      date: "",
       sortBy: "All",
-      todoList: [],
       showModal: false,
       isSubmitted: false,
+      addInput: "",
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addToDo = this.addToDo.bind(this);
+    this.updateToDo = this.updateToDo.bind(this);
     this.deleteToDo = this.deleteToDo.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
     this.setSortBy = this.setSortBy.bind(this);
+  }
+
+  getBucketlist() {
+    fetch("/todo/bucketlist", {
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        this.props.updateBucketlist(response);
+      });
+  }
+
+  deleteToDo(id) {
+    fetch("/todo", {
+      method: "DELETE",
+      body: JSON.stringify({ id: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then(() =>
+      this.props.updateBucketlist(
+        this.props.bucketlist.filter((todo) => todo._id !== id)
+      )
+    );
+  }
+
+  updateToDo(todo) {
+    fetch("/todo/bucketlist", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const updatedList = [
+      ...this.props.bucketlist.filter((oldToDo) => todo._id !== oldToDo._id),
+      todo,
+    ];
+    this.props.updateBucketlist(updatedList);
+  }
+
+  addToDo(todo) {
+    fetch("/todo/bucketlist", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        const updatedList = [...this.props.bucketlist, response];
+        this.props.updateBucketlist(updatedList);
+      });
   }
 
   handleOpenModal() {
@@ -35,42 +95,38 @@ class BucketList extends Component {
     this.setState({ showModal: false });
   }
 
-  handleSubmit() {
-    this.setState({ isSubmitted: true });
-    this.addToDo();
-    this.handleCloseModal();
+  handleInputChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  addToDo() {
-    const newItem = document.querySelector("#add-item").value;
-    this.setState({
-      todoList: [
-        ...this.state.todoList,
-        {
-          todo: newItem,
-          status: "not done",
-          addDate: this.state.date,
-          finishDate: "",
-        },
-      ],
-    });
+  handleSubmit() {
+    this.setState({ isSubmitted: true });
+    this.addToDo({ todo: this.state.addInput, status: "not done" });
+    this.setState({ addInput: "" });
+    this.handleCloseModal();
   }
 
   renderModalContent() {
     return (
       <div className={classes.modalMainContainer}>
         <div className={classes.addToDoForm}>
-          <form action="/user" method="POST">
+          <form onSubmit={this.handleSubmit}>
             <div className={classes.formGroupContainer}>
               <label htmlFor="add-item">Add an item to your bucket list:</label>
-              <input type="text" name="add-item" id="add-item"></input>
+              <input
+                onChange={this.handleInputChange}
+                value={this.state.addInput}
+                type="text"
+                name="addInput"
+                id="addInput"
+              ></input>
+            </div>
+            <div className={classes.btnWrapper}>
+              <button type="submit" className={classes.btn}>
+                Add
+              </button>
             </div>
           </form>
-          <div className={classes.btnWrapper}>
-            <button onClick={this.handleSubmit} className={classes.btn}>
-              Add
-            </button>
-          </div>
         </div>
         <div className={classes.closingButtonContainer}>
           <img
@@ -88,31 +144,41 @@ class BucketList extends Component {
     return item.todo;
   };
 
+  formatDate = (str) => {
+    if (str) {
+      const dateArr = str.substring(0, 10).split("-");
+      const formattedArr = [dateArr[1], dateArr[2], dateArr[0]];
+      return formattedArr.join("/");
+    } else {
+      return "Not yet!";
+    }
+  };
+
   renderTodoList = (array) => {
-    return array.map((item, index) => {
+    return array.map((item) => {
       return (
-        <div key={index} className={classes.todo}>
+        <div key={item._id} className={classes.todo}>
           <div className={classes.mainWrapper}>
             <img
               className={classes.checkboxIcon}
               src={renderTodoCheckbox(item)}
               alt="checkbox icon"
-              onClick={this.changeStatus}
+              onClick={() => this.changeStatus(item)}
               data-todo-value={renderTodos(item)}
             />
             <div className={classes.todoWrapper}>
               <p
-                onClick={this.changeStatus}
+                onClick={() => this.changeStatus(item)}
                 data-todo-value={renderTodos(item)}
               >
                 {renderTodos(item)}
               </p>
               <div className={classes.dateContainer}>
                 <p className={classes.date}>
-                  Added: <span> {item.addDate}</span>
+                  Added: <span> {this.formatDate(item.addDate)}</span>
                 </p>
                 <p className={classes.date}>
-                  Finished: <span> Not yet! </span>
+                  Finished: <span> {this.formatDate(item.finishDate)} </span>
                 </p>
               </div>
             </div>
@@ -122,42 +188,29 @@ class BucketList extends Component {
             alt="delete button"
             className={classes.deleteButton}
             data-value={renderTodos(item)}
-            onClick={this.deleteToDo}
+            onClick={() => this.deleteToDo(item._id)}
           />
         </div>
       );
     });
   };
 
-  deleteToDo(e) {
-    const clicked = e.target;
-    const value = clicked.dataset.value;
-    const currentList = [...this.state.todoList];
-    const newList = currentList.filter((item) => item.todo !== value);
-    this.setState({ todoList: newList });
-    console.log(clicked, value);
-  }
-
-  changeStatus(e) {
-    const clicked = e.target;
-    const value = clicked.dataset.todoValue;
-    const currentList = [...this.state.todoList];
-    const changed = currentList.filter((item) => item.todo === value)[0];
-    const status = changed.status;
+  changeStatus(item) {
+    const status = item.status;
     switch (status) {
       case "not done":
-        changed.status = "in progress";
+        item.status = "in progress";
         break;
       case "in progress":
-        changed.status = "done";
+        item.status = "done";
         break;
       case "done":
-        changed.status = "not done";
+        item.status = "not done";
         break;
       default:
-        changed.status = "not done";
+        item.status = "not done";
     }
-    this.setState({ todoList: currentList });
+    this.updateToDo(item);
   }
 
   setSortBy(e) {
@@ -165,8 +218,7 @@ class BucketList extends Component {
   }
 
   componentDidMount() {
-    const today = setDate();
-    this.setState({ date: today });
+    this.getBucketlist();
   }
 
   render() {
@@ -217,7 +269,7 @@ class BucketList extends Component {
             </div>
           </div>
           <div className={classes.flexContainerColumn}>
-            {this.renderTodoList(this.state.todoList)}
+            {this.renderTodoList(this.props.bucketlist)}
           </div>
         </div>
         <LegendFooter />
@@ -235,4 +287,21 @@ class BucketList extends Component {
   }
 }
 
-export default BucketList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateBucketlist: (newBucketlist) => {
+      dispatch({
+        type: actionTypes.setBucketlist,
+        payload: { bucketlist: newBucketlist },
+      });
+    },
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    bucketlist: state.bucketlist,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BucketList);

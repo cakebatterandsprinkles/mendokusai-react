@@ -1,4 +1,6 @@
 const ToDo = require("../models/ToDo");
+const BucketList = require("../models/BucketList");
+const { setDate } = require("../util/date");
 
 validateTodo = (todo) => {
   if (todo === "") {
@@ -7,14 +9,17 @@ validateTodo = (todo) => {
   return "Success";
 };
 
-exports.postToday = (req, res, next) => {
+isValid = (req) => {
   const validationResult = validateTodo(req.todo);
   if (validationResult !== "Success") {
-    res.status(400).send(validationResult);
+    return res.status(400).send(validationResult);
   }
+};
+
+exports.postToday = (req, res, next) => {
+  isValid(req);
 
   const { todo, status } = req.body;
-  console.log(req.body);
   const newTodo = {};
   newTodo.user = req.user.id;
   if (todo) newTodo.todo = todo;
@@ -55,9 +60,46 @@ exports.getToday = (req, res, next) => {
     .catch((err) => res.status(500).send(err));
 };
 
-exports.getBucketlist = (req, res, next) => {};
+exports.getBucketlist = (req, res, next) => {
+  BucketList.find({
+    user: req.user.id,
+  })
+    .then((items) => res.json(items))
+    .catch((err) => res.status(500).send(err));
+};
 
-exports.postBucketlist = (req, res, next) => {};
+exports.postBucketlist = (req, res, next) => {
+  isValid(req);
+
+  const { todo, status, finishDate } = req.body;
+  const newTodo = {};
+  newTodo.user = req.user.id;
+  if (todo) newTodo.todo = todo;
+  if (status) newTodo.status = status;
+
+  BucketList.findOne({
+    user: req.user.id,
+    _id: req.body._id,
+  })
+    .then((todo) => {
+      if (todo) {
+        todo.status = status;
+        if (status === "done") {
+          todo.finishDate = setDate();
+        } else {
+          todo.finishDate = null;
+        }
+      } else {
+        todo = new BucketList(newTodo);
+      }
+      todo.save().then((todo) => {
+        res.json(todo);
+      });
+    })
+    .catch((err) => {
+      res.status(500).send(err.toString());
+    });
+};
 
 exports.getCalendar = (req, res, next) => {};
 
