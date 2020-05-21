@@ -54,3 +54,11 @@ exports.getToday = (req, res, next) => {
     .then((todos) => res.json(todos))
     .catch((err) => res.status(500).send(err));
 };
+
+exports.getBucketlist = (req, res, next) => {};
+
+exports.postBucketlist = (req, res, next) => {};
+
+exports.getCalendar = (req, res, next) => {};
+
+exports.postCalendar = (req, res, next) => {};

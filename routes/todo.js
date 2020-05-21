@@ -21,4 +21,28 @@ router.post("/today", verifyToken, todoController.postToday);
 
 router.delete("/", verifyToken, todoController.deleteTodo);
 
+// @route  GET /todo/bucketlist
+// @desc   Get User bucketlist items
+// @access private
+
+router.get("/bucketlist", verifyToken, todoController.getBucketlist);
+
+// @route  POST /todo/bucketlist
+// @desc   Create/update bucketlist items
+// @access private
+
+router.post("/bucketlist", verifyToken, todoController.postBucketlist);
+
+// @route  GET /todo/calendar
+// @desc   Get monthly User todo items for the calendar page
+// @access private
+
+router.get("/calendar", verifyToken, todoController.getCalendar);
+
+// @route  POST /todo/calendar
+// @desc   Create/update monthly User todo items for the calendar page
+// @access private
+
+router.post("/calendar", verifyToken, todoController.postCalendar);
+
 module.exports = router;
