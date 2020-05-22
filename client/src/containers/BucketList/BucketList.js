@@ -6,7 +6,6 @@ import AddIcon from "../../assets/images/addbutton.png";
 import Modal from "react-modal";
 import ClosingButton from "../../assets/images/closeButton.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
-import { setDate } from "../../util/date";
 import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 
 class BucketList extends Component {
@@ -28,6 +27,7 @@ class BucketList extends Component {
     this.deleteToDo = this.deleteToDo.bind(this);
     this.changeStatus = this.changeStatus.bind(this);
     this.setSortBy = this.setSortBy.bind(this);
+    this.sortArray = this.sortArray.bind(this);
   }
 
   getBucketlist() {
@@ -63,12 +63,17 @@ class BucketList extends Component {
         "Content-Type": "application/json",
       },
       credentials: "include",
-    });
-    const updatedList = [
-      ...this.props.bucketlist.filter((oldToDo) => todo._id !== oldToDo._id),
-      todo,
-    ];
-    this.props.updateBucketlist(updatedList);
+    })
+      .then((blob) => blob.json())
+      .then((updatedTodo) => {
+        const updatedList = [
+          ...this.props.bucketlist.filter(
+            (oldToDo) => updatedTodo._id !== oldToDo._id
+          ),
+          updatedTodo,
+        ];
+        this.props.updateBucketlist(updatedList);
+      });
   }
 
   addToDo(todo) {
@@ -154,8 +159,20 @@ class BucketList extends Component {
     }
   };
 
+  sortArray = (array) => {
+    if (this.state.sortBy === "Done") {
+      return array.filter((item) => item.status === "done");
+    } else if (this.state.sortBy === "Not Done") {
+      return array.filter((item) => item.status === "not done");
+    } else if (this.state.sortBy === "In progress") {
+      return array.filter((item) => item.status === "in progress");
+    } else {
+      return array;
+    }
+  };
+
   renderTodoList = (array) => {
-    return array.map((item) => {
+    return this.sortArray(array).map((item) => {
       return (
         <div key={item._id} className={classes.todo}>
           <div className={classes.mainWrapper}>
@@ -173,7 +190,10 @@ class BucketList extends Component {
               >
                 {renderTodos(item)}
               </p>
-              <div className={classes.dateContainer}>
+              <div
+                className={classes.dateContainer}
+                onClick={() => this.changeStatus(item)}
+              >
                 <p className={classes.date}>
                   Added: <span> {this.formatDate(item.addDate)}</span>
                 </p>
@@ -238,30 +258,25 @@ class BucketList extends Component {
               </p>
             </div>
             <div className={classes.flexContainerRow}>
-              <button className={classes.addBtn}>
-                <img
-                  src={AddIcon}
-                  alt="add icon"
-                  className={classes.addIcon}
-                  onClick={this.handleOpenModal}
-                />
-                <p onClick={this.handleOpenModal}>Add items</p>
+              <button className={classes.addBtn} onClick={this.handleOpenModal}>
+                <img src={AddIcon} alt="add icon" className={classes.addIcon} />
+                <p>Add items</p>
               </button>
               <div className={classes.dropdown}>
                 <button className={classes.dropbtn}>
-                  Sort by: <span>{this.state.sortBy} ▼</span>
+                  Filter by: <span>{this.state.sortBy} ▼</span>
                 </button>
                 <div className={classes.dropdownContent}>
-                  <a href="/" onClick={this.setSortBy} data-name="All">
+                  <a onClick={this.setSortBy} data-name="All">
                     All
                   </a>
-                  <a href="/" onClick={this.setSortBy} data-name="Not Done">
+                  <a onClick={this.setSortBy} data-name="Not Done">
                     Not Done
                   </a>
-                  <a href="/" onClick={this.setSortBy} data-name="In progress">
+                  <a onClick={this.setSortBy} data-name="In progress">
                     In progress
                   </a>
-                  <a href="/" onClick={this.setSortBy} data-name="Done">
+                  <a onClick={this.setSortBy} data-name="Done">
                     Done
                   </a>
                 </div>
