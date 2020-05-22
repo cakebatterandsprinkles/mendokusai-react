@@ -101,6 +101,12 @@ exports.postBucketlist = (req, res, next) => {
     });
 };
 
+exports.deleteBucketlist = (req, res, next) => {
+  BucketList.findOneAndDelete({ user: req.user.id, _id: req.body.id })
+    .then(() => res.status(200).end())
+    .catch((err) => res.status(500).send(err));
+};
+
 exports.getCalendar = (req, res, next) => {};
 
 exports.postCalendar = (req, res, next) => {};

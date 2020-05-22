@@ -33,6 +33,12 @@ router.get("/bucketlist", verifyToken, todoController.getBucketlist);
 
 router.post("/bucketlist", verifyToken, todoController.postBucketlist);
 
+// @route  DELETE /todo/bucketlist
+// @desc   Delete the todo with the id from the bucketlist
+// @access private
+
+router.delete("/bucketlist", verifyToken, todoController.deleteBucketlist);
+
 // @route  GET /todo/calendar
 // @desc   Get monthly User todo items for the calendar page
 // @access private

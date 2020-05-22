@@ -41,7 +41,7 @@ class BucketList extends Component {
   }
 
   deleteToDo(id) {
-    fetch("/todo", {
+    fetch("/todo/bucketlist", {
       method: "DELETE",
       body: JSON.stringify({ id: id }),
       headers: {
