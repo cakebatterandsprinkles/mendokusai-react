@@ -114,7 +114,9 @@ class Calendar extends Component {
         {dateArray.map((date) => {
           return (
             <div
-              className={classes.days}
+              className={
+                date !== new Date().getDate() ? classes.days : classes.today
+              }
               onClick={(e) => {
                 this.toggleDrawer(e);
               }}
@@ -154,7 +156,9 @@ class Calendar extends Component {
           </div>
           <h2 className={classes.year}>{this.state.year}</h2>
           <div className={classes.calendarContainer}>
-            <div className={classes.weekday}>Monday</div>
+            <div className={classes.weekday} id={classes.monday}>
+              Monday
+            </div>
             <div className={classes.weekday}>Tuesday</div>
             <div className={classes.weekday}>Wednesday</div>
             <div className={classes.weekday}>Thursday</div>

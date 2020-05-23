@@ -12,6 +12,12 @@
   width: auto;
 }
 
+.girlimg {
+  height: 3.5rem;
+  width: auto;
+  margin: 0.5rem;
+}
+
 .flexContainerRow {
   display: flex;
   justify-content: space-between;
@@ -76,8 +82,7 @@
 .settingsIcon {
   height: 2rem;
   width: auto;
-  margin-right: 1.2rem;
-  margin-top: 1.2rem;
+  margin: 1rem 1.2rem 0 1.2rem;
 }
 
 .changeColorBtn {
@@ -88,25 +93,24 @@
   color: black !important;
 }
 
-.calendarBtn {
+.navbarLink {
   text-decoration: none;
   height: 2.5rem;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
-  margin: 0.7rem 0.5rem 0.5rem 9rem;
+  font-size: 1.1rem;
+  margin: 0.7rem 0.5rem 0.5rem 1rem;
   padding: 0.8rem;
-  background: rgba(0, 0, 0, 0.068);
-  box-shadow: 2px 2px 3px rgba(167, 167, 167, 0.76);
-  border-radius: 15px;
+  border-bottom: 1px solid black;
 }
 
-.calendarBtn:hover {
+.navbarLink:hover {
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.041);
-  box-shadow: 2px 2px 3px rgba(117, 117, 117, 0.822);
+  font-weight: bold;
+  border-bottom: 2px solid slateblue;
+  transition-duration: border-bottom, 5s;
 }
 
 @media (max-width: 1460px) {
@@ -115,9 +119,20 @@
     width: auto;
     margin: 1.2rem 1.2rem 0 1.2rem;
   }
+  .navbarLink {
+    font-size: 1rem;
+    margin: 0.7rem 0.25rem 0.25rem 1rem;
+    padding: 0.5rem;
+  }
 }
 
 @media (max-width: 900px) {
+  .navbarLink {
+    font-size: 1rem;
+    margin: 0.5rem 0.25rem 0.25rem 1rem;
+    padding: 0;
+  }
+
   .dropdownContent {
     top: 3rem;
     right: 0.8rem;
@@ -155,5 +170,9 @@
     color: black;
     margin: 0.8rem 0.5rem 0 0.5rem;
     padding: 1rem 1.2rem;
+  }
+
+  .girlimg {
+    display: none;
   }
 }

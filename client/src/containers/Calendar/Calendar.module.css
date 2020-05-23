@@ -21,6 +21,16 @@
   cursor: pointer;
 }
 
+.today {
+  font-weight: bold;
+  font-size: 1.25rem;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #ff8c00;
+  border-radius: 50px;
+  margin: 0 1rem;
+}
+
 .calendarContainer {
   display: grid;
   width: 84vw;
@@ -31,6 +41,7 @@
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 0.5rem;
+  background-color: rgb(241, 240, 240);
 }
 
 .calendarContainer > * {
@@ -51,15 +62,24 @@
   cursor: pointer;
 }
 
+.weekday {
+  background: rgba(0, 0, 0, 0.623);
+  color: white;
+}
+
+#monday {
+  border-top-left-radius: 9px;
+}
+
 .saturday {
-  background: linear-gradient(to right, #40e0d0, #ff8c00);
+  background: linear-gradient(to right, #40e0d0, #ff8c00) !important;
   color: white;
 }
 
 .sunday {
-  background: linear-gradient(to right, #ff8c00, #ff0080);
+  background: linear-gradient(to right, #ff8c00, #ff0080) !important;
   color: white;
-  border-top-right-radius: 10px;
+  border-top-right-radius: 9px;
 }
 
 .arrow {
@@ -73,7 +93,7 @@
   background: rgb(31, 31, 31);
   border-radius: 50%;
   transition-property: background, color;
-  transition-duration: 0.75s;
+  transition-duration: 0.5s;
 }
 
 .heading {
@@ -142,12 +162,14 @@
     font-size: 1.2rem;
     padding: 0.3rem 0.6rem;
   }
+
+  .today {
+    margin: 0.5rem 0.25rem;
+  }
 }
 
 @media (max-width: 450px) {
   .weekday {
-    border-bottom: 1px solid black;
-    font-weight: bold;
     font-size: 0.5rem;
   }
 }

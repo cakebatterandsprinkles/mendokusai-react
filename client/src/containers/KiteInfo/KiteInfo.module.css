@@ -2,7 +2,7 @@
   color: black !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .kiteInfoText {
     font-size: 0.8rem;
   }

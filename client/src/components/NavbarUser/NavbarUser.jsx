@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import downarrow from "../../assets/images/downarrow.png";
-import classes from "./NavbarUser.module.css";
-import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
-import SettingsIcon from "../../assets/images/settingsicon.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import classes from "./NavbarUser.module.css";
+import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
+import downarrow from "../../assets/images/downarrow.png";
+import SettingsIcon from "../../assets/images/settingsicon.png";
+import mendokusai from "../../assets/images/girl2.png";
 
 class NavbarUser extends Component {
   reverseColor = () => {
@@ -28,54 +29,59 @@ class NavbarUser extends Component {
           </Link>
           <img src={downarrow} alt="down arrow" className={classes.arrow} />
           <NavbarInfoBox name={this.props.username} />
-          {window.location.href.includes("user") ? (
-            <Link className={classes.calendarBtn} to="/calendar">
-              <p>Calendar»</p>
-            </Link>
-          ) : null}
-        </div>
-        <div className={classes.dropdown}>
           <img
-            src={SettingsIcon}
-            alt="settings icon"
-            className={`${classes.settingsIcon} ${classes.dropbtn}`}
+            src={mendokusai}
+            alt="bored girl illustration"
+            className={classes.girlimg}
           />
-          <div className={classes.dropdownContent}>
-            <div className={classes.linkContainer}>
-              <Link
-                to="/bucketlist"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
+        </div>
+        <div className={classes.flexContainerRow}>
+          <Link className={classes.navbarLink} to="/user">
+            <p>Today</p>
+          </Link>
+
+          <Link className={classes.navbarLink} to="/calendar">
+            <p>Calendar</p>
+          </Link>
+          <Link className={classes.navbarLink} to="/bucketlist">
+            <p>Bucketlist</p>
+          </Link>
+
+          <div className={classes.dropdown}>
+            <img
+              src={SettingsIcon}
+              alt="settings icon"
+              className={`${classes.settingsIcon} ${classes.dropbtn}`}
+            />
+            <div className={classes.dropdownContent}>
+              <div className={classes.linkContainer}>
+                <Link
+                  to="/settings"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  Settings
+                </Link>
+              </div>
+              <div
+                className={classes.linkContainer}
+                onClick={this.reverseColor}
               >
-                Bucket List
-              </Link>
-            </div>
-            <div className={classes.linkContainer}>
-              <Link
-                to="/settings"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
-              >
-                Settings
-              </Link>
-            </div>
-            <div className={classes.linkContainer} onClick={this.reverseColor}>
-              <p>Change Mode</p>
-            </div>
-            <div className={classes.linkContainerBottom}>
-              <Link
-                to="/"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
-              >
-                Logout
-              </Link>
+                <p>Change Mode</p>
+              </div>
+              <div className={classes.linkContainerBottom}>
+                <Link
+                  to="/"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  Logout
+                </Link>
+              </div>
             </div>
           </div>
         </div>

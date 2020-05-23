@@ -56,7 +56,11 @@ const App = (props) => {
     <BrowserRouter>
       <Layout isAuthenticated={props.isAuthenticated}>
         <Switch>
-          <Route exact path="/" component={LandingMain} />
+          <Route
+            exact
+            path="/"
+            component={props.isAuthenticated ? UserMainPage : LandingMain}
+          />
           <Route exact path="/signup" component={SignUpForm} />
           <Route exact path="/login" component={LoginForm} />
           <Route path="/user" component={UserMainPage} />
