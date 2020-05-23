@@ -12,7 +12,7 @@ import CloudyAndSunnyIcon from "../../assets/images/sunandclouds.png";
 import RainyIcon from "../../assets/images/rainy.png";
 import TooRainyIcon from "../../assets/images/toorainy.png";
 import SnowyIcon from "../../assets/images/snowy.png";
-import { setDate } from "../../util/date";
+import { setDate, setDay } from "../../util/date";
 import { getCelcius } from "../../util/temp";
 import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 
@@ -20,6 +20,8 @@ class Today extends Component {
   constructor() {
     super();
     this.state = {
+      date: "",
+      day: "",
       temp: "",
       tempUnit: "f",
       showModal: false,
@@ -239,7 +241,8 @@ class Today extends Component {
 
   componentDidMount() {
     const today = setDate();
-    this.setState({ date: today });
+    const day = setDay();
+    this.setState({ date: today, day: day });
     this.getUserLocation().then((data) => {
       this.setState({
         location: `${data.city}, ${data.region_name}, ${data.country_code}`,
@@ -255,19 +258,24 @@ class Today extends Component {
         <div className={classes.mainContainer}>
           <div className={classes.flexContainerColumn}>
             <p className={classes.date}>{this.state.date}</p>
+            <div className={classes.day}>
+              <p>{this.state.day}</p>
+            </div>
             <div className={classes.bgBlack}>
               <p>Today Looks Like This: </p>
             </div>
             <div className={classes.flexContainerRow}>
-              <div className={classes.flexContainerRow}>
-                <img
-                  src={LocationIcon}
-                  className={classes.locationIcon}
-                  alt="location icon"
-                />
-                <p className={classes.data}>{this.state.location}</p>
+              <div className={classes.dataContainer}>
+                <div className={classes.flexContainerRow}>
+                  <img
+                    src={LocationIcon}
+                    className={classes.locationIcon}
+                    alt="location icon"
+                  />
+                  <p className={classes.data}>{this.state.location}</p>
+                </div>
                 {this.props.weatherData.weather ? (
-                  <Fragment>
+                  <div className={classes.flexContainerRow}>
                     <img
                       src={this.getWeatherIcon()}
                       className={classes.weatherIcon}
@@ -276,12 +284,16 @@ class Today extends Component {
                     <p className={classes.data}>
                       {this.props.weatherData.weather[0].main}
                     </p>
-                  </Fragment>
-                ) : null}
-                {this.calculateTemp() ? (
-                  <p className={classes.tempData} onClick={this.convertTemp}>
-                    {this.calculateTemp()}°{this.state.tempUnit.toUpperCase()}
-                  </p>
+                    {this.calculateTemp() ? (
+                      <p
+                        className={classes.tempData}
+                        onClick={this.convertTemp}
+                      >
+                        {this.calculateTemp()}°
+                        {this.state.tempUnit.toUpperCase()}
+                      </p>
+                    ) : null}
+                  </div>
                 ) : null}
               </div>
               <div>

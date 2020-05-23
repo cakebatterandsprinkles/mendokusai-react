@@ -61,3 +61,18 @@ export function setDate() {
   const month = getMonthName(monthNum);
   return `${month} ${day}, ${year}`;
 }
+
+export function setDay() {
+  const today = new Date().getDay();
+  var days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var dayName = days[today];
+  return `${dayName}`;
+}

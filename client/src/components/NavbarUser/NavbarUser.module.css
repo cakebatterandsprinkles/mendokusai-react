@@ -110,7 +110,12 @@
   cursor: pointer;
   font-weight: bold;
   border-bottom: 2px solid slateblue;
-  transition-duration: border-bottom, 5s;
+  background: rgba(224, 224, 224, 0.603);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition-property: background;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
 }
 
 @media (max-width: 1460px) {
@@ -128,9 +133,9 @@
 
 @media (max-width: 900px) {
   .navbarLink {
-    font-size: 1rem;
-    margin: 0.5rem 0.25rem 0.25rem 1rem;
-    padding: 0;
+    font-size: 0.9rem;
+    margin: 0.5rem 0.25rem 0.25rem 0.5rem;
+    padding: 0.5rem;
   }
 
   .dropdownContent {

@@ -21,6 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.dataContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .data {
@@ -54,13 +61,22 @@
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1.8rem;
-  margin-bottom: 1rem;
   border-radius: 10px;
 }
 
 .date {
   font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.day {
+  font-size: 1rem;
+  font-weight: bold;
   margin-bottom: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  background: rgba(194, 194, 194, 0.432);
+  border-radius: 10px;
+  width: 5rem;
 }
 
 .addIcon {
@@ -71,7 +87,7 @@
 }
 
 .weatherIcon {
-  height: 1.5rem;
+  height: 1rem;
   width: auto;
   margin-right: 0.5rem;
 }
@@ -182,6 +198,16 @@
   margin: 3rem 0 0.5rem 0;
 }
 
+@media (max-width: 1450px) {
+  .dataContainer {
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .addIcon {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 1300px) {
   .bgBlack {
     font-size: 1.5rem;
@@ -190,9 +216,18 @@
   .date {
     font-size: 2rem;
   }
+
+  .mainContainer {
+    height: 90vh;
+    margin: 0.5rem 3rem 5rem 1.5rem;
+  }
+
+  .addIcon {
+    margin-top: 0.5rem;
+  }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .mainContainer {
     margin: 1.5rem 4rem 5rem 4rem;
   }
@@ -201,9 +236,13 @@
     width: 27.5rem;
     padding: 1.8rem;
   }
+
+  .dataContainer {
+    flex-direction: row;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .mainContainer {
     margin: 1.5rem 2rem 5rem 2rem;
   }
@@ -211,5 +250,14 @@
   .modal {
     width: 25rem;
     padding: 1.5rem;
+  }
+
+  .dataContainer {
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+
+  .addIcon {
+    margin-top: 0;
   }
 }

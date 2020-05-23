@@ -15,6 +15,8 @@
 
 .flexRowContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .calendarButton {
@@ -24,14 +26,14 @@
 .poster {
   max-height: 90vh;
   max-width: 60vw;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   border-radius: 10px;
 }
 
 .posterContainer {
+  margin: 0.5rem 0 5rem 3rem;
   border-radius: 10px;
   position: relative;
-  margin-left: 2rem;
 }
 
 .buttonContainer {
@@ -48,7 +50,7 @@
   position: absolute;
   top: 2rem;
   font-weight: bold;
-  padding: .4rem;
+  padding: 0.4rem;
   background-color: rgb(19, 19, 19);
   left: 1.5rem;
   z-index: 40;
@@ -58,9 +60,9 @@
 .credit {
   color: white !important;
   position: absolute;
-  font-size: .7rem;
+  font-size: 0.7rem;
   top: 4rem;
-  padding: .3rem;
+  padding: 0.3rem;
   background-color: rgba(19, 19, 19, 0.493);
   left: 1.5rem;
   z-index: 40;
