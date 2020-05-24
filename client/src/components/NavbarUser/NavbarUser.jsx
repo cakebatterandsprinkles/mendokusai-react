@@ -13,7 +13,6 @@ class NavbarUser extends Component {
     const hc = document.querySelectorAll(".headingContainer");
     page.classList.toggle("dark-bg");
     const hcArray = Array.from(hc);
-    console.log(hc, hcArray);
     hcArray.forEach((hc) => {
       hc.classList.toggle("light-border");
     });

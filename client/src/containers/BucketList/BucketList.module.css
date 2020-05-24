@@ -75,22 +75,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(
-    90deg,
-    #48ded4 0%,
-    #a026bf 35%,
-    #e82c75 70%,
-    #48ded4 100%
-  );
+  background: rgba(194, 194, 194, 0.432);
   z-index: 20;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
 .rules {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .addBtn {
@@ -99,6 +93,8 @@
   align-items: center;
   padding: 0.8rem 1rem;
   background: white;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
   border-radius: 10px;
   font-size: 0.9rem;
   font-weight: bold;
@@ -241,14 +237,14 @@
   z-index: 1;
 }
 
-.dropdownContent a {
+.dropdownContent p {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdownContent a:hover {
+.dropdownContent p:hover {
   background-color: #f1f1f1;
 }
 
@@ -262,12 +258,24 @@
 }
 
 .dropbtn {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
+  border: none;
   padding: 0.8rem 1rem;
   background: white;
   border-radius: 10px;
   font-size: 0.9rem;
   font-weight: bold;
   font-family: "Inconsolata", "monospace";
+}
+
+.dropdownContent .active {
+  background: gray;
+  color: white;
+  font-weight: bold;
+}
+
+.dropdownContent .active:hover {
+  background: gray;
 }
 
 /* Date Container */

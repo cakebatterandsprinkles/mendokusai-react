@@ -253,8 +253,7 @@ class BucketList extends Component {
             <div className={classes.ruleContainer}>
               <p className={classes.rules}>
                 The list items here have no expiration dates. You can do them
-                anytime you like. The date you add and finish them will also be
-                logged.
+                anytime you like.
               </p>
             </div>
             <div className={classes.flexContainerRow}>
@@ -267,18 +266,42 @@ class BucketList extends Component {
                   Filter by: <span>{this.state.sortBy} ▼</span>
                 </button>
                 <div className={classes.dropdownContent}>
-                  <a onClick={this.setSortBy} data-name="All">
+                  <p
+                    onClick={this.setSortBy}
+                    className={
+                      this.state.sortBy === "All" ? classes.active : ""
+                    }
+                    data-name="All"
+                  >
                     All
-                  </a>
-                  <a onClick={this.setSortBy} data-name="Not Done">
+                  </p>
+                  <p
+                    onClick={this.setSortBy}
+                    className={
+                      this.state.sortBy === "Not Done" ? classes.active : ""
+                    }
+                    data-name="Not Done"
+                  >
                     Not Done
-                  </a>
-                  <a onClick={this.setSortBy} data-name="In progress">
+                  </p>
+                  <p
+                    onClick={this.setSortBy}
+                    className={
+                      this.state.sortBy === "In progress" ? classes.active : ""
+                    }
+                    data-name="In progress"
+                  >
                     In progress
-                  </a>
-                  <a onClick={this.setSortBy} data-name="Done">
+                  </p>
+                  <p
+                    onClick={this.setSortBy}
+                    className={
+                      this.state.sortBy === "Done" ? classes.active : ""
+                    }
+                    data-name="Done"
+                  >
                     Done
-                  </a>
+                  </p>
                 </div>
               </div>
             </div>
