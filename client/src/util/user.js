@@ -1,3 +1,3 @@
-export default function spliceUserId(userId) {
-  return userId.splice(0, 12).toString();
+export default function sliceUserId(userId) {
+  return userId.slice(0, 12).toString();
 }

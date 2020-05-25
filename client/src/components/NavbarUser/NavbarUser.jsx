@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
 import classes from "./NavbarUser.module.css";
 import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
 import downarrow from "../../assets/images/downarrow.png";
@@ -8,6 +9,12 @@ import SettingsIcon from "../../assets/images/settingsicon.png";
 import mendokusai from "../../assets/images/girl2.png";
 
 class NavbarUser extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logout = this.logout.bind(this);
+  }
+
   reverseColor = () => {
     const page = document.body;
     const hc = document.querySelectorAll(".headingContainer");
@@ -16,6 +23,13 @@ class NavbarUser extends Component {
     hcArray.forEach((hc) => {
       hc.classList.toggle("light-border");
     });
+  };
+
+  logout = () => {
+    fetch("/logout", {
+      method: "POST",
+      credentials: "include",
+    }).then(() => this.props.removeAuthentication());
   };
 
   render() {
@@ -72,11 +86,12 @@ class NavbarUser extends Component {
               </div>
               <div className={classes.linkContainerBottom}>
                 <Link
-                  to="/"
+                  to="/login"
                   style={{
                     textDecoration: "none",
                     color: "black",
                   }}
+                  onClick={this.logout}
                 >
                   Logout
                 </Link>
@@ -95,4 +110,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NavbarUser);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeAuthentication: () =>
+      dispatch({
+        type: actionTypes.setUserData,
+        payload: { name: "" },
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarUser);

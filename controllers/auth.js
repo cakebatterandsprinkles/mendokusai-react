@@ -126,6 +126,14 @@ exports.postLogin = (req, res, next) => {
   }
 };
 
+exports.postLogout = (req, res, next) => {
+  try {
+    res.clearCookie("token").end();
+  } catch (err) {
+    return res.status(500).json(err.toString());
+  }
+};
+
 exports.getMe = (req, res, next) => {
   User.findById({ _id: req.user.id }, "name", function (err, user) {
     if (err) {

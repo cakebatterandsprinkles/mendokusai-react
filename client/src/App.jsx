@@ -42,7 +42,8 @@ const App = (props) => {
       .then((blob) => blob.json())
       .then((response) => {
         props.setUserData(response);
-      });
+      })
+      .catch(() => {});
   };
 
   const initialize = () => {

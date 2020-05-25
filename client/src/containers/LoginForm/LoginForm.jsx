@@ -6,7 +6,7 @@ import ClosingButton from "../../assets/images/closeButton.png";
 import BirbImage from "../../assets/images/birb.png";
 import Sun from "../../assets/images/sunny.png";
 import axios from "axios";
-import spliceUserId from "../../util/user";
+import sliceUserId from "../../util/user";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/actionTypes";
 
@@ -70,8 +70,8 @@ class LoginForm extends Component {
       )
       .then((response) => {
         this.props.setUserData(response.data.id, response.data.name);
-        const splicedUserId = spliceUserId(response.data.id);
-        this.props.history.push(`/user?${response.data.name}${splicedUserId}`);
+        const slicedUserId = sliceUserId(response.data.id);
+        this.props.history.push(`/user?${response.data.name}${slicedUserId}`);
       })
       .catch((error) => {
         if (error.response) {
