@@ -46,22 +46,10 @@ const LandingMain = () => {
             </div>
           </div>
           <div className={classes.questions}>
-            <p className={classes.heading}>This website exists because:</p>
-            <div className={classes.flexContainerRow}>
-              <img src={Checkbox} alt="checkbox" className={classes.checkbox} />
-              <p>My best friend needed something like this</p>
-            </div>
-            <div className={classes.flexContainerRow}>
-              <img src={Checkbox} alt="checkbox" className={classes.checkbox} />
-              <p>I was bored enough to do it</p>
-            </div>
-          </div>
-          <div className={classes.questions}>
             <p className={classes.heading}>
               What is the meaning of Mendokusai?
             </p>
             <div className={classes.flexContainerRow}>
-              <img src={Checkbox} alt="checkbox" className={classes.checkbox} />
               <p>Mendokusai means troublesome or bothersome in Japanese.</p>
             </div>
           </div>

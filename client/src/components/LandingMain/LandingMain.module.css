@@ -102,42 +102,78 @@
   border-top: 2px solid black;
 }
 
-@media (max-width: 1275px) {
+@media (max-width: 1200px) {
+  .mainHeader {
+    margin-left: 4rem;
+    font-size: 1.75rem;
+  }
+
+  .heading {
+    font-size: 1.25rem;
+  }
+
   .questions {
-    margin: 1.2rem 2rem 0 2rem;
-    font-size: 0.9rem;
+    margin: 2.5rem 0 0 4rem;
+  }
+
+  .mainWrapper {
+    width: 90vw;
   }
 }
 
-@media (min-width: 710px) {
-  .mainContainer {
-    padding-bottom: 7rem;
+@media (max-width: 1000px) {
+  .mainWrapper {
+    flex-direction: column;
+    padding: 0 4rem;
   }
 
-  .footerText {
-    font-size: 0.8rem;
+  .mainHeader {
+    margin-left: 0;
   }
-}
 
-@media (min-width: 550px) {
-  .mainContainer {
-    padding-bottom: 6rem;
-  }
-}
-
-@media (max-width: 550px) {
   .questions {
-    margin: 1.2rem 1rem 0 1rem;
-    font-size: 0.9rem;
-  }
-  .checkbox {
-    width: 1rem;
-    height: auto;
-    margin-right: 0.5rem;
-    align-self: flex-start;
+    margin: 2.5rem 0 0 0;
   }
 
-  .mainContainer {
-    padding-bottom: 8rem;
+  .mainWrapper {
+    width: 90vw;
+  }
+
+  .flexContainerRow p {
+    font-size: 0.85rem;
+    line-height: 1.25rem;
+  }
+
+  .flexContainerColumn p {
+    font-size: 0.85rem;
+  }
+
+  .girlImg {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .mainHeader {
+    font-size: 1.25rem;
+  }
+
+  .heading {
+    font-size: 1rem;
+  }
+
+  .flexContainerRow p {
+    font-size: 0.75rem;
+  }
+
+  .flexContainerColumn p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .contentWrapper {
+    width: 90vw;
+    padding-bottom: 2rem;
   }
 }
