@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 11rem;
+  margin-right: 1rem;
 }
 
 .skewedArrow {
@@ -83,7 +83,7 @@
 
   .changeColorBtn {
     font-size: 2.8rem;
-    padding: .5rem;
+    padding: 0.25rem;
   }
 
   .arrow {

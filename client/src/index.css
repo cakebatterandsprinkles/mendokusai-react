@@ -22,4 +22,6 @@ code {
 .dark-bg {
   background-color: rgb(24, 24, 24);
   color: white;
+  fill: white;
+  stroke: white;
 }

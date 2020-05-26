@@ -1,35 +1,26 @@
-.button {
-  padding: 0.57rem 0 0.5rem 0;
+.link {
+  padding: 0.6rem 0.8rem;
   border: 1px solid black;
   margin-right: 2rem;
-}
-
-.link {
-  padding: 0.5rem;
+  border-radius: 10px;
   text-decoration: none;
   color: black !important;
 }
 
-.link:hover {
-  background-color: rgb(224, 224, 224);
-  transition-duration: 0.5s;
+.link:hover,
+.link:focus,
+.link:active {
+  background-color: rgba(224, 224, 224, 0.527);
+  transition-duration: 0.3s;
   font-weight: bold;
   color: black;
+  border-radius: 10px;
 }
 
-.button:hover {
-  background-color: rgb(224, 224, 224);
-  transition-duration: 0.5s;
-}
-
-/* Xsmall Screens */
 @media (max-width: 600px) {
-  .button {
-    margin-right: 1rem;
-  }
-
   .link {
-    padding: 0.55rem 0.5rem 0.4rem 0.4rem;
-    font-size: 0.9rem;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
   }
 }

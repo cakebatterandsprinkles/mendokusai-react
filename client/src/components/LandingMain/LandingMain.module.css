@@ -14,7 +14,8 @@
 }
 
 .girlImg {
-  width: 30vw;
+  max-width: 40vw;
+  min-width: 35vw;
   height: auto;
 }
 
@@ -31,7 +32,7 @@
   border-bottom: 1px solid black;
   font-size: 1.25rem;
   padding-bottom: 0.5rem;
-  width: 23rem;
+  display: inline-block;
   font-weight: bold;
 }
 

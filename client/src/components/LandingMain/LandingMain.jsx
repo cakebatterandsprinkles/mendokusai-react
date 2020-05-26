@@ -1,17 +1,12 @@
 import React from "react";
 import classes from "./LandingMain.module.css";
-import Checkbox from "../../assets/images/donecheckbox.png";
-import mendokusai from "../../assets/images/girl3.png";
+import { ReactComponent as Mendokusai } from "../../assets/images/girl.svg";
 
 const LandingMain = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.mainWrapper}>
-        <img
-          src={mendokusai}
-          alt="bored girl illustration"
-          className={classes.girlImg}
-        />
+        <Mendokusai className={classes.girlImg} />
         <div className={classes.contentWrapper}>
           <p className={classes.mainHeader}>Hello! Here is some information:</p>
           <div className={classes.questions}>
