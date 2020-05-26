@@ -96,10 +96,14 @@
   font-size: 0.9rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: rgb(230, 228, 228);
   border-top: 2px solid black;
+}
+
+.footerText {
+  display: flex;
 }
 
 @media (max-width: 1200px) {
@@ -169,11 +173,19 @@
   .flexContainerColumn p {
     font-size: 0.75rem;
   }
+
+  .footer {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 400px) {
   .contentWrapper {
     width: 90vw;
     padding-bottom: 2rem;
+  }
+
+  .footerText > a {
+    font-size: 0.65rem;
   }
 }

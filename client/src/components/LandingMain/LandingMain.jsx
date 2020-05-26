@@ -55,8 +55,8 @@ const LandingMain = () => {
           </div>
         </div>
         <div className={classes.footer}>
-          <p className={classes.footerText}>
-            Reach me from:{" "}
+          <div className={classes.footerText}>
+            <p>Reach me from: </p>
             <a
               href="mailto:yagmurcetin@gmail.com"
               target="_blank"
@@ -64,19 +64,19 @@ const LandingMain = () => {
               className={classes.link}
             >
               yagmurcetin@gmail.com
-            </a>{" "}
-          </p>
-          <p className={classes.footerText}>
-            Source code:{" "}
+            </a>
+          </div>
+          <div className={classes.footerText}>
+            <p>Source code: </p>
             <a
               href="https://github.com/cakebatterandsprinkles/mendokusai-react"
               target="_blank"
               rel="noopener noreferrer"
               className={classes.link}
             >
-              https://github.com/cakebatterandsprinkles/mendokusai-react
+              https://github.com/cakebatterandsprinkles
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </div>
