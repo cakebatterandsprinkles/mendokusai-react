@@ -34,7 +34,7 @@ class NavbarUser extends Component {
 
   render() {
     return (
-      <div className={classes.flexContainerRow}>
+      <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
           <Link className={classes.logo} to="/user">
             {" "}
@@ -59,7 +59,6 @@ class NavbarUser extends Component {
           <Link className={classes.navbarLink} to="/bucketlist">
             <p>Bucketlist</p>
           </Link>
-
           <div className={classes.dropdown}>
             <img
               src={SettingsIcon}

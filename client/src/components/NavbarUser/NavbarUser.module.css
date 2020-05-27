@@ -22,6 +22,12 @@
   display: flex;
   justify-content: space-between;
   background-color: white !important;
+}
+
+.mainFlexContainer {
+  display: flex;
+  justify-content: space-between;
+  background-color: white !important;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -39,7 +45,6 @@
   top: 4rem;
   right: 0.8rem;
   background-color: #f1f1f1;
-  min-width: 8rem;
   box-shadow: 0px 8px 16px 0px rgba(56, 56, 56, 0.2);
   z-index: 1;
 }
@@ -52,21 +57,21 @@
 .linkContainerBottom:hover {
   background-color: rgba(212, 212, 212, 0.726);
   font-weight: bold;
-  font-size: 1.05rem;
 }
 
 .linkContainer {
-  width: 8rem;
   color: black !important;
   padding: 0.8rem 1rem;
   border-bottom: 0.05rem solid black;
   display: flex;
   justify-content: center;
+  text-align: center;
   cursor: pointer;
 }
 
 .linkContainerBottom {
-  padding: 1rem;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -159,7 +164,7 @@
   .arrow {
     height: 3rem;
     width: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 
   .changeColorBtn {
@@ -179,5 +184,41 @@
 
   .girlimg {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    color: black;
+    text-decoration: none;
+    border-bottom: 0.1rem solid black;
+  }
+
+  .navbarLink {
+    font-size: 0.9rem;
+    margin: 0.5rem 0.25rem 0.25rem 0.5rem;
+    padding: 0.4rem;
+  }
+
+  .mainFlexContainer {
+    flex-direction: column;
+  }
+
+  .flexContainerRow {
+    justify-content: flex-start;
+  }
+  .girlimg {
+    display: inline-block;
+    height: 2.5rem;
+    width: auto;
+  }
+
+  .settingsIcon {
+    height: 2rem;
+    width: auto;
+    margin: 0.8rem 1rem 0 0.5rem;
   }
 }

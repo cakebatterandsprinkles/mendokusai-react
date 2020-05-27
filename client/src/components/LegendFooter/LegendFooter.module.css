@@ -1,11 +1,9 @@
 .footer {
   color: black !important;
   position: fixed;
-  font-weight: bold;
   bottom: 0;
   padding: 1.2rem;
   width: 100%;
-  font-size: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -13,19 +11,29 @@
   border-top: 2px solid black;
 }
 
+.footerText {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .legendItem {
   display: flex;
   align-items: center;
-  margin-right: 3rem
+  margin-right: 3rem;
 }
 
-.legendItem>img {
+.legendItem > img {
   width: 1.5rem;
-  margin-right: .5rem
+  margin-right: 0.5rem;
 }
 
 @media (max-width: 855px) {
   .footerText {
     font-size: 0.8rem;
+  }
+
+  .legendItem > img {
+    width: 1rem;
+    margin-right: 0.5rem;
   }
 }
