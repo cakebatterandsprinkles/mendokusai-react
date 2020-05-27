@@ -1,14 +1,16 @@
 .mainContainer {
-  width: 100%;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 75vh;
   padding: 1.5rem 5rem;
-  margin: 2rem 10rem 6rem 10rem;
+  overflow: scroll;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 6rem;
   border-radius: 10px;
   background-color: rgba(185, 185, 185, 0.26);
-  overflow: scroll;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.295);
 }
 
@@ -65,6 +67,7 @@
 }
 
 .header {
+  font-family: "Montserrat", "sans-serif";
   font-size: 1.8rem;
 }
 
@@ -173,7 +176,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -306,7 +309,6 @@
 
 @media (max-width: 1150px) {
   .mainContainer {
-    margin: 1.5rem 4rem 5rem 4rem;
     padding: 1.5rem 3rem;
   }
   .modal {
@@ -317,11 +319,43 @@
 
 @media (max-width: 600px) {
   .mainContainer {
-    margin: 1.5rem 2rem 5rem 2rem;
-    padding: 1.5rem 2rem;
+    width: 100%;
+    margin: 1rem 0 5rem 0;
+    padding: 1.5rem 1.5rem;
+    border-radius: 0;
   }
   .modal {
-    width: 25rem;
-    padding: 1.5rem;
+    width: 18rem;
+    padding: 1.25rem;
+  }
+
+  .header {
+    font-size: 1.5rem;
+  }
+
+  .rules {
+    font-size: 0.8rem;
+  }
+
+  .addBtn {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .dropbtn {
+    padding: 0.55rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .todo {
+    font-size: 0.9rem;
+  }
+
+  .formGroupContainer label {
+    font-size: 0.9rem;
+    margin: 3rem 0 0.5rem 0;
+  }
+  .formGroupContainer input {
+    font-size: 0.8rem;
   }
 }
