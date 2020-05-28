@@ -75,6 +75,14 @@
   font-weight: bold;
 }
 
+@media (max-width: 1300px) {
+  .posterContainer {
+    margin: 0.5rem 0 5rem 1.5rem;
+    border-radius: 10px;
+    position: relative;
+  }
+}
+
 @media (max-width: 1200px) {
   .posterContainer {
     display: none;

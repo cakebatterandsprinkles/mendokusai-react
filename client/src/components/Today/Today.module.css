@@ -60,8 +60,9 @@
   background-color: black;
   color: white;
   padding: 0.5rem 1rem;
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   border-radius: 10px;
+  font-family: "Montserrat", "sans-serif";
 }
 
 .date {
@@ -76,7 +77,8 @@
   padding: 0.5rem 0.5rem;
   background: rgba(194, 194, 194, 0.432);
   border-radius: 10px;
-  width: 5rem;
+  text-align: center;
+  width: 6rem;
 }
 
 .addIcon {
@@ -149,7 +151,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -209,17 +211,14 @@
 }
 
 @media (max-width: 1300px) {
-  .bgBlack {
-    font-size: 1.5rem;
-  }
-
   .date {
     font-size: 2rem;
   }
 
   .mainContainer {
     height: 90vh;
-    margin: 0.5rem 3rem 5rem 1.5rem;
+    margin: 0.5rem 1.5rem 5rem 1.5rem;
+    padding: 1.5rem 2rem;
   }
 
   .addIcon {
@@ -259,5 +258,43 @@
 
   .addIcon {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .mainContainer {
+    margin: 1.5rem 0 5rem 0;
+    border-radius: 0;
+  }
+
+  .dataContainer {
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+
+  .addIcon {
+    height: 1.5rem;
+    margin-top: 0;
+  }
+
+  .todo {
+    font-size: 0.9rem;
+  }
+
+  .todoWrapper > p {
+    margin-top: 0.1rem;
+  }
+
+  .modal {
+    width: 20rem;
+    padding: 1.25rem;
+  }
+
+  .formGroupContainer label {
+    font-size: 0.9rem;
+    margin: 3rem 0 0.5rem 0;
+  }
+  .formGroupContainer input {
+    font-size: 0.8rem;
   }
 }

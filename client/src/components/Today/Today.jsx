@@ -259,7 +259,7 @@ class Today extends Component {
           <div className={classes.flexContainerColumn}>
             <p className={classes.date}>{this.state.date}</p>
             <div className={classes.day}>
-              <p>{this.state.day}</p>
+              <div>{this.state.day}</div>
             </div>
             <div className={classes.bgBlack}>
               <p>Today Looks Like This: </p>
