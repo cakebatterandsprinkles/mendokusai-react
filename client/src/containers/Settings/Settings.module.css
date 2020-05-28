@@ -16,7 +16,6 @@
   border-bottom: 2px solid white;
 }
 
-
 .checkboxInput {
   margin-right: 0.5rem;
 }
@@ -26,19 +25,23 @@
 }
 
 .heading {
+  font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .btn {
-  padding: 0.5rem;
+  padding: 0.6rem 0.8rem;
   margin-left: auto;
-  font-family: 'inconsolata', monospace;
+  font-family: "inconsolata", monospace;
   font-size: 1rem;
+  font-weight: bold;
   color: white;
-  background-color: black;
   cursor: pointer;
   font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: slateblue;
 }
 
 .btnWrapper {
@@ -104,6 +107,9 @@ input:focus,
 
 /* Medium Screens */
 @media (min-width: 768px) and (max-width: 992px) {
+  .heading {
+    font-size: 1.75rem;
+  }
   .mainContainer {
     width: 60%;
   }
@@ -111,10 +117,13 @@ input:focus,
 
 /* Small Screens */
 @media (min-width: 600px) and (max-width: 768px) {
+  .heading {
+    font-size: 1.5rem;
+  }
   .mainContainer {
     width: 70%;
     margin: auto;
-    padding-top: 3rem;
+    padding-top: 4rem;
   }
 }
 
@@ -127,7 +136,7 @@ input:focus,
   }
 
   .heading {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .headingContainer {
@@ -154,8 +163,8 @@ input:focus,
   }
 
   .btn {
-    padding: 0.4rem;
-    font-family: 'inconsolata', monospace;
+    padding: 0.6rem 0.8rem;
+    font-family: "inconsolata", monospace;
     font-weight: bold;
     font-size: 0.9rem;
   }

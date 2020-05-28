@@ -16,18 +16,28 @@ class Settings extends Component {
             <input type="name" name="name" id="name"></input>
           </div>
           <div className={classes.subTextContainer}>
-            <p className={classes.subText}>I don't like my name either.</p>
+            <p className={classes.subText}>
+              If you only like to change your name, just fill the name area and
+              hit save. If you want to change your password too, you should fill
+              the password areas.{" "}
+            </p>
           </div>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Current Password:</label>
             <input type="password" name="password" id="password"></input>
           </div>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label htmlFor="repeat-password">Repeat Password:</label>
+            <label htmlFor="password">New Password:</label>
+            <input type="password" name="password" id="password"></input>
+          </div>
+          <div
+            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
+          >
+            <label htmlFor="repeat-password">Repeat New Password:</label>
             <input
               type="password"
               name="repeat-password"
