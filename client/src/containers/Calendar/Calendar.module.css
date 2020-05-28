@@ -28,7 +28,7 @@
   background-color: white;
   border: 2px solid #ff8c00;
   border-radius: 50px;
-  margin: 0 1rem;
+  margin: 1rem 1rem;
 }
 
 .calendarContainer {
@@ -151,7 +151,17 @@
   transition: opacity 300ms ease-in;
 }
 
+@media (max-width: 900px) {
+  .mainContainer {
+    margin-top: 1.5rem;
+  }
+}
+
 @media (max-width: 600px) {
+  .mainContainer {
+    margin-bottom: 5rem;
+    margin-top: 0.5rem;
+  }
   .weekday {
     border-bottom: 1px solid black;
     font-weight: bold;
@@ -165,6 +175,19 @@
 
   .today {
     margin: 0.5rem 0.25rem;
+  }
+
+  .calendarContainer {
+    width: 100vw;
+    border-radius: 0;
+  }
+
+  .sunday {
+    border-top-right-radius: 0;
+  }
+
+  #monday {
+    border-top-left-radius: 0;
   }
 }
 
