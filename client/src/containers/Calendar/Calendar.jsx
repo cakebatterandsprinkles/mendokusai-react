@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions/actionTypes";
+import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import Aux from "../../hoc/Aux";
 import classes from "./Calendar.module.css";
@@ -25,6 +28,7 @@ class Calendar extends Component {
     const day = new Date().getDate();
 
     this.state = {
+      monthlyTodos: [],
       currentDay: "",
       entered: true,
       drawerOpen: false,
@@ -38,6 +42,34 @@ class Calendar extends Component {
     this.getPrevMonth = this.getPrevMonth.bind(this);
     this.getNextMonth = this.getNextMonth.bind(this);
     this.setStateCurrentDay = this.setStateCurrentDay.bind(this);
+  }
+
+  getAdjustedMonth(month) {
+    if (month + 1 < 10) {
+      return `0${month + 1}`;
+    } else {
+      return month + 1;
+    }
+  }
+
+  getMonthlyTodos() {
+    fetch(
+      `/todo/calendar?month=${this.getAdjustedMonth(this.state.month)}&year=${
+        this.state.year
+      }&daysInMonth=${getDaysInMonth(this.state.month, this.state.year)}`,
+      {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    )
+      .then((blob) => blob.json())
+      .then((response) => {
+        this.setState({ monthlyTodos: response });
+        console.log(this.state.monthlyTodos);
+      });
   }
 
   toggleDrawer(e) {
@@ -61,11 +93,15 @@ class Calendar extends Component {
     } else {
       newYear = this.state.year;
     }
-    this.setState({
-      month: newMonth,
-      year: newYear,
-      monthName: getMonthName(newMonth),
-    });
+    this.setState(
+      {
+        month: newMonth,
+        year: newYear,
+        monthName: getMonthName(newMonth),
+        monthlyTodos: [],
+      },
+      () => this.getMonthlyTodos()
+    );
   }
 
   getNextMonth() {
@@ -77,11 +113,15 @@ class Calendar extends Component {
     } else {
       newYear = this.state.year;
     }
-    this.setState({
-      month: newMonth,
-      year: newYear,
-      monthName: getMonthName(newMonth),
-    });
+    this.setState(
+      {
+        month: newMonth,
+        year: newYear,
+        monthName: getMonthName(newMonth),
+        monthlyTodos: [],
+      },
+      () => this.getMonthlyTodos()
+    );
   }
 
   renderPadding() {
@@ -102,6 +142,42 @@ class Calendar extends Component {
 
   setStateCurrentDay = (date) => {
     this.setState({ currentDay: setCurrentDay(date) });
+  };
+
+  showTodosOnCalendar = (todoArr, date) => {
+    const dailyTodos = todoArr.filter((todo) => {
+      return todo.date.substring(8, 10) === date.toString();
+    });
+    const todoStatusArr = [];
+    dailyTodos.forEach((todo) => {
+      todoStatusArr.push(todo.status);
+    });
+
+    const hasDone = todoStatusArr.includes("done");
+    const hasInProgress = todoStatusArr.includes("in progress");
+    const hasNotDone = todoStatusArr.includes("not done");
+
+    return (
+      <div className={classes.progressIconsWrapper}>
+        {hasNotDone ? (
+          <img
+            src={Circle}
+            alt="not done icon"
+            className={classes.progressIcons}
+          />
+        ) : null}
+        {hasInProgress ? (
+          <img
+            src={Triangle}
+            alt="in progress icon"
+            className={classes.progressIcons}
+          />
+        ) : null}
+        {hasDone ? (
+          <img src={Star} alt="done icon" className={classes.progressIcons} />
+        ) : null}
+      </div>
+    );
   };
 
   renderDays() {
@@ -132,12 +208,12 @@ class Calendar extends Component {
                 this.setStateCurrentDay(
                   date + getFirstDayOfMonth(this.state.month, this.state.year)
                 );
-                console.log(this.state.currentDay);
                 this.toggleDrawer(e);
               }}
               key={date}
             >
               {date}
+              {this.showTodosOnCalendar(this.state.monthlyTodos, date)}
             </div>
           );
         })}
@@ -152,6 +228,10 @@ class Calendar extends Component {
         {this.renderDays()}
       </Fragment>
     );
+  }
+
+  componentDidMount() {
+    this.getMonthlyTodos();
   }
 
   render() {

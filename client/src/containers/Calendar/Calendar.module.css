@@ -34,11 +34,23 @@
 }
 
 .days {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
   cursor: pointer;
 }
 
+.progressIconsWrapper {
+  display: flex;
+}
+
 .today {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
   font-size: 1.25rem;
   cursor: pointer;
@@ -165,6 +177,11 @@
   width: auto;
 }
 
+.progressIcons {
+  height: 0.8rem;
+  width: auto;
+}
+
 .example-enter {
   opacity: 0.01;
 }
@@ -216,6 +233,10 @@
   }
 
   .today {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0.5rem 0.25rem;
   }
 

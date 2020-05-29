@@ -107,6 +107,18 @@ exports.deleteBucketlist = (req, res, next) => {
     .catch((err) => res.status(500).send(err));
 };
 
-exports.getCalendar = (req, res, next) => {};
+exports.getCalendar = (req, res, next) => {
+  ToDo.find({
+    user: req.user.id,
+    date: {
+      $gte: new Date(`${req.query.year}-${req.query.month}-1`),
+      $lte: new Date(
+        `${req.query.year}-${req.query.month}-${req.query.daysInMonth}`
+      ),
+    },
+  })
+    .then((todos) => res.json(todos))
+    .catch((err) => res.status(500).send(err));
+};
 
 exports.postCalendar = (req, res, next) => {};
