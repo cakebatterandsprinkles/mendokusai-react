@@ -115,7 +115,11 @@ class Calendar extends Component {
           return (
             <div
               className={
-                date !== new Date().getDate() ? classes.days : classes.today
+                date === new Date().getDate() &&
+                this.state.month === new Date().getMonth() &&
+                this.state.year === new Date().getFullYear()
+                  ? classes.today
+                  : classes.days
               }
               onClick={(e) => {
                 this.toggleDrawer(e);
@@ -144,15 +148,15 @@ class Calendar extends Component {
       <Aux>
         <div className={classes.mainContainer}>
           <div className={classes.month}>
-            <h2>
-              <span onClick={this.getPrevMonth} className={classes.arrow}>
-                ↞
-              </span>{" "}
-              {this.state.monthName}{" "}
-              <span onClick={this.getNextMonth} className={classes.arrow}>
-                ↠
-              </span>
-            </h2>
+            <p onClick={this.getPrevMonth} className={classes.arrow}>
+              ↞
+            </p>{" "}
+            <div className={classes.currentMonth}>
+              <p>{this.state.monthName}</p>
+            </div>{" "}
+            <p onClick={this.getNextMonth} className={classes.arrow}>
+              ↠
+            </p>
           </div>
           <h2 className={classes.year}>{this.state.year}</h2>
           <div className={classes.calendarContainer}>
