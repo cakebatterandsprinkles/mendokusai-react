@@ -12,6 +12,7 @@ import {
   getMonthName,
   getDaysInMonth,
   getFirstDayOfMonth,
+  setCurrentDay,
 } from "../../util/date";
 
 class Calendar extends Component {
@@ -24,6 +25,7 @@ class Calendar extends Component {
     const day = new Date().getDate();
 
     this.state = {
+      currentDay: "",
       entered: true,
       drawerOpen: false,
       monthName: month,
@@ -35,6 +37,7 @@ class Calendar extends Component {
     this.closeDrawer = this.closeDrawer.bind(this);
     this.getPrevMonth = this.getPrevMonth.bind(this);
     this.getNextMonth = this.getNextMonth.bind(this);
+    this.setStateCurrentDay = this.setStateCurrentDay.bind(this);
   }
 
   toggleDrawer(e) {
@@ -97,6 +100,10 @@ class Calendar extends Component {
     );
   }
 
+  setStateCurrentDay = (date) => {
+    this.setState({ currentDay: setCurrentDay(date) });
+  };
+
   renderDays() {
     const daysInCurrentMonth = getDaysInMonth(
       this.state.month,
@@ -122,6 +129,10 @@ class Calendar extends Component {
                   : classes.days
               }
               onClick={(e) => {
+                this.setStateCurrentDay(
+                  date + getFirstDayOfMonth(this.state.month, this.state.year)
+                );
+                console.log(this.state.currentDay);
                 this.toggleDrawer(e);
               }}
               key={date}
@@ -182,7 +193,13 @@ class Calendar extends Component {
               onClick={this.closeDrawer}
             />
             <div className={classes.drawerContent}>
-              <div className={classes.heading}>{this.state.date}</div>
+              <div className={classes.dateContainer}>
+                <div className={classes.heading}>{this.state.date}</div>
+                <p className={classes.leftArrow}>➜</p>
+                <div className={classes.subheading}>
+                  {this.state.currentDay}
+                </div>
+              </div>
               <div className={classes.notDoneContainer}>
                 <div className={classes.wrapper}>
                   <img

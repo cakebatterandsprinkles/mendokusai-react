@@ -76,3 +76,18 @@ export function setDay() {
   var dayName = days[today];
   return `${dayName}`;
 }
+
+export function setCurrentDay(day) {
+  const selectedDay = day % 7;
+  var days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var dayName = days[selectedDay];
+  return `${dayName}`;
+}

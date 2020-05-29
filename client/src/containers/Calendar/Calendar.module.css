@@ -27,6 +27,12 @@
   width: 7rem;
 }
 
+.dateContainer {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+}
+
 .days {
   font-weight: bold;
   cursor: pointer;
@@ -108,14 +114,29 @@
 }
 
 .heading {
-  display: inline-block;
-  font-family: Inconsolata;
+  font-family: "Montserrat", "sans-serif";
   font-size: 1.5rem;
   color: white;
   background: rgb(24, 24, 24);
   padding: 0.4rem 0.8rem;
   margin-left: 2rem;
   border-radius: 10px;
+}
+
+.subheading {
+  font-family: "Montserrat", "sans-serif";
+  font-size: 1rem;
+  color: white;
+  background: rgba(24, 24, 24, 0.425);
+  padding: 0.4rem 0.6rem;
+  margin-left: 1rem;
+}
+
+.leftArrow {
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgba(24, 24, 24, 0.808);
+  margin-left: 0.8rem;
 }
 
 .notDoneContainer,
@@ -180,8 +201,18 @@
   }
 
   .heading {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.3rem 0.6rem;
+  }
+
+  .subheading {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .leftArrow {
+    font-size: 2rem;
   }
 
   .today {
