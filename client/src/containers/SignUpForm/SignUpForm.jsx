@@ -134,7 +134,7 @@ class SignUpForm extends Component {
           <div className={classes.headingContainer}>
             <p className={classes.heading}>Sign Up</p>
           </div>
-          <form className={classes.loginForm}>
+          <form>
             <div
               className={`${classes.formGroupContainer} ${classes.marginBottom}`}
             >

@@ -134,6 +134,62 @@ exports.postLogout = (req, res, next) => {
   }
 };
 
+exports.postSettings = (req, res, next) => {
+  const { name, currentPassword, newPassword, repeatNewPassword } = req.body;
+  try {
+    User.findOne({
+      _id: req.user.id,
+    }).then((userInfo) => {
+      if (!userInfo) {
+        return res.status(400).send("User with this id does not exist.");
+      }
+
+      if (
+        newPassword === "" ||
+        repeatNewPassword === "" ||
+        currentPassword === ""
+      ) {
+        userInfo.name = name;
+        userInfo.save();
+        return res.status(200).end();
+      }
+
+      bcrypt.compare(currentPassword, userInfo.password).then((isMatch) => {
+        if (!isMatch) {
+          return res.status(400).send("Wrong password.");
+        }
+
+        if (
+          newPassword === repeatNewPassword &&
+          newPassword !== "" &&
+          repeatNewPassword !== "" &&
+          newPassword.length >= 8 &&
+          repeatNewPassword.length >= 8
+        ) {
+          const SALT_WORK_FACTOR = 10;
+          bcrypt.genSalt(SALT_WORK_FACTOR).then((salt) => {
+            bcrypt
+              .hash(newPassword, salt)
+              .then((hashedPassword) => {
+                userInfo.name = name;
+                userInfo.password = hashedPassword;
+                userInfo.save();
+              })
+              .then(() => {
+                return res.status(200).end();
+              })
+              .catch((err) => {
+                return res.status(500).json(err.toString());
+              });
+          });
+        }
+      });
+    });
+  } catch (err) {
+    return res.status(500).json(err.toString());
+  }
+};
+
 exports.getMe = (req, res, next) => {
   User.findById({ _id: req.user.id }, "name", function (err, user) {
     if (err) {

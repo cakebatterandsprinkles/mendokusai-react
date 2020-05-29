@@ -21,4 +21,10 @@ router.post("/login", authController.postLogin);
 
 router.post("/logout", verifyToken, authController.postLogout);
 
+// @route  POST /settings
+// @desc   Change name and/or password of the User
+// @access private
+
+router.post("/settings", verifyToken, authController.postSettings);
+
 module.exports = router;

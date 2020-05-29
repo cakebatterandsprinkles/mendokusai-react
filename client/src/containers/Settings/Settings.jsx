@@ -1,19 +1,87 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 import classes from "./Settings.module.css";
+import * as actionTypes from "../../store/actions/actionTypes";
 
 class Settings extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      currentPassword: "",
+      newPassword: "",
+      repeatNewPassword: "",
+      userConfirmationMessage: "Can't save new settings at the moment.",
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  setUserName = () => {
+    this.setState({ name: this.props.username });
+  };
+
+  componentDidMount() {
+    this.setUserName();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.username !== prevProps.username) {
+      this.setUserName();
+    }
+  }
+
+  handleInputChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleFormSubmit = () => {
+    this.setState({
+      userConfirmationMessage: "Setting changes were successful.",
+    });
+  };
+
+  submitForm = () => {
+    axios
+      .post("/settings", {
+        name: this.state.name,
+        currentPassword: this.state.currentPassword,
+        newPassword: this.state.newPassword,
+        repeatNewPassword: this.state.repeatNewPassword,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          this.handleFormSubmit();
+          this.props.setNewUsername(this.state.name);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.props.setError(error.response.data);
+        }
+      });
+  };
+
   render() {
     return (
       <div className={classes.mainContainer}>
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Settings</p>
         </div>
-        <form className={classes.loginForm} action="/user" method="POST">
+        <form>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="name">Name:</label>
-            <input type="name" name="name" id="name"></input>
+            <input
+              type="name"
+              name="name"
+              id="name"
+              onChange={this.handleInputChange}
+              value={this.state.name}
+            ></input>
           </div>
           <div className={classes.subTextContainer}>
             <p className={classes.subText}>
@@ -25,28 +93,42 @@ class Settings extends Component {
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
-            <label htmlFor="password">Current Password:</label>
-            <input type="password" name="password" id="password"></input>
-          </div>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
-            <label htmlFor="password">New Password:</label>
-            <input type="password" name="password" id="password"></input>
-          </div>
-          <div
-            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
-          >
-            <label htmlFor="repeat-password">Repeat New Password:</label>
+            <label htmlFor="currentPassword">Current Password:</label>
             <input
               type="password"
-              name="repeat-password"
-              id="repeat-password"
+              name="currentPassword"
+              id="currentPassword"
+              onChange={this.handleInputChange}
             ></input>
           </div>
-          <input type="hidden" name="_csrf" value="csrfToken" />
+          <div
+            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
+          >
+            <label htmlFor="newPassword">New Password:</label>
+            <input
+              type="password"
+              name="newPassword"
+              id="newPassword"
+              onChange={this.handleInputChange}
+            ></input>
+          </div>
+          <div
+            className={`${classes.formGroupContainer} ${classes.marginBottom}`}
+          >
+            <label htmlFor="repeatNewPassword">Repeat New Password:</label>
+            <input
+              type="password"
+              name="repeatNewPassword"
+              id="repeatNewPassword"
+              onChange={this.handleInputChange}
+            ></input>
+          </div>
           <div className={classes.btnWrapper}>
-            <button className={classes.btn} type="submit">
+            <button
+              className={classes.btn}
+              type="submit"
+              onClick={this.submitForm}
+            >
               Save
             </button>
           </div>
@@ -56,4 +138,25 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+const mapStateToProps = (state) => {
+  return {
+    username: state.userName,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setNewUsername: (name) =>
+      dispatch({
+        type: actionTypes.setNewUserSettings,
+        payload: { name: name },
+      }),
+    setError: (errorMessage) =>
+      dispatch({
+        type: actionTypes.setErrorMessage,
+        payload: { errorMessage: errorMessage },
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

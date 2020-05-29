@@ -4,3 +4,4 @@ export const setWeatherData = "setWeatherData";
 export const setUserData = "setUserData";
 export const setTodayList = "setTodayList";
 export const setBucketlist = "setBucketlist";
+export const setNewUserSettings = "setNewUserSettings";

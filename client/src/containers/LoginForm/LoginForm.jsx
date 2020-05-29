@@ -149,7 +149,7 @@ class LoginForm extends Component {
           <div className={classes.headingContainer}>
             <p className={classes.heading}>Login</p>
           </div>
-          <form className={classes.loginForm}>
+          <form>
             <div className={`${classes.formGroupContainer} ${classes.margin}`}>
               <label htmlFor="email">Email:</label>
               <input

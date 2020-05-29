@@ -45,6 +45,11 @@ const rootReducer = (state = initialState, action) => {
           ...action.payload.bucketlist.sort((a, b) => (a._id > b._id ? 1 : -1)),
         ],
       };
+    case actionTypes.setNewUserSettings:
+      return {
+        ...state,
+        userName: action.payload.name,
+      };
     default:
       return state;
   }
