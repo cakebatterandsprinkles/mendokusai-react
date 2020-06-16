@@ -86,13 +86,9 @@ class LoginForm extends Component {
         <Aux>
           <div className={classes.modalMainContainer}>
             <div>
-              <div className={classes.headingContainer}>
-                <p className={classes.heading}>Reset Password</p>
+              <div className={classes.modalHeadingContainer}>
+                <p className={classes.modalHeading}>Reset Password</p>
               </div>
-              <p className={classes.modalText}>
-                {" "}
-                Tell me more about yourself...{" "}
-              </p>
               <form className={classes.loginForm} action="/login" method="POST">
                 <div className={classes.formGroupContainer}>
                   <label htmlFor="reset-password-email">E-mail address:</label>

@@ -2,8 +2,8 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 const User = require("../models/User");
-const ToDo = require("../models/ToDo");
 const generateToken = require("../util/generateToken");
+const path = require("path");
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
@@ -40,6 +40,14 @@ const validationLogin = (email, password) => {
   return "Success";
 };
 
+const emailBody = `<div>
+                    <img src="cid:logo@mendokusai.app"/>
+                    <p style="font-size:1.2rem;"> You successfully signed up! </p> 
+                    <p>Click the following link to verify your email address:</p>
+                    <a href="www.google.com">www.google.com</a>
+                    <p style="font-size:.8rem;">Mendokusai Team</p>
+                  </div>`;
+
 exports.postSignup = (req, res, next) => {
   const { name, email, password, repeatPassword } = req.body;
 
@@ -73,14 +81,32 @@ exports.postSignup = (req, res, next) => {
             });
             return user.save();
           })
-          .then((result) => {
-            transporter.sendMail({
-              to: email,
-              from: "hello@mendokusai.app",
-              subject: "Signup succeeded!",
-              html: "<h1>You successfully signed up!</h1>",
-            });
-            return res.status(200).send("User successfully signed up.");
+          .then(() => {
+            transporter
+              .sendMail({
+                to: email,
+                from: "hello@mendokusai.app",
+                subject: "You just signed up to mendokusai app!",
+                attachments: [
+                  {
+                    filename: "girl3.png",
+                    path: __dirname + "/assets/girl3.png",
+                    cid: "logo@mendokusai.app",
+                  },
+                ],
+                html: emailBody,
+              })
+              .then(
+                () => {},
+                (error) => {
+                  console.error(error);
+
+                  if (error.response) {
+                    console.error(error.response.body);
+                  }
+                }
+              );
+            return res.status(200).send("User successfully signed up!");
           })
           .catch((err) => {
             console.log(err);
@@ -194,6 +220,9 @@ exports.getMe = (req, res, next) => {
   User.findById({ _id: req.user.id }, "name", function (err, user) {
     if (err) {
       return res.status(500).json(err.toString());
+    }
+    if (!user) {
+      return res.status(401).end();
     }
     res.json(user.name);
   });

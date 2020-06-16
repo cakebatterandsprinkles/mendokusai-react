@@ -51,4 +51,10 @@ router.get("/calendar", verifyToken, todoController.getCalendar);
 
 router.post("/calendar", verifyToken, todoController.postCalendar);
 
+// @route  DELETE /todo/calendar
+// @desc   Delete the todo with the id from the calendar
+// @access private
+
+router.delete("/calendar", verifyToken, todoController.deleteCalendar);
+
 module.exports = router;

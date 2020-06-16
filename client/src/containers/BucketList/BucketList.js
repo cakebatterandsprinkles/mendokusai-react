@@ -14,7 +14,6 @@ class BucketList extends Component {
     this.state = {
       sortBy: "All",
       showModal: false,
-      isSubmitted: false,
       addInput: "",
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -105,7 +104,6 @@ class BucketList extends Component {
   }
 
   handleSubmit() {
-    this.setState({ isSubmitted: true });
     this.addToDo({ todo: this.state.addInput, status: "not done" });
     this.setState({ addInput: "" });
     this.handleCloseModal();

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/actionTypes";
+import Modal from "react-modal";
 import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import Aux from "../../hoc/Aux";
@@ -11,6 +12,7 @@ import Circle from "../../assets/images/circle.png";
 import Triangle from "../../assets/images/triangle.png";
 import Star from "../../assets/images/star.png";
 import AddIcon from "../../assets/images/addbutton.png";
+import ClosingButton from "../../assets/images/closeButton.png";
 import {
   getMonthName,
   getDaysInMonth,
@@ -29,19 +31,94 @@ class Calendar extends Component {
 
     this.state = {
       monthlyTodos: [],
+      currentDateTodos: [],
       currentDay: "",
+      currentDate: "",
       entered: true,
       drawerOpen: false,
       monthName: month,
       month: today.getMonth(),
       year: year,
       date: `${month} ${day}, ${year}`,
+      showModal: false,
+      addInput: "",
+      status: "",
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.getPrevMonth = this.getPrevMonth.bind(this);
     this.getNextMonth = this.getNextMonth.bind(this);
     this.setStateCurrentDay = this.setStateCurrentDay.bind(this);
+    this.sortArray = this.sortArray.bind(this);
+    this.renderDrawerList = this.renderDrawerList.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.renderModalContent = this.renderModalContent.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.addToDo = this.addToDo.bind(this);
+    this.updateToDo = this.updateToDo.bind(this);
+    this.deleteToDo = this.deleteToDo.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
+
+  handleInputChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit() {
+    this.addToDo({
+      todo: this.state.addInput,
+      status: this.state.status,
+      date: `${this.state.year}-${this.state.month + 1}-${
+        this.state.currentDate
+      }`,
+    });
+    this.setState({ addInput: "" });
+    this.handleCloseModal();
+  }
+
+  renderModalContent(string) {
+    return (
+      <div className={classes.modalMainContainer}>
+        <div className={classes.addToDoForm}>
+          <form onSubmit={this.handleSubmit}>
+            <div className={classes.formGroupContainer}>
+              <label htmlFor="add-item">
+                Add an item to your {string} list:
+              </label>
+              <input
+                onChange={this.handleInputChange}
+                value={this.state.addInput}
+                type="text"
+                name="addInput"
+                id="addInput"
+              ></input>
+            </div>
+            <div className={classes.btnWrapper}>
+              <button type="submit" className={classes.btn}>
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className={classes.closingButtonContainer}>
+          <img
+            src={ClosingButton}
+            alt="closing button"
+            className={classes.closingButton}
+            onClick={this.handleCloseModal}
+          />
+        </div>
+      </div>
+    );
   }
 
   getAdjustedMonth(month) {
@@ -75,6 +152,7 @@ class Calendar extends Component {
   toggleDrawer(e) {
     const day = e.target.innerText;
     this.setState({
+      currentDate: `${day}`,
       drawerOpen: !this.state.drawerOpen,
       date: `${this.state.monthName} ${day}, ${this.state.year}`,
       entered: !this.state.entered,
@@ -221,6 +299,118 @@ class Calendar extends Component {
     );
   }
 
+  sortArray = (todoArr, filterString) => {
+    return todoArr.filter((item) => item.status === filterString);
+  };
+
+  renderDrawerList = (todoArr, filterString) => {
+    return this.sortArray(
+      todoArr.filter(
+        (item) => item.date.substring(8, 10) === this.state.currentDate
+      ),
+      filterString
+    ).map((item) => {
+      return (
+        <div key={item._id} className={classes.todo}>
+          <div className={classes.mainWrapper}>
+            <img
+              className={classes.checkboxIcon}
+              src={renderTodoCheckbox(item)}
+              alt="checkbox icon"
+              onClick={() => this.changeStatus(item)}
+              data-todo-value={renderTodos(item)}
+            />
+            <div className={classes.todoWrapper}>
+              <p
+                onClick={() => this.changeStatus(item)}
+                data-todo-value={renderTodos(item)}
+              >
+                {renderTodos(item)}
+              </p>
+            </div>
+          </div>
+          <img
+            src={ClosingButton}
+            alt="delete button"
+            className={classes.deleteButton}
+            data-value={renderTodos(item)}
+            onClick={() => this.deleteToDo(item._id)}
+          />
+        </div>
+      );
+    });
+  };
+
+  deleteToDo(id) {
+    fetch("/todo/calendar", {
+      method: "DELETE",
+      body: JSON.stringify({ id: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then(() =>
+      this.props.updateCalendar(
+        this.props.currentMonthTodoList.filter((todo) => todo._id !== id)
+      )
+    );
+  }
+
+  updateToDo(todo) {
+    fetch("/todo/calendar", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((updatedTodo) => {
+        const updatedList = [
+          ...this.props.currentMonthTodoList.filter(
+            (oldToDo) => updatedTodo._id !== oldToDo._id
+          ),
+          updatedTodo,
+        ];
+        this.props.updateCalendar(updatedList);
+      });
+  }
+
+  addToDo(todo) {
+    fetch("/todo/calendar", {
+      method: "POST",
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((blob) => blob.json())
+      .then((response) => {
+        const updatedList = [...this.props.currentMonthTodoList, response];
+        this.props.updateCalendar(updatedList);
+      });
+  }
+
+  changeStatus(item) {
+    const status = item.status;
+    switch (status) {
+      case "not done":
+        item.status = "in progress";
+        break;
+      case "in progress":
+        item.status = "done";
+        break;
+      case "done":
+        item.status = "not done";
+        break;
+      default:
+        item.status = "not done";
+    }
+    this.updateToDo(item);
+  }
+
   renderCalendar() {
     return (
       <Fragment>
@@ -235,6 +425,7 @@ class Calendar extends Component {
   }
 
   render() {
+    let currentModal = this.renderModalContent();
     return (
       <Aux>
         <div className={classes.mainContainer}>
@@ -284,7 +475,7 @@ class Calendar extends Component {
                 <div className={classes.wrapper}>
                   <img
                     src={Circle}
-                    alt="closing button"
+                    alt="not done icon"
                     className={classes.icon}
                   />
                   <div className={classes.headerContainer}>
@@ -292,16 +483,23 @@ class Calendar extends Component {
                   </div>
                   <img
                     src={AddIcon}
-                    alt="closing button"
+                    alt="add button"
                     className={classes.icon}
+                    onClick={() => {
+                      this.setState({ status: "not done" });
+                      this.handleOpenModal();
+                    }}
                   />
+                </div>
+                <div>
+                  {this.renderDrawerList(this.state.monthlyTodos, "not done")}
                 </div>
               </div>
               <div className={classes.inProgressContainer}>
                 <div className={classes.wrapper}>
                   <img
                     src={Triangle}
-                    alt="closing button"
+                    alt="in progress icon"
                     className={classes.icon}
                   />
                   <div className={classes.headerContainer}>
@@ -309,34 +507,73 @@ class Calendar extends Component {
                   </div>
                   <img
                     src={AddIcon}
-                    alt="closing button"
+                    alt="add button"
                     className={classes.icon}
+                    onClick={() => {
+                      this.setState({ status: "in progress" });
+                      this.handleOpenModal();
+                    }}
                   />
+                </div>
+                <div>
+                  {this.renderDrawerList(
+                    this.state.monthlyTodos,
+                    "in progress"
+                  )}
                 </div>
               </div>
               <div className={classes.doneContainer}>
                 <div className={classes.wrapper}>
-                  <img
-                    src={Star}
-                    alt="closing button"
-                    className={classes.icon}
-                  />
+                  <img src={Star} alt="done icon" className={classes.icon} />
                   <div className={classes.headerContainer}>
                     <p>Done:</p>
                   </div>
                   <img
                     src={AddIcon}
-                    alt="closing button"
+                    alt="add button"
                     className={classes.icon}
+                    onClick={() => {
+                      this.setState({ status: "done" });
+                      this.handleOpenModal();
+                    }}
                   />
+                </div>
+                <div>
+                  {this.renderDrawerList(this.state.monthlyTodos, "done")}
                 </div>
               </div>
             </div>
           </Drawer>
+          <Modal
+            isOpen={this.state.showModal}
+            onRequestClose={this.handleCloseModal}
+            className={classes.modal}
+            overlayClassName={classes.overlay}
+            ariaHideApp={false}
+          >
+            {currentModal}
+          </Modal>
         </div>
       </Aux>
     );
   }
 }
 
-export default Calendar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateCalendar: (updatedList) => {
+      dispatch({
+        type: actionTypes.setCalendar,
+        payload: { currentMonthTodoList: updatedList },
+      });
+    },
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    currentMonthTodoList: state.currentMonthTodoList,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

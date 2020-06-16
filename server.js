@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -10,8 +12,6 @@ const userRoutes = require("./routes/user");
 const todoRoutes = require("./routes/todo");
 const weatherRoutes = require("./routes/weather");
 const errorController = require("./controllers/error");
-
-require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;

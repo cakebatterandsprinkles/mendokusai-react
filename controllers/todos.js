@@ -34,7 +34,6 @@ exports.postToday = (req, res, next) => {
         todo.status = status;
       } else {
         todo = new ToDo(newTodo);
-        console.log(todo);
       }
       todo.save().then((todo) => {
         res.json(todo);
@@ -121,4 +120,37 @@ exports.getCalendar = (req, res, next) => {
     .catch((err) => res.status(500).send(err));
 };
 
-exports.postCalendar = (req, res, next) => {};
+exports.postCalendar = (req, res, next) => {
+  isValid(req);
+
+  const { todo, status, date } = req.body;
+  const newTodo = {};
+  newTodo.user = req.user.id;
+  if (todo) newTodo.todo = todo;
+  if (status) newTodo.status = status;
+  if (date) newTodo.date = date;
+
+  ToDo.findOne({
+    user: req.user.id,
+    _id: req.body._id,
+  })
+    .then((todo) => {
+      if (todo) {
+        todo.status = status;
+      } else {
+        todo = new ToDo(newTodo);
+      }
+      todo.save().then((todo) => {
+        res.json(todo);
+      });
+    })
+    .catch((err) => {
+      res.status(500).send(err.toString());
+    });
+};
+
+exports.deleteCalendar = (req, res, next) => {
+  ToDo.findOneAndDelete({ user: req.user.id, _id: req.body.id })
+    .then(() => res.status(200).end())
+    .catch((err) => res.status(500).send(err));
+};

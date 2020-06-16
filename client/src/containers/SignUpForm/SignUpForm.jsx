@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import Aux from "../../hoc/Aux";
 import ClosingButton from "../../assets/images/closeButton.png";
-import BirbImage from "../../assets/images/birb.png";
 import Sun from "../../assets/images/sunny.png";
 import classes from "./SignUpForm.module.css";
 import * as actionTypes from "../../store/actions/actionTypes";
@@ -18,7 +17,6 @@ class SignUpForm extends Component {
       password: "",
       repeatPassword: "",
       showModal: false,
-      isSubmitting: false,
       isSubmitted: false,
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -37,7 +35,7 @@ class SignUpForm extends Component {
   }
 
   renderModalContent() {
-    if (!this.state.isSubmitting && !this.state.isSubmitted) {
+    if (!this.state.isSubmitted) {
       return (
         <Aux>
           <div className={classes.modalMainContainer}>
@@ -76,14 +74,7 @@ class SignUpForm extends Component {
           </div>
         </Aux>
       );
-    } else if (this.state.isSubmitting && !this.state.isSubmitted) {
-      return (
-        <div className={classes.submitModalContainer}>
-          <img src={BirbImage} alt="birdimage" className={classes.birbImage} />
-          <p>Omg, is your request being submitted or what?</p>
-        </div>
-      );
-    } else if (!this.state.isSubmitting && this.state.isSubmitted) {
+    } else if (this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
           <img src={Sun} alt="sunimage" className={classes.birbImage} />
@@ -95,10 +86,7 @@ class SignUpForm extends Component {
   }
 
   handleFormSubmit = () => {
-    this.setState({ isSubmitting: true });
-    setTimeout(() => {
-      this.setState({ isSubmitted: true });
-    }, 2000);
+    this.setState({ isSubmitted: true });
   };
 
   handleInputChange = (event) => {
@@ -117,11 +105,13 @@ class SignUpForm extends Component {
         if (response.status === 200) {
           this.handleOpenModal();
           this.handleFormSubmit();
+          this.props.history.push("/login");
         }
       })
       .catch((error) => {
         if (error.response) {
           this.props.setError(error.response.data);
+          this.setState({ isSubmitted: false });
         }
       });
   };
