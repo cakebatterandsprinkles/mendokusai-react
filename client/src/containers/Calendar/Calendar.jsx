@@ -30,7 +30,6 @@ class Calendar extends Component {
     const day = new Date().getDate();
 
     this.state = {
-      monthlyTodos: [],
       currentDateTodos: [],
       currentDay: "",
       currentDate: "",
@@ -73,7 +72,8 @@ class Calendar extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.addToDo({
       todo: this.state.addInput,
       status: this.state.status,
@@ -85,15 +85,13 @@ class Calendar extends Component {
     this.handleCloseModal();
   }
 
-  renderModalContent(string) {
+  renderModalContent() {
     return (
       <div className={classes.modalMainContainer}>
         <div className={classes.addToDoForm}>
           <form onSubmit={this.handleSubmit}>
             <div className={classes.formGroupContainer}>
-              <label htmlFor="add-item">
-                Add an item to your {string} list:
-              </label>
+              <label htmlFor="add-item">Add an item to your list:</label>
               <input
                 onChange={this.handleInputChange}
                 value={this.state.addInput}
@@ -144,8 +142,7 @@ class Calendar extends Component {
     )
       .then((blob) => blob.json())
       .then((response) => {
-        this.setState({ monthlyTodos: response });
-        console.log(this.state.monthlyTodos);
+        this.props.updateCalendar(response);
       });
   }
 
@@ -291,7 +288,7 @@ class Calendar extends Component {
               key={date}
             >
               {date}
-              {this.showTodosOnCalendar(this.state.monthlyTodos, date)}
+              {this.showTodosOnCalendar(this.props.currentMonthTodoList, date)}
             </div>
           );
         })}
@@ -492,7 +489,10 @@ class Calendar extends Component {
                   />
                 </div>
                 <div>
-                  {this.renderDrawerList(this.state.monthlyTodos, "not done")}
+                  {this.renderDrawerList(
+                    this.props.currentMonthTodoList,
+                    "not done"
+                  )}
                 </div>
               </div>
               <div className={classes.inProgressContainer}>
@@ -517,7 +517,7 @@ class Calendar extends Component {
                 </div>
                 <div>
                   {this.renderDrawerList(
-                    this.state.monthlyTodos,
+                    this.props.currentMonthTodoList,
                     "in progress"
                   )}
                 </div>
@@ -539,7 +539,10 @@ class Calendar extends Component {
                   />
                 </div>
                 <div>
-                  {this.renderDrawerList(this.state.monthlyTodos, "done")}
+                  {this.renderDrawerList(
+                    this.props.currentMonthTodoList,
+                    "done"
+                  )}
                 </div>
               </div>
             </div>
