@@ -41,7 +41,12 @@ class Today extends Component {
   }
 
   getToDos() {
-    fetch("/todo/today", {
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
+    fetch(`/todo/today?date=${todayString}`, {
       credentials: "include",
     })
       .then((blob) => blob.json())
@@ -109,7 +114,16 @@ class Today extends Component {
 
   handleSubmit() {
     this.setState({ isSubmitted: true });
-    this.addToDo({ todo: this.state.addInput, status: "not done" });
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${(today.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
+    this.addToDo({
+      todo: this.state.addInput,
+      status: "not done",
+      date: todayString,
+    });
     this.setState({ addInput: "" });
     this.handleCloseModal();
   }

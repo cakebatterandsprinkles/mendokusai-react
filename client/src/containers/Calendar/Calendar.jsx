@@ -146,8 +146,7 @@ class Calendar extends Component {
       });
   }
 
-  toggleDrawer(e) {
-    const day = e.target.innerText;
+  toggleDrawer(day) {
     this.setState({
       currentDate: `${day}`,
       drawerOpen: !this.state.drawerOpen,
@@ -283,7 +282,7 @@ class Calendar extends Component {
                 this.setStateCurrentDay(
                   date + getFirstDayOfMonth(this.state.month, this.state.year)
                 );
-                this.toggleDrawer(e);
+                this.toggleDrawer(date);
               }}
               key={date}
             >

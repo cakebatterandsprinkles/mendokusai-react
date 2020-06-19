@@ -19,11 +19,12 @@ isValid = (req) => {
 exports.postToday = (req, res, next) => {
   isValid(req);
 
-  const { todo, status } = req.body;
+  const { todo, status, date } = req.body;
   const newTodo = {};
   newTodo.user = req.user.id;
   if (todo) newTodo.todo = todo;
   if (status) newTodo.status = status;
+  if (date) newTodo.date = date;
 
   ToDo.findOne({
     user: req.user.id,
@@ -53,7 +54,7 @@ exports.deleteTodo = (req, res, next) => {
 exports.getToday = (req, res, next) => {
   ToDo.find({
     user: req.user.id,
-    date: new Date().toISOString().substring(0, 10),
+    date: req.query.date,
   })
     .then((todos) => res.json(todos))
     .catch((err) => res.status(500).send(err));
