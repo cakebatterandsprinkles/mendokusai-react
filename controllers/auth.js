@@ -162,6 +162,17 @@ exports.postLogout = (req, res, next) => {
 
 exports.postSettings = (req, res, next) => {
   const { name, currentPassword, newPassword, repeatNewPassword } = req.body;
+
+  if (repeatNewPassword !== "" || currentPassword !== "") {
+    if (newPassword !== repeatNewPassword) {
+      return res.status(400).send("New passwords do not match.");
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).send("Password must have at least 8 characters.");
+    }
+  }
+
   try {
     User.findOne({
       _id: req.user.id,
@@ -182,33 +193,25 @@ exports.postSettings = (req, res, next) => {
 
       bcrypt.compare(currentPassword, userInfo.password).then((isMatch) => {
         if (!isMatch) {
-          return res.status(400).send("Wrong password.");
+          return res.status(400).send("Your current password is wrong.");
         }
 
-        if (
-          newPassword === repeatNewPassword &&
-          newPassword !== "" &&
-          repeatNewPassword !== "" &&
-          newPassword.length >= 8 &&
-          repeatNewPassword.length >= 8
-        ) {
-          const SALT_WORK_FACTOR = 10;
-          bcrypt.genSalt(SALT_WORK_FACTOR).then((salt) => {
-            bcrypt
-              .hash(newPassword, salt)
-              .then((hashedPassword) => {
-                userInfo.name = name;
-                userInfo.password = hashedPassword;
-                userInfo.save();
-              })
-              .then(() => {
-                return res.status(200).end();
-              })
-              .catch((err) => {
-                return res.status(500).json(err.toString());
-              });
-          });
-        }
+        const SALT_WORK_FACTOR = 10;
+        bcrypt.genSalt(SALT_WORK_FACTOR).then((salt) => {
+          bcrypt
+            .hash(newPassword, salt)
+            .then((hashedPassword) => {
+              userInfo.name = name;
+              userInfo.password = hashedPassword;
+              userInfo.save();
+            })
+            .then(() => {
+              return res.status(200).end();
+            })
+            .catch((err) => {
+              return res.status(500).json(err.toString());
+            });
+        });
       });
     });
   } catch (err) {

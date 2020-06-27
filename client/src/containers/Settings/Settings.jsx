@@ -43,7 +43,8 @@ class Settings extends Component {
     });
   };
 
-  submitForm = () => {
+  submitForm = (event) => {
+    event.preventDefault();
     axios
       .post("/settings", {
         name: this.state.name,
@@ -55,6 +56,7 @@ class Settings extends Component {
         if (response.status === 200) {
           this.handleFormSubmit();
           this.props.setNewUsername(this.state.name);
+          this.props.setError("Settings updated!");
         }
       })
       .catch((error) => {
@@ -70,7 +72,7 @@ class Settings extends Component {
         <div className={classes.headingContainer}>
           <p className={classes.heading}>Settings</p>
         </div>
-        <form>
+        <form onSubmit={this.submitForm}>
           <div
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
@@ -124,11 +126,7 @@ class Settings extends Component {
             ></input>
           </div>
           <div className={classes.btnWrapper}>
-            <button
-              className={classes.btn}
-              type="submit"
-              onClick={this.submitForm}
-            >
+            <button className={classes.btn} type="submit">
               Save
             </button>
           </div>
