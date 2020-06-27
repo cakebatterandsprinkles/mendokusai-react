@@ -74,12 +74,15 @@ class Calendar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    const dateString = `${this.state.year}-${(this.state.month + 1)
+      .toString()
+      .padStart(2, "0")}-${this.state.currentDate.toString().padStart(2, "0")}`;
+
     this.addToDo({
       todo: this.state.addInput,
       status: this.state.status,
-      date: `${this.state.year}-${this.state.month + 1}-${
-        this.state.currentDate
-      }`,
+      date: dateString,
     });
     this.setState({ addInput: "" });
     this.handleCloseModal();
