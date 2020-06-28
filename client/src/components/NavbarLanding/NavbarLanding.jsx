@@ -3,6 +3,7 @@ import downarrow from "../../assets/images/downarrow.png";
 import classes from "./NavbarLanding.module.css";
 import SkewedArrow from "../../assets/images/skewedarrow.png";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 class NavbarLanding extends Component {
   reverseColor = () => {
@@ -20,9 +21,9 @@ class NavbarLanding extends Component {
       <div className={classes.flexContainerRow}>
         <div className={classes.flexContainerRow}>
           <p className={classes.logo}>
-            <a href="http://localhost:3000/" className={classes.link}>
+            <Link to="/" className={classes.link}>
               Mendokusai
-            </a>
+            </Link>
           </p>
           <img src={downarrow} alt="down arrow" className={classes.arrow} />
           <p className={classes.welcomeText}>Welcome.</p>
