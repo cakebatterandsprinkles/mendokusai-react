@@ -17,6 +17,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: new Date().toISOString().substring(0, 10),
   },
+  confirmToken: String,
+  emailConfirmed: {
+    type: Boolean,
+    default: false,
+  },
   resetToken: String,
   resetTokenExpiration: Date,
 });

@@ -19,6 +19,7 @@ class LoginForm extends Component {
       isSubmitted: false,
       email: "",
       password: "",
+      resetEmail: "",
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -42,20 +43,22 @@ class LoginForm extends Component {
     this.setState({ showModal: false });
   }
 
-  handleForgotPasswordSubmit() {
+  handleForgotPasswordSubmit(event) {
+    event.preventDefault();
     this.setState({ isSubmitting: true });
-    setTimeout(() => {
-      this.setState({
-        isSubmitting: false,
-        isSubmitted: true,
+    axios
+      .post("/reset-request", {
+        email: this.state.resetEmail,
+      })
+      .then(() => {
+        this.setState({ isSubmitted: true, isSubmitting: false });
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.setState({ isSubmitted: false, isSubmitting: false });
+          this.props.setError(error.response.data);
+        }
       });
-      setTimeout(() => {
-        this.handleCloseModal();
-        this.setState({
-          isSubmitted: false,
-        });
-      }, 2000);
-    }, 2000);
   }
 
   handleLoginSubmit() {
@@ -70,8 +73,7 @@ class LoginForm extends Component {
       )
       .then((response) => {
         this.props.setUserData(response.data.id, response.data.name);
-        const slicedUserId = sliceUserId(response.data.id);
-        this.props.history.push(`/user?${response.data.name}${slicedUserId}`);
+        this.props.history.push("/user");
       })
       .catch((error) => {
         if (error.response) {
@@ -89,24 +91,28 @@ class LoginForm extends Component {
               <div className={classes.modalHeadingContainer}>
                 <p className={classes.modalHeading}>Reset Password</p>
               </div>
-              <form className={classes.loginForm} action="/login" method="POST">
+              <form
+                className={classes.loginForm}
+                onSubmit={this.handleForgotPasswordSubmit}
+              >
                 <div className={classes.formGroupContainer}>
                   <label htmlFor="reset-password-email">E-mail address:</label>
                   <input
                     type="email"
                     name="reset-password-email"
                     id="reset-password-email"
+                    value={this.state.resetEmail}
+                    onChange={(e) => {
+                      this.setState({ resetEmail: e.target.value });
+                    }}
                   ></input>
                 </div>
+                <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
+                  <button type="submit" className={classes.btn}>
+                    Reset Password
+                  </button>
+                </div>
               </form>
-              <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
-                <button
-                  onClick={this.handleForgotPasswordSubmit}
-                  className={classes.btn}
-                >
-                  Reset Password
-                </button>
-              </div>
             </div>
             <div className={classes.closingButtonContainer}>
               <img

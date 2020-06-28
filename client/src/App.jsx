@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import LandingMain from "./components/LandingMain/LandingMain";
 import UserMainPage from "./containers/UserMainPage/UserMainPage";
 import LoginForm from "./containers/LoginForm/LoginForm";
 import SignUpForm from "./containers/SignUpForm/SignUpForm";
 import ResetPassword from "./containers/ResetPassword/ResetPassword";
+import ConfirmEmail from "./containers/ConfirmEmail/ConfirmEmail";
 import Settings from "./containers/Settings/Settings";
 import Calendar from "./containers/Calendar/Calendar";
 import Error404 from "./components/404/404";
@@ -43,7 +45,9 @@ const App = (props) => {
       .then((response) => {
         props.setUserData(response);
       })
-      .catch(() => {});
+      .catch(() => {
+        props.setUserData(null);
+      });
   };
 
   const initialize = () => {
@@ -52,6 +56,10 @@ const App = (props) => {
   };
 
   useEffect(initialize, []);
+
+  if (props.isAuthenticated === undefined) {
+    return <div></div>;
+  }
 
   return (
     <BrowserRouter>
@@ -64,11 +72,12 @@ const App = (props) => {
           />
           <Route exact path="/signup" component={SignUpForm} />
           <Route exact path="/login" component={LoginForm} />
-          <Route path="/user" component={UserMainPage} />
-          <Route path="/calendar" component={Calendar} />
+          <PrivateRoute path="/user" component={UserMainPage} />
+          <PrivateRoute path="/calendar" component={Calendar} />
           <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/settings" component={Settings} />
-          <Route exact path="/bucketlist" component={BucketList} />
+          <PrivateRoute exact path="/settings" component={Settings} />
+          <PrivateRoute exact path="/bucketlist" component={BucketList} />
+          <Route path="/confirm-email" component={ConfirmEmail} />
           <Route path="/" component={Error404} />
         </Switch>
       </Layout>
@@ -98,7 +107,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.userName !== "",
+    isAuthenticated: state.userName,
   };
 };
 

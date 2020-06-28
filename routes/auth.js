@@ -15,6 +15,24 @@ router.post("/signup", authController.postSignup);
 
 router.post("/login", authController.postLogin);
 
+// @route  POST /confirm
+// @desc   Confirm User Email
+// @access public
+
+router.post("/confirm", authController.postConfirm);
+
+// @route  POST /reset-password
+// @desc   Reset User Password
+// @access public
+
+router.post("/reset-password", authController.postResetPassword);
+
+// @route  POST /reset-request
+// @desc   Request Reset User Password
+// @access public
+
+router.post("/reset-request", authController.postRequestReset);
+
 // @route  POST /logout
 // @desc   Logout User
 // @access private
