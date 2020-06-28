@@ -198,6 +198,14 @@ exports.postLogin = (req, res, next) => {
           .send("User with this email address does not exist.");
       }
 
+      if (!userInfo.emailConfirmed) {
+        return res
+          .status(400)
+          .send(
+            "We have sent you an email. Confirm your email address to login."
+          );
+      }
+
       bcrypt.compare(password, userInfo.password).then((isMatch) => {
         if (!isMatch) {
           return res.status(400).send("Wrong password.");
