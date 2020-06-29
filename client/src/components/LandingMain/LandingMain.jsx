@@ -32,7 +32,7 @@ const LandingMain = () => {
               <p className={classes.paragraph}>
                 I wish I could say it can cure existential crisis, work-life
                 imbalance and your messed up relationships. It can’t. (I don't
-                think there is a todo list app that ca do these anyway.)
+                think there is a todo list app that can do these anyway.)
               </p>
               <p className={classes.paragraph}>
                 It does say if you can fly a kite on a specific day, but don’t

@@ -159,8 +159,17 @@
 }
 
 @media (max-width: 700px) {
+  .mainWrapper {
+    width: 100vw;
+    padding: 0 2.5rem;
+  }
+
   .mainHeader {
     font-size: 1.25rem;
+  }
+
+  .questions {
+    margin: 1.5rem 0 0 0;
   }
 
   .heading {
@@ -168,11 +177,11 @@
   }
 
   .flexContainerRow p {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .flexContainerColumn p {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .footer {
