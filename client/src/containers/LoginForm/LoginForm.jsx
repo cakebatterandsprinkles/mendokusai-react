@@ -6,7 +6,6 @@ import ClosingButton from "../../assets/images/closeButton.png";
 import BirbImage from "../../assets/images/birb.png";
 import Sun from "../../assets/images/sunny.png";
 import axios from "axios";
-import sliceUserId from "../../util/user";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/actionTypes";
 
