@@ -64,6 +64,7 @@
   width: 80%;
   border: 1px solid black;
   color: rgb(46, 46, 46);
+  border-radius: 10px;
 }
 
 .formGroupContainer label {
@@ -72,7 +73,6 @@
   font-size: 1.1rem;
   width: 20%;
   margin-right: 3rem;
-  border-radius: 10px;
 }
 
 input:focus,
