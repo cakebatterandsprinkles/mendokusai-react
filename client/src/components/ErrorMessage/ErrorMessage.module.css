@@ -49,3 +49,10 @@
     transform: translateY(-4rem);
   }
 }
+
+@media (max-width: 600px) {
+  .errorContainer {
+    font-size: 0.9rem;
+    padding: 0 0.75rem;
+  }
+}
