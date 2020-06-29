@@ -7,7 +7,7 @@
   margin: 0.5rem 3rem 5rem 3rem;
   border-radius: 10px;
   background-color: rgba(185, 185, 185, 0.26);
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .flexContainerColumn {
