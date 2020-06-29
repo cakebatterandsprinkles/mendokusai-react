@@ -127,14 +127,14 @@ class LoginForm extends Component {
     } else if (this.state.isSubmitting && !this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
-          <img src={BirbImage} alt="birdimage" className={classes.birbImage} />
+          <img src={BirbImage} alt="bird" className={classes.birbImage} />
           <p>Omg, is your request being submitted or what?</p>
         </div>
       );
     } else if (!this.state.isSubmitting && this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
-          <img src={Sun} alt="sunimage" className={classes.birbImage} />
+          <img src={Sun} alt="sun" className={classes.birbImage} />
           <p>Congrats, you've got an email! Check your inbox.</p>
         </div>
       );

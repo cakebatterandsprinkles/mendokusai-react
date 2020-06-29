@@ -72,14 +72,14 @@
   font-size: 1.1rem;
   width: 20%;
   margin-right: 3rem;
+  border-radius: 10px;
 }
 
 input:focus,
 .btn:focus,
 .modal:focus {
   outline: none !important;
-  border-color: #8d09f7;
-  box-shadow: 0 0 5px #8d09f7;
+  box-shadow: 1px 1px 8px #1616168e;
 }
 
 .subTextContainer {
