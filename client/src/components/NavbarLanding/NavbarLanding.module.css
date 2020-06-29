@@ -37,19 +37,19 @@
 
 .welcomeText {
   margin-left: 1rem;
-  color: black !important;
+  color: var(--black) !important;
 }
 
 .link {
   text-decoration: none;
-  color: white;
+  color: var(--offwhite);
 }
 
 .changeColorBtn {
   font-size: 3rem;
   margin-right: 1rem;
   cursor: pointer;
-  color: black !important;
+  color: var(--black) !important;
 }
 
 @media (max-width: 992px) {
@@ -69,11 +69,11 @@
   }
 
   .logo {
-    font-family: "Inconsolata", sans-serif;
+    font-family: var(--regularFont);
     font-size: 1rem;
     margin: 0.8rem;
-    color: white;
-    background-color: black;
+    color: var(--offwhite);
+    background-color: var(--black);
     padding: 0.3rem;
   }
 

@@ -101,7 +101,7 @@ class NavbarUser extends Component {
                   to="/settings"
                   style={{
                     textDecoration: "none",
-                    color: "black",
+                    color: "var(--black)",
                   }}
                 >
                   Settings
@@ -118,7 +118,7 @@ class NavbarUser extends Component {
                   to="/login"
                   style={{
                     textDecoration: "none",
-                    color: "black",
+                    color: "var(--black)",
                   }}
                   onClick={this.logout}
                 >

@@ -8,12 +8,12 @@
 
 .headingContainer {
   width: 40%;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--black);
   margin-bottom: 2rem;
 }
 
 :global(.dark-bg) .headingContainer {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--offwhite);
 }
 
 .checkboxInput {
@@ -25,7 +25,7 @@
 }
 
 .heading {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--headingFont);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -33,15 +33,15 @@
 .btn {
   padding: 0.6rem 0.8rem;
   margin-left: auto;
-  font-family: "inconsolata", monospace;
+  font-family: var(--regularFont);
   font-size: 1rem;
   font-weight: bold;
-  color: white;
+  color: var(--offwhite);
   cursor: pointer;
   font-size: 1.1rem;
   border: none;
   border-radius: 10px;
-  background-color: slateblue;
+  background-color: var(--purple);
 }
 
 .btnWrapper {
@@ -63,8 +63,8 @@
   padding: 0.5rem;
   font-size: 0.9rem;
   width: 80%;
-  border: 1px solid black;
-  color: rgb(46, 46, 46);
+  border: var(--border);
+  color: var(--darkgray);
   border-radius: 10px;
 }
 
@@ -77,9 +77,9 @@
 }
 
 .btn:focus {
-  -webkit-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: var(--boxShadow);
+  -moz-box-shadow: var(--boxShadow);
+  box-shadow: var(--boxShadow);
 }
 
 .subTextContainer {
@@ -141,7 +141,7 @@
 
   .headingContainer {
     width: 40%;
-    border-bottom: 0.09rem solid black;
+    border-bottom: 0.09rem solid var(--black);
     margin-bottom: 1.5rem;
   }
 
@@ -154,7 +154,7 @@
     padding: 0.4rem;
     font-size: 0.8rem;
     width: 70%;
-    border: 1px solid black;
+    border: 1px solid var(--black);
   }
 
   .subText {
@@ -164,7 +164,7 @@
 
   .btn {
     padding: 0.6rem 0.8rem;
-    font-family: "inconsolata", monospace;
+    font-family: var(--regularFont);
     font-weight: bold;
     font-size: 0.9rem;
   }

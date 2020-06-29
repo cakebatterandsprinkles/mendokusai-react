@@ -1,5 +1,5 @@
 .kiteInfoText {
-  color: black !important;
+  color: var(--black) !important;
 }
 
 @media (max-width: 1200px) {

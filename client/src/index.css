@@ -1,8 +1,22 @@
+:root {
+  --black: #1d1d1d;
+  --pink: #da29ac;
+  --purple: #8d09f7;
+  --darkgray: #535353;
+  --lightgray: #e0e0e0;
+  --transparentLightGray: #e6e4e4d2;
+  --offwhite: #fbfbf8;
+  --regularFont: "Inconsolata", monospace;
+  --headingFont: "Montserrat", sans-serif;
+  --boxShadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  --border: 1px solid var(--black);
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Inconsolata", monospace;
+  font-family: var(--regularFont);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,7 +34,7 @@ code {
 }
 
 .dark-bg {
-  background-color: rgb(24, 24, 24);
+  background-color: rgb(29, 29, 29);
   color: white;
   fill: white;
   stroke: white;

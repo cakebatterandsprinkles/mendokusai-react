@@ -2,7 +2,7 @@
   margin-right: 2rem;
   min-width: 5.5rem;
   padding: 0.5rem 0.7rem;
-  border: 1px solid black;
+  border: var(--border);
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
 
 .link {
   text-decoration: none;
-  color: black !important;
+  color: var(--black) !important;
 }
 
 .button:hover,
@@ -20,7 +20,7 @@
   background-color: rgba(224, 224, 224, 0.527);
   transition-duration: 0.3s;
   font-weight: bold;
-  color: black;
+  color: var(--black);
   border-radius: 10px;
 }
 

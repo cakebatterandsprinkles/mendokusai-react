@@ -1,13 +1,13 @@
 .footer {
-  color: black !important;
+  color: var(--black) !important;
   position: fixed;
   bottom: 0;
   padding: 1.2rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: rgba(230, 228, 228, 0.822);
-  border-top: 2px solid black;
+  background-color: var(--transparentLightGray);
+  border-top: 2px solid var(--black);
 }
 
 .footerText {

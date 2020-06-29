@@ -8,12 +8,12 @@
 
 .headingContainer {
   width: 40%;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--black);
   margin-bottom: 2rem;
 }
 
 :global(.dark-bg) .headingContainer {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--offwhite);
 }
 
 .checkboxInput {
@@ -25,7 +25,7 @@
 }
 
 .heading {
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--headingFont);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -33,10 +33,10 @@
 .btn {
   padding: 0.6rem 0.8rem;
   margin-left: auto;
-  font-family: "inconsolata", monospace;
+  font-family: var(--regularFont);
   font-size: 1rem;
-  color: white;
-  background-color: slateblue;
+  color: var(--offwhite);
+  background-color: var(--purple);
   cursor: pointer;
   font-size: 1.1rem;
   border: none;
@@ -62,8 +62,8 @@
   padding: 0.5rem;
   font-size: 0.9rem;
   width: 80%;
-  border: 1px solid black;
-  color: rgb(46, 46, 46);
+  border: var(--border);
+  color: var(--darkgray);
   border-radius: 10px;
 }
 
@@ -79,9 +79,9 @@ input:focus,
 .btn:focus,
 .modal:focus {
   outline: none !important;
-  -webkit-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: var(--boxShadow);
+  -moz-box-shadow: var(--boxShadow);
+  box-shadow: var(--boxShadow);
 }
 
 .subTextContainer {
@@ -97,17 +97,17 @@ input:focus,
 }
 
 .modalText {
-  color: #8d09f7;
+  color: var(--purple);
   font-size: 1.1rem;
   margin-bottom: 1.25rem;
 }
 
 .modal {
-  background-color: white;
+  background-color: var(--offwhite);
   z-index: 10000;
   padding: 2.5rem 2.5rem 2.5rem 3.5rem;
   border-radius: 2rem;
-  border: 1px solid black;
+  border: var(--border);
 }
 
 .overlay {
@@ -125,7 +125,7 @@ input:focus,
 
 .modalMainContainer {
   display: flex;
-  color: black !important;
+  color: var(--black) !important;
 }
 
 .submitModalContainer {
@@ -148,7 +148,7 @@ input:focus,
   cursor: pointer;
   outline: none !important;
   border-radius: 50px;
-  box-shadow: 0 0 3px #5e5e5e;
+  box-shadow: var(--boxShadow);
 }
 
 .closingButtonContainer {
@@ -202,7 +202,7 @@ input:focus,
 
   .headingContainer {
     width: 40%;
-    border-bottom: 0.09rem solid black;
+    border-bottom: 0.09rem solid var(--black);
     margin-bottom: 1.5rem;
   }
 
@@ -215,7 +215,7 @@ input:focus,
     padding: 0.4rem;
     font-size: 0.8rem;
     width: 70%;
-    border: 1px solid black;
+    border: var(--border);
   }
 
   .subText {
@@ -224,7 +224,7 @@ input:focus,
   }
 
   .btn {
-    font-family: "inconsolata", monospace;
+    font-family: var(--regularFont);
     font-weight: bold;
     font-size: 0.9rem;
   }
