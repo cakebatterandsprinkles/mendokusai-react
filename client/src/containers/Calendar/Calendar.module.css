@@ -312,8 +312,9 @@
 .btn:focus,
 .modal:focus {
   outline: none !important;
-  border-color: #8d09f7;
-  box-shadow: 0 0 5px #8d09f7;
+  -webkit-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
 }
 
 .formGroupContainer input {

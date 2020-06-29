@@ -65,6 +65,7 @@
   width: 80%;
   border: 1px solid black;
   color: rgb(46, 46, 46);
+  border-radius: 10px;
 }
 
 .formGroupContainer label {
@@ -75,11 +76,10 @@
   margin-right: 3rem;
 }
 
-input:focus,
 .btn:focus {
-  outline: none !important;
-  border-color: #8d09f7;
-  box-shadow: 0 0 5px #8d09f7;
+  -webkit-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
 }
 
 .subTextContainer {

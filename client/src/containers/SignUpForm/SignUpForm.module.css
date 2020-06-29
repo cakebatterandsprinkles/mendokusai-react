@@ -79,7 +79,9 @@ input:focus,
 .btn:focus,
 .modal:focus {
   outline: none !important;
-  box-shadow: 1px 1px 8px #1616168e;
+  -webkit-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
 }
 
 .subTextContainer {
