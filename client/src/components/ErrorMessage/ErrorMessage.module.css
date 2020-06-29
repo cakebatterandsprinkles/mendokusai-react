@@ -17,7 +17,7 @@
   border-bottom-left-radius: 20px;
   color: white;
   font-weight: bold;
-  transform: translateY(-4rem);
+  transform: translateY(-6.5rem);
 }
 
 .errorContainer.active {
@@ -34,7 +34,7 @@
 
 @keyframes show {
   from {
-    transform: translateY(-4rem);
+    transform: translateY(-6.5rem);
   }
   to {
     transform: translateY(0);
@@ -46,7 +46,7 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(-4rem);
+    transform: translateY(-6.5rem);
   }
 }
 
