@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/actionTypes";
 import classes from "./NavbarUser.module.css";
@@ -49,16 +49,46 @@ class NavbarUser extends Component {
           />
         </div>
         <div className={classes.flexContainerRow}>
-          <Link className={classes.navbarLink} to="/user">
+          <NavLink
+            className={classes.navbarLink}
+            to="/user"
+            activeStyle={{
+              fontWeight: "bold",
+              borderBottom: "2px solid slateblue",
+              background: "rgba(224, 224, 224, 0.603)",
+              borderTopLeftRadius: "10px",
+              borderTopRightRadius: "10px",
+            }}
+          >
             <p>Today</p>
-          </Link>
+          </NavLink>
 
-          <Link className={classes.navbarLink} to="/calendar">
+          <NavLink
+            className={classes.navbarLink}
+            to="/calendar"
+            activeStyle={{
+              fontWeight: "bold",
+              borderBottom: "2px solid slateblue",
+              background: "rgba(224, 224, 224, 0.603)",
+              borderTopLeftRadius: "10px",
+              borderTopRightRadius: "10px",
+            }}
+          >
             <p>Calendar</p>
-          </Link>
-          <Link className={classes.navbarLink} to="/bucketlist">
+          </NavLink>
+          <NavLink
+            className={classes.navbarLink}
+            to="/bucketlist"
+            activeStyle={{
+              fontWeight: "bold",
+              borderBottom: "2px solid slateblue",
+              background: "rgba(224, 224, 224, 0.603)",
+              borderTopLeftRadius: "10px",
+              borderTopRightRadius: "10px",
+            }}
+          >
             <p>Bucketlist</p>
-          </Link>
+          </NavLink>
           <div className={classes.dropdown}>
             <img
               src={SettingsIcon}
