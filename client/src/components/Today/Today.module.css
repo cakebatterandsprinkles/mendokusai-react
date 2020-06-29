@@ -180,8 +180,6 @@
 .btn:focus,
 .modal:focus {
   outline: none !important;
-  border-color: #8d09f7;
-  box-shadow: 0 0 5px #8d09f7;
 }
 
 .formGroupContainer input {

@@ -185,14 +185,14 @@
 }
 
 .btn {
-  padding: 0.5rem 1rem;
-  margin-left: auto;
-  margin-top: 1.5rem;
+  padding: 0.6rem 0.8rem;
+  border: none;
   border-radius: 10px;
+  margin-left: auto;
   font-family: "inconsolata", monospace;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: white;
-  background-color: black;
+  background-color: slateblue;
   cursor: pointer;
   font-size: 1.1rem;
 }
