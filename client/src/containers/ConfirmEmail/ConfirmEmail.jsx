@@ -21,7 +21,6 @@ const ConfirmEmail = (props) => {
         "Content-Type": "application/json",
       },
     }).then((response) => {
-      console.log(response);
       if (response.status !== 200) {
         response.text().then((text) => props.setError(text));
         setTimeout(() => {
