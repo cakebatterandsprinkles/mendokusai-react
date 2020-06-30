@@ -35,46 +35,7 @@ class SignUpForm extends Component {
   }
 
   renderModalContent() {
-    if (!this.state.isSubmitted) {
-      return (
-        <Aux>
-          <div className={classes.modalMainContainer}>
-            <div>
-              <div className={classes.headingContainer}>
-                <p className={classes.heading}>Reset Password</p>
-              </div>
-              <p className={classes.modalText}>
-                {" "}
-                Tell me more about yourself...{" "}
-              </p>
-              <form className={classes.loginForm} action="/login" method="POST">
-                <div className={classes.formGroupContainer}>
-                  <label htmlFor="reset-password-email">E-mail address:</label>
-                  <input
-                    type="email"
-                    name="reset-password-email"
-                    id="reset-password-email"
-                  ></input>
-                </div>
-              </form>
-              <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
-                <button onClick={this.handleSubmit} className={classes.btn}>
-                  Reset Password
-                </button>
-              </div>
-            </div>
-            <div className={classes.closingButtonContainer}>
-              <img
-                src={ClosingButton}
-                alt="closing button"
-                className={classes.closingButton}
-                onClick={this.handleCloseModal}
-              />
-            </div>
-          </div>
-        </Aux>
-      );
-    } else if (this.state.isSubmitted) {
+    if (this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
           <img src={Sun} alt="sunimage" className={classes.birbImage} />
@@ -105,7 +66,9 @@ class SignUpForm extends Component {
         if (response.status === 200) {
           this.handleOpenModal();
           this.handleFormSubmit();
-          this.props.history.push("/login");
+          setTimeout(() => {
+            this.props.history.push("/login");
+          }, 3000);
         }
       })
       .catch((error) => {

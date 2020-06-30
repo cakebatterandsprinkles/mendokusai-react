@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const sgMail = require("@sendgrid/mail");
 const User = require("../models/User");
 const generateToken = require("../util/generateToken");
-const path = require("path");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -181,7 +180,6 @@ exports.postRequestReset = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
   const { email, password } = req.body;
-
   const validationResult = validationLogin(email, password);
 
   if (validationResult !== "Success") {

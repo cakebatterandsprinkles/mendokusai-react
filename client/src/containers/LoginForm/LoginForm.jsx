@@ -60,7 +60,8 @@ class LoginForm extends Component {
       });
   }
 
-  handleLoginSubmit() {
+  handleLoginSubmit(e) {
+    e.preventDefault();
     axios
       .post(
         "/login",
@@ -150,7 +151,7 @@ class LoginForm extends Component {
           <div className={classes.headingContainer}>
             <p className={classes.heading}>Login</p>
           </div>
-          <form>
+          <form onSubmit={this.handleLoginSubmit}>
             <div className={`${classes.formGroupContainer} ${classes.margin}`}>
               <label htmlFor="email">Email:</label>
               <input
@@ -175,11 +176,7 @@ class LoginForm extends Component {
               </p>
             </div>
             <div className={classes.btnWrapper}>
-              <button
-                className={classes.btn}
-                type="button"
-                onClick={this.handleLoginSubmit}
-              >
+              <button className={classes.btn} type="submit">
                 Login
               </button>
             </div>
