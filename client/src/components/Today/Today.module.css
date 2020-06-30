@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 90vh;
+  height: 80vh;
   padding: 1.5rem 3rem;
   margin: 0.5rem 3rem 5rem 3rem;
   border-radius: 10px;
@@ -215,7 +215,6 @@
   }
 
   .mainContainer {
-    height: 90vh;
     margin: 0.5rem 1.5rem 5rem 1.5rem;
     padding: 1.5rem 2rem;
   }
@@ -227,7 +226,8 @@
 
 @media (max-width: 1200px) {
   .mainContainer {
-    margin: 1.5rem 4rem 5rem 4rem;
+    height: 79vh;
+    margin: 1.5rem 4rem 1rem 4rem;
   }
 
   .modal {
@@ -240,9 +240,16 @@
   }
 }
 
+@media (max-width: 900px) {
+  .mainContainer {
+    height: 81vh;
+    margin: 1.5rem 4rem 1rem 4rem;
+  }
+}
+
 @media (max-width: 700px) {
   .mainContainer {
-    margin: 1.5rem 2rem 5rem 2rem;
+    margin: 1.5rem 2rem 1rem 2rem;
   }
 
   .modal {
@@ -262,8 +269,9 @@
 
 @media (max-width: 600px) {
   .mainContainer {
-    margin: 1.5rem 0 5rem 0;
+    margin: 0.5rem 0 3rem 0;
     border-radius: 0;
+    height: 75vh;
   }
 
   .dataContainer {
