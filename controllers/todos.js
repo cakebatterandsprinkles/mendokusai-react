@@ -111,7 +111,7 @@ exports.getCalendar = (req, res, next) => {
   ToDo.find({
     user: req.user.id,
     date: {
-      $gte: new Date(`${req.query.year}-${req.query.month}-1`),
+      $gte: new Date(`${req.query.year}-${req.query.month}-01`),
       $lte: new Date(
         `${req.query.year}-${req.query.month}-${req.query.daysInMonth}`
       ),

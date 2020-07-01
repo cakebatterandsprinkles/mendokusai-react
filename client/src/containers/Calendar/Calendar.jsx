@@ -151,7 +151,7 @@ class Calendar extends Component {
 
   toggleDrawer(day) {
     this.setState({
-      currentDate: `${day}`,
+      currentDate: `${day}`.padStart(2, "0"),
       drawerOpen: !this.state.drawerOpen,
       date: `${this.state.monthName} ${day}, ${this.state.year}`,
       entered: !this.state.entered,
@@ -223,7 +223,7 @@ class Calendar extends Component {
 
   showTodosOnCalendar = (todoArr, date) => {
     const dailyTodos = todoArr.filter((todo) => {
-      return todo.date.substring(8, 10) === date.toString();
+      return todo.date.substring(8, 10) === date.toString().padStart(2, "0");
     });
     const todoStatusArr = [];
     dailyTodos.forEach((todo) => {
