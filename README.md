@@ -1,5 +1,7 @@
 # Mendokusai
 
+![License](https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen) ![Version](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=blueviolet)
+
 :japanese_castle: A todo list app for people who have problem planning their days. By dividing things you need to do in bite size pieces, you can have a more productive day and feel more motivated and satisfied at the end of the day.
 
 **Demo:** Try it yourself [by clicking here!](https://mendokusai.app)
