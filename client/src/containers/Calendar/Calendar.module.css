@@ -56,9 +56,10 @@
   font-weight: bold;
   font-size: 1.25rem;
   cursor: pointer;
-  background-color: var(-offwhite);
+  background-color: var(--offwhite);
+  border: 2px solid var(--darkgray);
   border-radius: 50px;
-  margin: 1rem 1rem;
+  margin: 1rem;
 }
 
 .calendarContainer {
