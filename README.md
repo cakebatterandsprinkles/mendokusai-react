@@ -1,6 +1,6 @@
 # Mendokusai
 
-** :japanese_castle: A todo list app for people who have problem planning their days. By dividing things you need to do in bite size pieces, you can have a more productive day and feel more motivated and satisfied at the end of the day. **
+:japanese_castle: A todo list app for people who have problem planning their days. By dividing things you need to do in bite size pieces, you can have a more productive day and feel more motivated and satisfied at the end of the day.
 
 **Demo:** Try it yourself [by clicking here!](https://mendokusai.app)
 
@@ -24,6 +24,19 @@
 
    ![Calendar](src/../client/src/assets/images/drawer.png)
 
-6. You can also have a bucketlist.
+6. You can add todo's from calendar page as well.
+
+   ![Calendar](src/../client/src/assets/images/addfromcalendar.png)
+
+7. You can also have a bucketlist!
 
    ![Calendar](src/../client/src/assets/images/bucketlist.png)
+
+## Technologies Used:
+
+1. React.js
+2. OpenWeatherMap API
+3. GeoIP
+4. Express.js
+5. MongoDB
+6. Sendgrid
