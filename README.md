@@ -32,11 +32,20 @@
 
    ![Calendar](src/../client/src/assets/images/bucketlist.png)
 
-## Technologies Used:
+## Main Packages and Technologies Used:
 
-1. React.js
-2. OpenWeatherMap API
-3. GeoIP
-4. Express.js
-5. MongoDB
-6. Sendgrid
+1. [React.js](https://reactjs.org/)
+2. [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+3. [react-redux](https://react-redux.js.org/)
+4. [OpenWeatherMapAPI](https://openweathermap.org/api)
+5. [GeoIP](https://freegeoip.app/)
+6. [Express.js](https://expressjs.com/)
+7. [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+8. [Sendgrid](https://sendgrid.com/)
+9. [Heroku](https://www.heroku.com)
+
+## Contributions
+
+All contributions are welcomed and encouraged.
+
+:rainbow: Have fun!
