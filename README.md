@@ -34,7 +34,7 @@
 
    ![Calendar](src/../client/src/assets/images/bucketlist.png)
 
-## Main Packages and Technologies Used:
+## Main Technologies & API's Used:
 
 1. [React.js](https://reactjs.org/)
 2. [react-router-dom](https://www.npmjs.com/package/react-router-dom)
@@ -48,6 +48,6 @@
 
 ## Contributions
 
-All contributions are welcomed and encouraged.
+All contributions are welcome and encouraged.
 
 :rainbow: Have fun!
