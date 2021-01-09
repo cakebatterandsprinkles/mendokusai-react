@@ -1,21 +1,14 @@
 .logo {
-  font-family: var(--regularFont);
-  font-size: 1.5rem;
-  margin: 1rem;
+  font-family: var(--cursiveFont);
+  font-size: 1.75rem;
+  margin: 1rem 1rem 1rem 1rem;
   color: var(--black);
   text-decoration: none;
-  border-bottom: 0.1rem solid var(--black);
 }
 
-.arrow {
-  height: 4rem;
-  width: auto;
-}
-
-.girlimg {
+.catimg {
   height: 3.5rem;
   width: auto;
-  margin: 0.5rem;
 }
 
 .flexContainerRow {
@@ -42,7 +35,8 @@
 .dropdownContent {
   display: none;
   position: absolute;
-  top: 4rem;
+  font-size: 0.8rem;
+  top: 3rem;
   right: 0.8rem;
   background-color: #f1f1f1;
   box-shadow: 0px 8px 16px 0px rgba(56, 56, 56, 0.2);
@@ -60,9 +54,8 @@
 }
 
 .linkContainer {
-  color: var(--black) !important;
+  cursor: pointer;
   padding: 0.8rem 1rem;
-  border-bottom: 0.05rem solid var(--black);
   display: flex;
   justify-content: center;
   text-align: center;
@@ -85,9 +78,9 @@
 }
 
 .settingsIcon {
-  height: 2rem;
+  height: 1.8rem;
   width: auto;
-  margin: 1rem 1.2rem 0 1.2rem;
+  margin: 0.8rem 1.2rem 0 1.2rem;
 }
 
 .changeColorBtn {
@@ -100,71 +93,47 @@
 
 .navbarLink {
   text-decoration: none;
-  height: 2.5rem;
+  height: 2.25rem;
   color: var(--black);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.1rem;
-  margin: 0.7rem 0.5rem 0.5rem 1rem;
-  padding: 0.8rem;
-  border-bottom: var(--border);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0.7rem 0.25rem 0.25rem 1rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px double var(--darkgray);
+  border-radius: 10px;
 }
 
 .navbarLink:hover {
   cursor: pointer;
-  font-weight: bold;
-  border-bottom: 2px solid var(--purple);
-  background: var(--transparentLightGray);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  transition-property: background;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.5s;
-}
-
-@media (max-width: 1460px) {
-  .settingsIcon {
-    height: 2rem;
-    width: auto;
-    margin: 1.2rem 1.2rem 0 1.2rem;
-  }
-  .navbarLink {
-    font-size: 1rem;
-    margin: 0.7rem 0.25rem 0.25rem 1rem;
-    padding: 0.5rem;
-  }
 }
 
 @media (max-width: 900px) {
+  .mainFlexContainer {
+    flex-direction: column;
+  }
+
+  .flexContainerRow {
+    justify-content: flex-start;
+    padding: 0.5rem 0;
+  }
+
+  .divider {
+    border-top: 1px solid var(--lightgray);
+  }
+
   .navbarLink {
-    font-size: 0.9rem;
-    margin: 0.5rem 0.25rem 0.25rem 0.5rem;
-    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin: 0.7rem 0.25rem 0.25rem 0.5rem;
+    padding: 0.1rem 0.4rem;
+    height: 2rem;
   }
 
   .dropdownContent {
-    top: 3rem;
+    top: 2rem;
     right: 0.8rem;
-  }
-
-  .settingsIcon {
-    margin-right: 1rem;
-    margin-top: 1rem;
-  }
-
-  .logo {
-    font-family: var(--regularFont);
-    font-size: 1.2rem;
-    margin: 0.8rem;
-    padding: 0.3rem;
-    border-bottom: 0.05rem solid var(--black);
-  }
-
-  .arrow {
-    height: 3rem;
-    width: auto;
-    margin-right: 0.5rem;
   }
 
   .changeColorBtn {
@@ -181,44 +150,29 @@
     margin: 0.8rem 0.5rem 0 0.5rem;
     padding: 1rem 1.2rem;
   }
-
-  .girlimg {
-    display: none;
-  }
 }
 
 @media (max-width: 600px) {
   .logo {
-    font-family: var(--regularFont);
-    font-size: 1.2rem;
+    font-family: var(--cursiveFont);
+    font-size: 1.25rem;
     margin: 0.5rem;
-    color: var(--black);
-    text-decoration: none;
-    border-bottom: 0.1rem solid var(--black);
-  }
-
-  .navbarLink {
-    font-size: 0.9rem;
-    margin: 0.5rem 0.25rem 0.25rem 0.5rem;
-    padding: 0.4rem;
-  }
-
-  .mainFlexContainer {
-    flex-direction: column;
-  }
-
-  .flexContainerRow {
-    justify-content: flex-start;
-  }
-  .girlimg {
-    display: inline-block;
-    height: 2.5rem;
-    width: auto;
   }
 
   .settingsIcon {
-    height: 2rem;
+    height: 1.5rem;
     width: auto;
-    margin: 0.8rem 1rem 0 0.5rem;
+    margin: 0.8rem 1.2rem 0 1.2rem;
+  }
+
+  .navbarLink {
+    font-size: 0.75rem;
+    height: 1.5rem;
+  }
+
+  .catimg {
+    display: inline-block;
+    height: 2.5rem;
+    width: auto;
   }
 }

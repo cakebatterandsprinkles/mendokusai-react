@@ -1,6 +1,6 @@
 import React from "react";
-import classes from "./LandingMain.module.css";
 import { ReactComponent as Mendokusai } from "../../assets/images/girl.svg";
+import classes from "./LandingMain.module.css";
 
 const LandingMain = () => {
   return (

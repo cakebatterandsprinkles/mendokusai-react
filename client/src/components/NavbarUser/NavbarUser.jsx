@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions/actionTypes";
-import classes from "./NavbarUser.module.css";
-import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
-import downarrow from "../../assets/images/downarrow.png";
+import { Link, NavLink } from "react-router-dom";
+import mendokusai from "../../assets/images/cat.png";
 import SettingsIcon from "../../assets/images/settingsicon.png";
-import mendokusai from "../../assets/images/girl2.png";
+import * as actionTypes from "../../store/actions/actionTypes";
+import NavbarInfoBox from "../NavbarInfoBox/NavbarInfoBox";
+import classes from "./NavbarUser.module.css";
 
 class NavbarUser extends Component {
   constructor(props) {
@@ -36,42 +35,31 @@ class NavbarUser extends Component {
     return (
       <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
-          <Link className={classes.logo} to="/user">
-            {" "}
-            Mendokusai{" "}
-          </Link>
-          <img src={downarrow} alt="down arrow" className={classes.arrow} />
-          <NavbarInfoBox name={this.props.username} />
+          <Link className={classes.logo} to="/user">mendokusai</Link>
           <img
             src={mendokusai}
-            alt="bored girl illustration"
-            className={classes.girlimg}
+            alt="cat hanging upside down"
+            className={classes.catimg}
           />
+          <NavbarInfoBox name={this.props.username} />
         </div>
-        <div className={classes.flexContainerRow}>
+        <div className={`${classes.flexContainerRow} ${classes.divider}`}>
           <NavLink
             className={classes.navbarLink}
             to="/user"
             activeStyle={{
-              fontWeight: "bold",
-              borderBottom: "2px solid slateblue",
-              background: "rgba(224, 224, 224, 0.603)",
-              borderTopLeftRadius: "10px",
-              borderTopRightRadius: "10px",
+              color: "var(--offwhite)",
+              background: "var(--darkgray)",
             }}
           >
             <p>Today</p>
           </NavLink>
-
           <NavLink
             className={classes.navbarLink}
             to="/calendar"
             activeStyle={{
-              fontWeight: "bold",
-              borderBottom: "2px solid slateblue",
-              background: "rgba(224, 224, 224, 0.603)",
-              borderTopLeftRadius: "10px",
-              borderTopRightRadius: "10px",
+              color: "var(--offwhite)",
+              background: "var(--darkgray)",
             }}
           >
             <p>Calendar</p>
@@ -80,11 +68,8 @@ class NavbarUser extends Component {
             className={classes.navbarLink}
             to="/bucketlist"
             activeStyle={{
-              fontWeight: "bold",
-              borderBottom: "2px solid slateblue",
-              background: "rgba(224, 224, 224, 0.603)",
-              borderTopLeftRadius: "10px",
-              borderTopRightRadius: "10px",
+              color: "var(--offwhite)",
+              background: "var(--darkgray)",
             }}
           >
             <p>Bucketlist</p>

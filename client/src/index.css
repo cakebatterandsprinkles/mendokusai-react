@@ -2,12 +2,17 @@
   --black: #1d1d1d;
   --pink: #da29ac;
   --purple: #8d09f7;
+  --indigo: #5e2bff;
+  --darkviolet: #8d09f7;
+  --mediumpurple: #9381ff;
+  --candypink: #ff70a6;
   --darkgray: #535353;
   --lightgray: #e0e0e0;
   --transparentLightGray: #e6e4e4d2;
   --offwhite: #fbfbf8;
-  --regularFont: "Inconsolata", monospace;
-  --headingFont: "Montserrat", sans-serif;
+  --regularFont: "Montserrat", sans-serif;
+  --headingFont: "Comfortaa", cursive;
+  --cursiveFont: "Schoolbell", cursive;
   --boxShadow: 6px 6px 18px -10px rgba(0, 0, 0, 0.75);
   --border: 1px solid var(--black);
 }

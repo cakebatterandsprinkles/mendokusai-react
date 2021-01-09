@@ -1,9 +1,15 @@
 .flexContainerColumn {
   color: var(--black) !important;
+  font-size: 0.8rem;
+  font-family: var(--regularFont);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 1.2rem 2rem;
+  height: 3rem;
+  padding: 0 0.75rem;
+  margin: 0.5rem 0.75rem;
+  border: 1px solid var(--black);
+  border-radius: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -13,7 +19,11 @@
 }
 
 @media (max-width: 900px) {
+  .welcomeText {
+    font-size: 0.6rem;
+  }
+
   .flexContainerColumn {
-    display: none;
+    margin: 0.25rem 0.5rem;
   }
 }
