@@ -1,27 +1,25 @@
 .button {
-  margin-right: 2rem;
-  min-width: 5.5rem;
-  padding: 0.5rem 0.7rem;
-  border: var(--border);
-  border-radius: 10px;
   display: flex;
   justify-content: center;
-}
-
-.link {
-  text-decoration: none;
-  color: var(--black) !important;
-}
-
-.button:hover,
-.button:focus,
-.button:active {
-  cursor: pointer;
-  background-color: rgba(224, 224, 224, 0.527);
-  transition-duration: 0.3s;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: var(--black);
+  min-width: 4.5rem;
+  height: 2rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px double var(--darkgray);
   border-radius: 10px;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.button:hover {
+  background-color: var(--lightgray);
+}
+
+.button:active {
+  color: var(--offwhite);
 }
 
 @media (max-width: 600px) {

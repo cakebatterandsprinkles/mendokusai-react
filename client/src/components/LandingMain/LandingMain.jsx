@@ -1,19 +1,19 @@
 import React from "react";
-import { ReactComponent as Mendokusai } from "../../assets/images/girl.svg";
+import Mendokusai from "../../assets/images/mendokusai.png";
 import classes from "./LandingMain.module.css";
 
 const LandingMain = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.mainWrapper}>
-        <Mendokusai className={classes.girlImg} />
+        <img src={Mendokusai} className={classes.monsterAndBirdImg} alt="a monster and bird ready to fight"/>
         <div className={classes.contentWrapper}>
-          <p className={classes.mainHeader}>Hello! Here is some information:</p>
+          <p className={classes.mainHeader}>Hello there!</p>
           <div className={classes.questions}>
             <p className={classes.heading}>What does this website do?</p>
             <div className={classes.flexContainerColumn}>
               <p className={classes.paragraph}>
-                It creates basic todo lists. Yes, it is totally free.
+                It creates basic todo lists. (Also, it is totally free.)
               </p>
             </div>
           </div>

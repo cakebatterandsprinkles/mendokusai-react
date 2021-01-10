@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import downarrow from "../../assets/images/downarrow.png";
-import classes from "./NavbarLanding.module.css";
-import SkewedArrow from "../../assets/images/skewedarrow.png";
-import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import Cat from "../../assets/images/cat.png";
+import Button from "../Button/Button";
+import classes from "./NavbarLanding.module.css";
 
 class NavbarLanding extends Component {
   reverseColor = () => {
@@ -24,19 +23,14 @@ class NavbarLanding extends Component {
               Mendokusai
             </Link>
           </p>
-          <img src={downarrow} alt="down arrow" className={classes.arrow} />
+          <img src={Cat} alt="cat hanging from the ceiling" className={classes.catimg} />
           <p className={classes.welcomeText}>Welcome.</p>
         </div>
         <div className={classes.flexContainerRowRight}>
-          <img
-            src={SkewedArrow}
-            alt="skewed arrow pointing out login and signup buttons"
-            className={classes.skewedArrow}
-          />
           <Button name="Sign Up" link="/signup" />
           <Button name="Login" link="/login" />
           <div className={classes.changeColorBtn} onClick={this.reverseColor}>
-            <p>☯</p>
+            <p>◑</p>
           </div>
         </div>
       </div>

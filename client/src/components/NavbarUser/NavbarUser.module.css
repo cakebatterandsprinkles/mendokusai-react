@@ -108,6 +108,7 @@
 
 .navbarLink:hover {
   cursor: pointer;
+  background-color: var(--lightgray);
 }
 
 @media (max-width: 900px) {

@@ -13,9 +13,8 @@
   align-items: center;
 }
 
-.girlImg {
+.monsterAndBirdImg {
   max-width: 40vw;
-  min-width: 35vw;
   height: auto;
 }
 
@@ -23,15 +22,15 @@
   margin: 2.5rem 0 0 5rem;
 }
 .mainHeader {
+  font-family: var(--cursiveFont);
   margin-left: 5rem;
   font-size: 2rem;
   font-weight: bold;
 }
 
 .heading {
-  border-bottom: 1px solid black;
+  font-family: var(--cursiveFont);
   font-size: 1.25rem;
-  padding-bottom: 0.5rem;
   display: inline-block;
   font-weight: bold;
 }
@@ -62,13 +61,12 @@
 
 .flexContainerColumn p {
   font-size: 1rem;
-  font-family: var(--headingFont);
+  font-family: var(--regularFont);
   line-height: 1.25rem;
 }
 
 .paragraph {
   margin-bottom: 0.2rem;
-  font-size: 1rem;
 }
 
 .border {

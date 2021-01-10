@@ -1,5 +1,5 @@
 :root {
-  --black: #1d1d1d;
+  --black: #313131;
   --pink: #da29ac;
   --purple: #8d09f7;
   --indigo: #5e2bff;
@@ -39,7 +39,7 @@ code {
 }
 
 .dark-bg {
-  background-color: rgb(29, 29, 29);
+  background-color: #313131;
   color: white;
   fill: white;
   stroke: white;
