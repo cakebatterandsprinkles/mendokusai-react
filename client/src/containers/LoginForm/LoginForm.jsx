@@ -44,13 +44,21 @@ class LoginForm extends Component {
 
   handleForgotPasswordSubmit(event) {
     event.preventDefault();
-    this.setState({ isSubmitting: true });
     axios
       .post("/reset-request", {
         email: this.state.resetEmail,
       })
       .then(() => {
-        this.setState({ isSubmitted: true, isSubmitting: false });
+        this.setState({ isSubmitting: true });
+      })
+      .then(() => {
+        setTimeout(function() {this.setState({ isSubmitted: true, isSubmitting: false })}.bind(this), 2000);
+      })
+      .then(() => {
+        setTimeout(function() {this.handleCloseModal()}.bind(this), 5000);
+      })
+      .then(() => {
+        setTimeout(function() {this.setState({ isSubmitted: false, isSubmitting: false, resetEmail: "" })}.bind(this), 6000);
       })
       .catch((error) => {
         if (error.response) {
@@ -87,7 +95,7 @@ class LoginForm extends Component {
       return (
         <Aux>
           <div className={classes.modalMainContainer}>
-            <div>
+            <div className={classes.modalContentWrapper}>
               <div className={classes.modalHeadingContainer}>
                 <p className={classes.modalHeading}>Reset Password</p>
               </div>
@@ -96,7 +104,7 @@ class LoginForm extends Component {
                 onSubmit={this.handleForgotPasswordSubmit}
               >
                 <div className={classes.formGroupContainer}>
-                  <label htmlFor="reset-password-email">E-mail address:</label>
+                  <label htmlFor="reset-password-email">Email:</label>
                   <input
                     type="email"
                     name="reset-password-email"
@@ -109,7 +117,7 @@ class LoginForm extends Component {
                 </div>
                 <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
                   <button type="submit" className={classes.btn}>
-                    Reset Password
+                   Reset
                   </button>
                 </div>
               </form>
@@ -129,18 +137,18 @@ class LoginForm extends Component {
       return (
         <div className={classes.submitModalContainer}>
           <img src={BirbImage} alt="bird" className={classes.birbImage} />
-          <p>Omg, is your request being submitted or what?</p>
+          <p className={classes.modalResultText}>Omg, is your request being submitted or what?</p>
         </div>
       );
     } else if (!this.state.isSubmitting && this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
           <img src={Sun} alt="sun" className={classes.birbImage} />
-          <p>Congrats, you've got an email! Check your inbox.</p>
+          <p className={classes.modalResultText}>Congrats, you've got an email! Check your inbox.</p>
         </div>
       );
     }
-    return <p>Oops something is wrong!</p>;
+    return <p className={classes.modalResultText}>Oops something is wrong!</p>;
   }
 
   render() {

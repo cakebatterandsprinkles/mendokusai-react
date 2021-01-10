@@ -9,7 +9,13 @@
 
 .modalMainContainer {
   display: flex;
+  justify-content: space-between;
   color: var(--black) !important;
+  width: 20rem;
+}
+
+.modalContentWrapper {
+  width: 20rem;
 }
 
 .submitModalContainer {
@@ -35,10 +41,6 @@
   box-shadow: var(--boxShadow);
 }
 
-.closingButtonContainer {
-  margin-left: 1rem;
-}
-
 .headingContainer {
   width: 38%;
   border-bottom: 2px solid var(--black);
@@ -46,9 +48,15 @@
 }
 
 .modalHeadingContainer {
-  width: 50%;
+  width: 60%;
   border-bottom: 1.5px solid var(--black);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.modalHeading {
+  font-family: var(--cursiveFont);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 :global(.dark-bg) .headingContainer {
@@ -63,13 +71,6 @@
 .heading {
   font-size: 1.75rem;
   margin-bottom: 1rem;
-}
-
-.modalHeading {
-  font-family: var(--headingFont);
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .btn {
@@ -96,7 +97,7 @@
 }
 
 .resetButton {
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .margin {
@@ -121,7 +122,7 @@
   display: flex;
   align-items: center;
   width: 20%;
-  margin-right: 3rem;
+  margin-right: 1rem !important;
 }
 
 .resetPasswordLink {
@@ -149,7 +150,7 @@
 .modal {
   background-color: var(--offwhite);
   z-index: 10000;
-  padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+  padding: 1.5rem;
   border-radius: 2rem;
   border: var(--border);
 }
@@ -178,6 +179,10 @@
   -webkit-box-shadow: var(--boxShadow);
   -moz-box-shadow: var(--boxShadow);
   box-shadow: var(--boxShadow);
+}
+
+.modalResultText {
+  font-family: var(--cursiveFont);
 }
 
 @media (max-width: 1400px) {
@@ -222,9 +227,11 @@
 
 /* Xsmall Screens */
 @media (max-width: 600px) {
-  .heading {
+  .heading,
+  .modalHeading {
     font-size: 1.25rem;
   }
+
   .mainContainer {
     width: 80%;
     margin: auto;
@@ -257,6 +264,14 @@
   .btn {
     font-weight: bold;
     font-size: 0.9rem;
+  }
+
+  .modalMainContainer {
+    width: 15rem;
+  }
+
+  .modalContentWrapper {
+    width: 15rem;
   }
 
   .resetPasswordLink {
