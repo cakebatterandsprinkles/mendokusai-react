@@ -5,6 +5,16 @@ import Button from "../Button/Button";
 import classes from "./NavbarLanding.module.css";
 
 class NavbarLanding extends Component {
+  constructor(props) {
+    super(props);
+    this.colorModeRef = React.createRef();
+  }
+
+  rotateIcon = () => {
+    const icon = this.colorModeRef.current;
+    icon.classList.toggle(`${classes.iconRotated}`)
+  }
+
   reverseColor = () => {
     const page = document.body;
     const hc = document.querySelectorAll(".headingContainer");
@@ -13,7 +23,9 @@ class NavbarLanding extends Component {
     hcArray.forEach((hc) => {
       hc.classList.toggle("light-border");
     });
+    this.rotateIcon()
   };
+
   render() {
     return (
       <div className={classes.flexContainerRow}>
@@ -29,7 +41,7 @@ class NavbarLanding extends Component {
         <div className={classes.flexContainerRowRight}>
           <Button name="Sign Up" link="/signup" />
           <Button name="Login" link="/login" />
-          <div className={classes.changeColorBtn} onClick={this.reverseColor}>
+          <div ref={this.colorModeRef} className={classes.changeColorBtn} onClick={this.reverseColor}>
             <p>◑</p>
           </div>
         </div>
