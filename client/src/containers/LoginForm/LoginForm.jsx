@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import classes from "./LoginForm.module.css";
-import Aux from "../../hoc/Aux";
-import Modal from "react-modal";
-import ClosingButton from "../../assets/images/closeButton.png";
-import BirbImage from "../../assets/images/birb.png";
-import Sun from "../../assets/images/sunny.png";
 import axios from "axios";
+import React, { Component } from "react";
+import Modal from "react-modal";
 import { connect } from "react-redux";
+import BirbImage from "../../assets/images/birb.png";
+import ClosingButton from "../../assets/images/closeButton.png";
+import Sun from "../../assets/images/sunny.png";
+import Aux from "../../hoc/Aux";
 import * as actionTypes from "../../store/actions/actionTypes";
+import classes from "./LoginForm.module.css";
 
 class LoginForm extends Component {
   constructor() {
@@ -149,7 +149,7 @@ class LoginForm extends Component {
       <Aux>
         <div className={classes.mainContainer}>
           <div className={classes.headingContainer}>
-            <p className={classes.heading}>Login</p>
+            <p className={classes.heading}>Login from here</p>
           </div>
           <form onSubmit={this.handleLoginSubmit}>
             <div className={`${classes.formGroupContainer} ${classes.margin}`}>

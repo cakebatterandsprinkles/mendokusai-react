@@ -1,4 +1,5 @@
 .mainContainer {
+  font-family: var(--cursiveFont);
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -7,7 +8,7 @@
 }
 
 .headingContainer {
-  width: 40%;
+  width: 38%;
   border-bottom: 2px solid var(--black);
   margin-bottom: 2rem;
 }
@@ -25,20 +26,19 @@
 }
 
 .heading {
-  font-family: var(--headingFont);
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
 }
 
 .btn {
-  padding: 0.6rem 0.8rem;
+  padding: 0.5rem 0.6rem;
   margin-left: auto;
   font-family: var(--regularFont);
-  font-size: 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
   color: var(--offwhite);
   background-color: var(--purple);
   cursor: pointer;
-  font-size: 1.1rem;
   border: none;
   border-radius: 10px;
 }
@@ -59,8 +59,10 @@
 }
 
 .formGroupContainer input {
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
   font-size: 0.9rem;
+  font-family: var(--cursiveFont);
+  font-weight: bold;
   width: 80%;
   border: var(--border);
   color: var(--darkgray);
@@ -68,9 +70,11 @@
 }
 
 .formGroupContainer label {
+  font-family: var(--regularFont);
+  font-weight: 500;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
   width: 20%;
   margin-right: 3rem;
 }

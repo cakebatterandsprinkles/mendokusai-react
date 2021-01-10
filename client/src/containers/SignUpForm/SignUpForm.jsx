@@ -1,12 +1,11 @@
-import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
+import React, { Component } from "react";
 import Modal from "react-modal";
-import Aux from "../../hoc/Aux";
-import ClosingButton from "../../assets/images/closeButton.png";
+import { connect } from "react-redux";
 import Sun from "../../assets/images/sunny.png";
-import classes from "./SignUpForm.module.css";
+import Aux from "../../hoc/Aux";
 import * as actionTypes from "../../store/actions/actionTypes";
+import classes from "./SignUpForm.module.css";
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -85,7 +84,7 @@ class SignUpForm extends Component {
       <Aux>
         <div className={classes.mainContainer}>
           <div className={classes.headingContainer}>
-            <p className={classes.heading}>Sign Up</p>
+            <p className={classes.heading}>Sign Up from here</p>
           </div>
           <form>
             <div
@@ -102,7 +101,7 @@ class SignUpForm extends Component {
             <div className={classes.subTextContainer}>
               <p className={classes.subText}>
                 Note: Calendar will call you with this name. Choose whatever
-                name you like.
+                name you like. You can change it later too.
               </p>
             </div>
             <div
