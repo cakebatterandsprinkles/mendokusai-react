@@ -32,6 +32,8 @@
 }
 
 .welcomeText {
+  font-family: var(--cursiveFont);
+  font-size: 1.25rem;
   margin-left: 1rem;
   color: var(--black) !important;
 }
@@ -48,13 +50,13 @@
   color: var(--black) !important;
 }
 
-@media (max-width: 992px) {
-  .skewedArrow {
-    display: none;
-  }
-
+@media (max-width: 900px) {
   .flexContainerRowRight {
     margin-right: 2rem;
+  }
+  .changeColorBtn {
+    font-size: 1.5rem;
+    margin-right: 0;
   }
 }
 
@@ -65,6 +67,8 @@
   }
 
   .flexContainerRowRight {
+    justify-content: center;
+    align-items: center;
     margin-right: 0;
     margin-bottom: 0.5rem;
   }
@@ -73,12 +77,10 @@
     margin-bottom: 0;
   }
 
-  .arrow {
-    height: 3rem;
-    width: auto;
-  }
-
   .welcomeText {
-    display: none;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-left: 0;
   }
 }
