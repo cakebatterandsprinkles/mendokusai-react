@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import classes from "./ResetPassword.module.css";
-import Aux from "../../hoc/Aux";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import Aux from "../../hoc/Aux";
 import * as actionTypes from "../../store/actions/actionTypes";
+import classes from "./ResetPassword.module.css";
 
 const ResetPassword = (props) => {
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const showPasswordRef1 = React.useRef();
+  const showPasswordRef2 = React.useRef();
+  const magnifyingGlass = React.useRef();
   const queryParams = new URLSearchParams(props.location.search);
 
   const email = queryParams.get("email");
@@ -14,10 +19,7 @@ const ResetPassword = (props) => {
   if (!email || !token) {
     props.history.push("/login");
   }
-
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -39,6 +41,18 @@ const ResetPassword = (props) => {
     });
   };
 
+  const handleMagnifyingGlass = () => {
+    if (this.showPasswordRef1.current.type === 'password') {
+      this.showPasswordRef1.current.type = 'text'
+      this.showPasswordRef2.current.type = 'text'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    } else if (this.showPasswordRef1.current.type === 'text') {
+      this.showPasswordRef1.current.type = 'password'
+      this.showPasswordRef2.current.type = 'password'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    }
+  }
+
   return (
     <Aux>
       <div className={classes.mainContainer}>
@@ -48,12 +62,14 @@ const ResetPassword = (props) => {
         <form className={classes.loginForm} onSubmit={handleSubmit}>
           <div className={classes.formGroupContainer}>
             <label htmlFor="password">New Password:</label>
+            <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
             <input
               type="password"
               name="password"
               id="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              ref={showPasswordRef1}
             />
           </div>
           <div className={classes.formGroupContainer}>
@@ -64,6 +80,7 @@ const ResetPassword = (props) => {
               id="repeatPassword"
               value={repeatPassword}
               onChange={(event) => setRepeatPassword(event.target.value)}
+              ref={showPasswordRef2}
             />
           </div>
           <div className={classes.btnWrapper}>
