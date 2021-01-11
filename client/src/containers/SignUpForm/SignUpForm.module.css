@@ -165,10 +165,8 @@ input:focus,
   border: 1px solid var(--black);
   border-radius: 20px;
   margin: 0 0.5rem;
-}
-
-.magnifyingGlass:hover {
   cursor: pointer;
+  background-color: var(--offwhite);
 }
 
 .magnifyingGlassActive {

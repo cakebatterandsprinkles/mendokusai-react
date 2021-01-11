@@ -139,7 +139,7 @@ class SignUpForm extends Component {
               className={`${classes.formGroupContainer} ${classes.marginBottom}`}
             >
               <label htmlFor="password">Password:</label>
-            <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+              <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
               <input
                 type="password"
                 name="password"

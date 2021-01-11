@@ -28,6 +28,8 @@ class LoginForm extends Component {
       this
     );
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.showPasswordRef = React.createRef();
+    this.magnifyingGlass = React.createRef();
   }
 
   handleInputChange = (event) => {
@@ -66,6 +68,16 @@ class LoginForm extends Component {
           this.props.setError(error.response.data);
         }
       });
+  }
+
+  handleMagnifyingGlass = () => {
+    if (this.showPasswordRef.current.type === 'password') {
+      this.showPasswordRef.current.type = 'text'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    } else if (this.showPasswordRef.current.type === 'text') {
+      this.showPasswordRef.current.type = 'password'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    }
   }
 
   handleLoginSubmit(e) {
@@ -171,11 +183,13 @@ class LoginForm extends Component {
             </div>
             <div className={classes.formGroupContainer}>
               <label htmlFor="password">Password:</label>
+              <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
               <input
                 type="password"
                 name="password"
                 id="password"
                 onChange={this.handleInputChange}
+                ref= {this.showPasswordRef}
               ></input>
             </div>
             <div className={classes.resetPasswordLink}>
