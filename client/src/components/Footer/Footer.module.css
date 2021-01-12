@@ -1,0 +1,46 @@
+.link {
+  color: var(--purple);
+  text-decoration: none;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: var(--purple);
+  text-decoration-color: var(--purple);
+}
+
+.footer {
+  color: var(--black) !important;
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(var(--offwhite), var(--lightgray));
+}
+
+.footerText {
+  display: flex;
+}
+
+.star {
+  color: orange;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .footerText > a {
+    font-size: 0.65rem;
+  }
+}

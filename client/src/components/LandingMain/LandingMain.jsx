@@ -1,5 +1,6 @@
 import React from "react";
 import Mendokusai from "../../assets/images/mendokusai.png";
+import Footer from "../Footer/Footer";
 import classes from "./LandingMain.module.css";
 
 const LandingMain = () => {
@@ -49,30 +50,7 @@ const LandingMain = () => {
             </div>
           </div>
         </div>
-        <div className={classes.footer}>
-          <div className={classes.footerText}>
-            <p>Reach me from: </p>
-            <a
-              href="mailto:yagmurcetin@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={classes.link}
-            >
-              yagmurcetin@gmail.com
-            </a>
-          </div>
-          <div className={classes.footerText}>
-            <p>Source code: </p>
-            <a
-              href="https://github.com/cakebatterandsprinkles/mendokusai-react"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={classes.link}
-            >
-              https://github.com/cakebatterandsprinkles
-            </a>
-          </div>
-        </div>
+        <Footer/>
       </div>
     </div>
   );
