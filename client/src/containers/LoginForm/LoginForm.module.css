@@ -1,3 +1,9 @@
+.mainWrapper {
+  padding-bottom: 5rem;
+  width: 100%;
+  margin-top: 4rem;
+}
+
 .mainContainer {
   font-family: var(--cursiveFont);
   display: flex;
@@ -212,52 +218,47 @@
   }
 }
 
-/* Large Screens */
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (max-width: 1200px) {
   .mainContainer {
     width: 50%;
   }
 }
 
-/* Medium Screens */
-@media (min-width: 768px) and (max-width: 992px) {
+@media (max-width: 992px) {
   .heading {
     font-size: 1.5rem;
   }
   .mainContainer {
     width: 60%;
   }
+  .mainWrapper {
+    margin-top: 0;
+  }
 }
 
-/* Small Screens */
-@media (min-width: 600px) and (max-width: 768px) {
+@media (max-width: 768px) {
+  .mainWrapper {
+    padding-bottom: 3rem;
+  }
+
   .heading {
     font-size: 1.5rem;
   }
+
+  .headingContainer {
+    width: 60%;
+    border-bottom: 0.09rem solid var(--black);
+    margin-bottom: 0.5rem;
+  }
+
   .mainContainer {
     width: 70%;
     margin: auto;
     padding-top: 3rem;
   }
-}
 
-/* Xsmall Screens */
-@media (max-width: 600px) {
-  .heading,
-  .modalHeading {
-    font-size: 1.25rem;
-  }
-
-  .mainContainer {
-    width: 80%;
-    margin: auto;
-    padding-top: 4rem;
-  }
-
-  .headingContainer {
-    width: 40%;
-    border-bottom: 0.09rem solid var(--black);
-    margin-bottom: 1.5rem;
+  .formGroupContainer {
+    margin-bottom: 0.3rem;
   }
 
   .formGroupContainer label {
@@ -266,20 +267,69 @@
   }
 
   .formGroupContainer input {
-    padding: 0.4rem;
+    padding: 0.2rem 0.3rem;
     font-size: 0.8rem;
     width: 70%;
     border: var(--border);
   }
+  .form {
+    width: 100%;
+  }
 
   .subText {
-    font-size: 0.75rem;
-    width: 70%;
+    font-size: 0.6rem;
+    width: auto;
+  }
+
+  .subTextContainer {
+    margin-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .checkboxInput {
+    margin-right: 0.3rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .magnifyingGlass {
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    margin: 0 0.3rem;
   }
 
   .btn {
-    font-weight: bold;
-    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .btnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  .link {
+    font-size: 0.7rem;
+  }
+
+  .modalHeading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .headingContainer {
+    width: 50%;
+  }
+
+  .mainContainer {
+    width: 80%;
+  }
+
+  .heading {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
   }
 
   .modalMainContainer {
@@ -288,9 +338,5 @@
 
   .modalContentWrapper {
     width: 15rem;
-  }
-
-  .resetPasswordLink {
-    font-size: 0.8rem;
   }
 }

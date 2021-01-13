@@ -52,7 +52,8 @@
 
 @media (max-width: 600px) {
   .errorContainer {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     padding: 0 0.75rem;
+    margin-top: 7rem;
   }
 }

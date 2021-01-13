@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import BirbImage from "../../assets/images/birb.png";
 import ClosingButton from "../../assets/images/closeButton.png";
 import Sun from "../../assets/images/sunny.png";
+import Footer from "../../components/Footer/Footer";
 import Aux from "../../hoc/Aux";
 import * as actionTypes from "../../store/actions/actionTypes";
 import classes from "./LoginForm.module.css";
@@ -167,42 +168,45 @@ class LoginForm extends Component {
     let currentModal = this.renderModalContent();
     return (
       <Aux>
-        <div className={classes.mainContainer}>
-          <div className={classes.headingContainer}>
-            <p className={classes.heading}>Login from here</p>
+        <div className={classes.mainWrapper}>
+          <div className={classes.mainContainer}>
+            <div className={classes.headingContainer}>
+              <p className={classes.heading}>Login from here</p>
+            </div>
+            <form onSubmit={this.handleLoginSubmit}>
+              <div className={`${classes.formGroupContainer} ${classes.margin}`}>
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  onChange={this.handleInputChange}
+                ></input>
+              </div>
+              <div className={classes.formGroupContainer}>
+                <label htmlFor="password">Password:</label>
+                <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  onChange={this.handleInputChange}
+                  ref= {this.showPasswordRef}
+                ></input>
+              </div>
+              <div className={classes.resetPasswordLink}>
+                <p className={classes.link} onClick={this.handleOpenModal}>
+                  Remembering passwords is bothersome.
+                </p>
+              </div>
+              <div className={classes.btnWrapper}>
+                <button className={classes.btn} type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-          <form onSubmit={this.handleLoginSubmit}>
-            <div className={`${classes.formGroupContainer} ${classes.margin}`}>
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                onChange={this.handleInputChange}
-              ></input>
-            </div>
-            <div className={classes.formGroupContainer}>
-              <label htmlFor="password">Password:</label>
-              <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                onChange={this.handleInputChange}
-                ref= {this.showPasswordRef}
-              ></input>
-            </div>
-            <div className={classes.resetPasswordLink}>
-              <p className={classes.link} onClick={this.handleOpenModal}>
-                Remembering passwords is bothersome.
-              </p>
-            </div>
-            <div className={classes.btnWrapper}>
-              <button className={classes.btn} type="submit">
-                Login
-              </button>
-            </div>
-          </form>
+          <Footer/>
         </div>
         <Modal
           isOpen={this.state.showModal}
