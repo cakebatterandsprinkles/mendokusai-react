@@ -1,8 +1,8 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import classes from "./Settings.module.css";
 import * as actionTypes from "../../store/actions/actionTypes";
+import classes from "./Settings.module.css";
 
 class Settings extends Component {
   constructor(props) {
@@ -17,6 +17,10 @@ class Settings extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.showPasswordRefCurrent = React.createRef();
+    this.showPasswordRefNew1 = React.createRef();
+    this.showPasswordRefNew2 = React.createRef();
+    this.magnifyingGlass = React.createRef();
   }
 
   setUserName = () => {
@@ -66,11 +70,25 @@ class Settings extends Component {
       });
   };
 
+  handleMagnifyingGlass = () => {
+    if (this.showPasswordRefCurrent.current.type === 'password') {
+      this.showPasswordRefCurrent.current.type = 'text'
+      this.showPasswordRefNew1.current.type = 'text'
+      this.showPasswordRefNew2.current.type = 'text'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    } else if (this.showPasswordRefCurrent.current.type === 'text') {
+      this.showPasswordRefCurrent.current.type = 'password'
+      this.showPasswordRefNew1.current.type = 'password'
+      this.showPasswordRefNew2.current.type = 'password'
+      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    }
+  }
+
   render() {
     return (
       <div className={classes.mainContainer}>
         <div className={classes.headingContainer}>
-          <p className={classes.heading}>Settings</p>
+          <p className={classes.heading}>Change Settings</p>
         </div>
         <form onSubmit={this.submitForm}>
           <div
@@ -96,11 +114,13 @@ class Settings extends Component {
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="currentPassword">Current Password:</label>
+            <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
             <input
               type="password"
               name="currentPassword"
               id="currentPassword"
               onChange={this.handleInputChange}
+              ref= {this.showPasswordRefCurrent}
             ></input>
           </div>
           <div
@@ -112,6 +132,7 @@ class Settings extends Component {
               name="newPassword"
               id="newPassword"
               onChange={this.handleInputChange}
+              ref= {this.showPasswordRefNew1}
             ></input>
           </div>
           <div
@@ -123,6 +144,7 @@ class Settings extends Component {
               name="repeatNewPassword"
               id="repeatNewPassword"
               onChange={this.handleInputChange}
+              ref= {this.showPasswordRefNew2}
             ></input>
           </div>
           <div className={classes.btnWrapper}>
