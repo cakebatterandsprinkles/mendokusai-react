@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import classes from "./ErrorMessage.module.css";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions/actionTypes";
+import classes from "./ErrorMessage.module.css";
 
 const ErrorMessage = (props) => {
   const [visibilityClass, setVisibilityClass] = useState("");

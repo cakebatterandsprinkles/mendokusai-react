@@ -11,10 +11,15 @@
   width: auto;
 }
 
-.flexContainerRow {
+.flexContainerRow,
+.flexContainerRowBottom {
   display: flex;
   justify-content: space-between;
   background-color: white !important;
+}
+
+.logoContainer {
+  display: flex;
 }
 
 .mainFlexContainer {
@@ -60,6 +65,7 @@
   justify-content: center;
   text-align: center;
   cursor: pointer;
+  color: var(--black);
 }
 
 .linkContainerBottom {
@@ -83,14 +89,6 @@
   margin: 0.8rem 1.2rem 0 1.2rem;
 }
 
-.changeColorBtn {
-  font-size: 3rem;
-  padding: 1.5rem;
-  margin-right: 1rem;
-  cursor: pointer;
-  color: var(--black) !important;
-}
-
 .navbarLink {
   text-decoration: none;
   height: 2.25rem;
@@ -111,13 +109,9 @@
   background-color: var(--lightgray);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .mainFlexContainer {
     flex-direction: column;
-  }
-
-  .flexContainerRow {
-    justify-content: flex-start;
   }
 
   .divider {
@@ -136,13 +130,6 @@
     right: 0.8rem;
   }
 
-  .changeColorBtn {
-    font-size: 2.8rem;
-    padding: 0.2rem 0.5rem 0.8rem 0.5rem;
-    margin: 0 1rem;
-    cursor: pointer;
-  }
-
   .calendarBtn {
     font-size: 1rem;
     height: 2rem;
@@ -153,10 +140,18 @@
 }
 
 @media (max-width: 600px) {
+  .flexContainerRow,
+  .logoContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .logo {
     font-family: var(--cursiveFont);
     font-size: 1.25rem;
-    margin: 0.5rem;
+    margin: 0.25rem 0.5rem 0rem 0.5rem;
+    border-bottom: 1px solid var(--black);
   }
 
   .settingsIcon {
@@ -171,8 +166,7 @@
   }
 
   .catimg {
-    display: inline-block;
-    height: 2.5rem;
-    width: auto;
+    height: auto;
+    width: 3rem;
   }
 }

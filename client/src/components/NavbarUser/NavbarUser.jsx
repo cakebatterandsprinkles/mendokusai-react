@@ -35,15 +35,17 @@ class NavbarUser extends Component {
     return (
       <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
-          <Link className={classes.logo} to="/user">mendokusai</Link>
-          <img
-            src={mendokusai}
-            alt="cat hanging upside down"
-            className={classes.catimg}
-          />
+          <div className={classes.logoContainer}>
+            <Link className={classes.logo} to="/user">mendokusai</Link>
+            <img
+              src={mendokusai}
+              alt="cat hanging upside down"
+              className={classes.catimg}
+            />
+          </div>
           <NavbarInfoBox name={this.props.username} />
         </div>
-        <div className={`${classes.flexContainerRow} ${classes.divider}`}>
+        <div className={`${classes.flexContainerRowBottom} ${classes.divider}`}>
           <NavLink
             className={classes.navbarLink}
             to="/user"
