@@ -7,9 +7,12 @@ const LandingMain = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.mainWrapper}>
+        <p className={classes.mainHeaderSmallScreen}>Hello there!</p>
+        <p className={classes.headerSubTextSmallScreen}>Can't organize stuff in your mind? You're at the right place!</p>
         <img src={Mendokusai} className={classes.monsterAndBirdImg} alt="a monster and bird ready to fight"/>
         <div className={classes.contentWrapper}>
-          <p className={classes.mainHeader}>Hello there!</p>
+          <p className={classes.mainHeaderLargeScreen}>Hello there!</p>
+          <p className={classes.headerSubTextLargeScreen}>Can't organize stuff in your mind? You're at the right place!</p>
           <div className={classes.questions}>
             <p className={classes.heading}>What does this website do?</p>
             <div className={classes.flexContainerColumn}>

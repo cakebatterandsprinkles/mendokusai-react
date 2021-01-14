@@ -7,7 +7,7 @@
 }
 
 .mainWrapper {
-  width: 80vw;
+  width: 85vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,16 +21,28 @@
 .questions {
   margin: 2.5rem 0 0 5rem;
 }
-.mainHeader {
+
+.mainHeaderLargeScreen {
   font-family: var(--cursiveFont);
   margin-left: 5rem;
   font-size: 2rem;
   font-weight: bold;
 }
 
+.headerSubTextLargeScreen {
+  font-family: var(--cursiveFont);
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0.2rem 5rem;
+}
+
+.mainHeaderSmallScreen,
+.headerSubTextSmallScreen {
+  display: none;
+}
+
 .heading {
   font-family: var(--cursiveFont);
-  font-size: 1.25rem;
+  font-size: 1rem;
   display: inline-block;
   font-weight: bold;
 }
@@ -49,8 +61,8 @@
 }
 
 .flexContainerRow p {
-  font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
 }
 
 .flexContainerColumn {
@@ -60,19 +72,55 @@
 }
 
 .flexContainerColumn p {
-  font-size: 1rem;
-  font-family: var(--regularFont);
   line-height: 1.25rem;
 }
 
 .paragraph {
   margin-bottom: 0.2rem;
+  font-size: 0.9rem;
 }
 
 .border {
   border: 2px solid var(--black);
   margin-right: 2rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 1400px) {
+  .mainHeaderSmallScreen {
+    display: inline;
+    font-family: var(--cursiveFont);
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .headerSubTextSmallScreen {
+    display: inline;
+    font-family: var(--cursiveFont);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .monsterAndBirdImg {
+    max-width: 56vw;
+  }
+
+  .mainHeaderLargeScreen,
+  .headerSubTextLargeScreen {
+    display: none;
+  }
+
+  .mainWrapper {
+    flex-direction: column;
+    padding: 0 4rem;
+  }
+
+  .questions {
+    margin: 2.5rem 0 1rem 0;
+    max-width: 56vw;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -85,27 +133,19 @@
     font-size: 1.25rem;
   }
 
-  .questions {
-    margin: 2.5rem 0 0 4rem;
-  }
-
   .mainWrapper {
-    width: 90vw;
+    padding: 0;
   }
 }
 
 @media (max-width: 1000px) {
-  .mainWrapper {
-    flex-direction: column;
-    padding: 0 4rem;
+  .questions {
+    margin: 0 0 1rem 0;
+    max-width: 70vw;
   }
 
   .mainHeader {
     margin-left: 0;
-  }
-
-  .questions {
-    margin: 2.5rem 0 0 0;
   }
 
   .mainWrapper {
@@ -122,11 +162,28 @@
   }
 
   .monsterAndBirdImg {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    max-width: 70vw;
   }
 }
 
 @media (max-width: 700px) {
+  .mainHeaderSmallScreen {
+    font-size: 1.75rem;
+  }
+
+  .headerSubTextSmallScreen {
+    font-size: 0.9rem;
+  }
+
+  .monsterAndBirdImg {
+    max-width: 90vw;
+  }
+
+  .questions {
+    max-width: 90vw;
+  }
+
   .mainWrapper {
     width: 100vw;
     padding: 0 2.5rem;
@@ -136,26 +193,34 @@
     font-size: 1.25rem;
   }
 
-  .questions {
-    margin: 1.5rem 0 0 0;
-  }
-
   .heading {
     font-size: 1rem;
   }
 
+  .flexContainerColumn p,
   .flexContainerRow p {
-    font-size: 0.85rem;
-  }
-
-  .flexContainerColumn p {
     font-size: 0.85rem;
   }
 }
 
 @media (max-width: 400px) {
+  .mainHeaderSmallScreen {
+    font-size: 1.5rem;
+  }
+
+  .headerSubTextSmallScreen {
+    text-align: center;
+    width: 90vw;
+    font-size: 0.65rem;
+  }
+
   .contentWrapper {
     width: 90vw;
-    padding-bottom: 2rem;
+  }
+
+  .flexContainerColumn p,
+  .flexContainerRow p {
+    line-height: 1rem;
+    font-size: 0.7rem;
   }
 }
