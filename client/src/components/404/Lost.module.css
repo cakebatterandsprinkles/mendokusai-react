@@ -20,27 +20,30 @@
   margin-left: 3rem;
 }
 
+.text {
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+  margin-top: 0.25rem;
+}
+
 .emphasis {
+  font-family: var(--cursiveFont);
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 2rem;
   color: white;
   background: rgb(20, 20, 20);
-  padding: .5rem 1rem;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
 }
 
-.footnote {
-  font-size: 1rem;
-  margin-top: 2rem;
-}
-
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .img {
     max-height: 25rem;
   }
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
   .textContainer {
     width: 20rem;
     margin-left: 2rem;
@@ -50,23 +53,34 @@
     font-size: 1rem;
   }
 
-  .footnote {
-    font-size: .8rem;
+  .text {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
   }
 }
 
-@media(max-width: 850px) {
+@media (max-width: 850px) {
+  .textContainer {
+    width: 15rem;
+    margin: 0.5rem 0 0.5rem 0;
+    font-size: 0.8rem;
+  }
+
+  .emphasis {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footnote {
+    margin-top: 0.5rem;
+  }
+
   .img {
-    max-height: 20rem;
+    max-height: 15rem;
   }
 
   .mainContainer {
-    height: 90vh;
+    height: auto;
     flex-direction: column;
-  }
-
-  .textContainer {
-    margin-top: 2rem;
-    margin-left: 0;
   }
 }
