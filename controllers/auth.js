@@ -9,6 +9,9 @@ const validationSignUp = (name, email, password, repeatPassword) => {
   if (name.length < 2) {
     return "Username must be at least 2 characters long.";
   }
+  if (name.length > 25) {
+    return "Username must be shorter than 25 characters.";
+  }
   if (!email.includes("@")) {
     return "Please enter a valid e-mail address";
   }
@@ -328,6 +331,10 @@ exports.postSettings = (req, res, next) => {
     if (newPassword.length < 8) {
       return res.status(400).send("Password must have at least 8 characters.");
     }
+  }
+
+  if (name.length > 25) {
+    return res.status(400).send("Username must be shorter than 25 characters.");
   }
 
   try {
