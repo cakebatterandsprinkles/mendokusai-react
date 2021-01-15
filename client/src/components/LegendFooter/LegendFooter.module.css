@@ -2,15 +2,16 @@
   color: var(--black) !important;
   position: fixed;
   bottom: 0;
-  padding: 1.2rem;
+  padding: 0.8rem;
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: var(--transparentLightGray);
-  border-top: 2px solid var(--black);
+  border-top: 1px solid var(--darkgray);
 }
 
 .footerText {
+  font-family: var(--cursiveFont);
   font-size: 1rem;
   font-weight: bold;
 }
@@ -22,8 +23,9 @@
 }
 
 .legendItem > img {
-  width: 1.5rem;
+  width: 1rem;
   margin-right: 0.5rem;
+  background-color: var(--offwhite);
 }
 
 @media (max-width: 855px) {
