@@ -313,7 +313,7 @@ class Today extends Component {
                                             className={classes.weatherIcon}
                                             alt="weather icon"/>
                                         <p className={classes.data}>
-                                            {this.props.weatherData.weather[0].main}
+                                            {this.props.weatherData.weather[0].main},
                                         </p>
                                         {this.calculateTemp()
                                             ? (
