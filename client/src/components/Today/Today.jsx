@@ -133,11 +133,12 @@ class Today extends Component {
 
     handleCloseModal() {
         this.setState({showModal: false});
+        this.setState({addInput:""});
     }
 
     handleInputChange(event) {
         this.setState({
-            [event.target.name]: event.target.value
+          [event.target.name]: event.target.value
         });
     }
 
