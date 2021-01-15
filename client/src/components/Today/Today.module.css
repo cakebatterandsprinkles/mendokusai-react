@@ -3,18 +3,32 @@
   flex-direction: column;
   flex: 1;
   height: 80vh;
-  padding: 1.5rem 3rem;
-  margin: 0.5rem 3rem 5rem 3rem;
+  margin: 1rem 3rem 5rem 3rem;
   border-radius: 10px;
-  background-color: rgba(185, 185, 185, 0.26);
+  background-color: var(--lightgray);
   overflow-y: auto;
 }
 
 .flexContainerColumn {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 0.8rem;
+  padding: 1rem 2rem 1rem 2rem;
+  border-bottom: 1px solid var(--darkgray);
+  background-color: var(--offwhite);
+}
+
+.flexContainerRowHeading {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 2rem 0 2rem;
+}
+
+.flexContainerColumnToDo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5rem 2rem 0 2rem;
 }
 
 .flexContainerRow {
@@ -24,14 +38,35 @@
   margin-top: 0.5rem;
 }
 
+.flexContainerRowToDo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+}
+
 .dataContainer {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
 }
 
 .data {
   margin-right: 1rem;
+}
+
+.warning {
+  font-family: var(--regularFont);
+  font-size: 0.9rem;
+}
+
+.warning > * {
+  margin-top: 0.5rem;
+}
+
+.star {
+  color: var(--yellow);
 }
 
 .tempData:hover {
@@ -44,10 +79,10 @@
 .todo {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.377);
   margin-top: 0.25rem;
   padding-top: 0.5rem;
   padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--offwhite);
 }
 
 .todoWrapper {
@@ -56,29 +91,35 @@
   overflow-wrap: normal;
 }
 
-.bgBlack {
-  background-color: var(--black);
-  color: white;
-  padding: 0.5rem 1rem;
+.heading {
+  display: flex;
+  align-items: center;
   font-size: 1.25rem;
-  border-radius: 10px;
-  font-family: var(--headingFont);
+  font-family: var(--cursiveFont);
+  border-bottom: 1px solid var(--darkgray);
 }
 
 .date {
+  font-family: var(--cursiveFont);
   font-size: 2.5rem;
   margin-bottom: 0.25rem;
 }
 
 .day {
+  font-family: var(--cursiveFont);
   font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.5rem;
   background: var(--lightgray);
   border-radius: 10px;
   text-align: center;
-  width: 6rem;
+  width: auto;
+}
+
+.dataContainer {
+  font-family: var(--cursiveFont);
 }
 
 .addIcon {
@@ -214,11 +255,6 @@
     font-size: 2rem;
   }
 
-  .mainContainer {
-    margin: 0.5rem 1.5rem 5rem 1.5rem;
-    padding: 1.5rem 2rem;
-  }
-
   .addIcon {
     margin-top: 0.5rem;
   }
@@ -226,24 +262,13 @@
 
 @media (max-width: 1200px) {
   .mainContainer {
-    height: 79vh;
+    height: 75vh;
     margin: 1.5rem 4rem 1rem 4rem;
   }
 
   .modal {
     width: 27.5rem;
     padding: 1.8rem;
-  }
-
-  .dataContainer {
-    flex-direction: row;
-  }
-}
-
-@media (max-width: 900px) {
-  .mainContainer {
-    height: 81vh;
-    margin: 1.5rem 4rem 1rem 4rem;
   }
 }
 
@@ -268,10 +293,14 @@
 }
 
 @media (max-width: 600px) {
+  .flexContainerColumn {
+    flex-direction: column;
+  }
+
   .mainContainer {
     margin: 0.5rem 0 3rem 0;
     border-radius: 0;
-    height: 75vh;
+    min-height: 72vh;
   }
 
   .dataContainer {
@@ -303,5 +332,15 @@
   }
   .formGroupContainer input {
     font-size: 0.8rem;
+  }
+
+  .day {
+    width: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  .day {
+    width: 80%;
   }
 }
