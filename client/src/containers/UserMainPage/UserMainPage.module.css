@@ -7,18 +7,10 @@
   position: relative;
 }
 
-.wrapper {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  color: var(--darkgray) !important;
-}
-
 .flexRowContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  max-height: 90vh;
 }
 
 .calendarButton {
