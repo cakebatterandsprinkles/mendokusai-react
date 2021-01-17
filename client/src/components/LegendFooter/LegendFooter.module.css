@@ -25,7 +25,6 @@
 .legendItem > img {
   width: 1rem;
   margin-right: 0.5rem;
-  background-color: var(--offwhite);
 }
 
 @media (max-width: 855px) {

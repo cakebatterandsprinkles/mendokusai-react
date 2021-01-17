@@ -1,24 +1,24 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions/actionTypes";
 import Modal from "react-modal";
-import { renderTodoCheckbox, renderTodos } from "../../util/todo";
+import { connect } from "react-redux";
+import AddIcon from "../../assets/images/addbutton.png";
+import Circle from "../../assets/images/circle.png";
+import { default as CloseButton, default as ClosingButton } from "../../assets/images/closeButton.png";
+import Star from "../../assets/images/star.png";
+import Triangle from "../../assets/images/triangle.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
 import Aux from "../../hoc/Aux";
-import classes from "./Calendar.module.css";
-import Drawer from "../Drawer/Drawer";
-import CloseButton from "../../assets/images/closeButton.png";
-import Circle from "../../assets/images/circle.png";
-import Triangle from "../../assets/images/triangle.png";
-import Star from "../../assets/images/star.png";
-import AddIcon from "../../assets/images/addbutton.png";
-import ClosingButton from "../../assets/images/closeButton.png";
+import * as actionTypes from "../../store/actions/actionTypes";
 import {
-  getMonthName,
   getDaysInMonth,
-  getFirstDayOfMonth,
-  setCurrentDay,
+  getFirstDayOfMonth, getMonthName,
+
+
+  setCurrentDay
 } from "../../util/date";
+import { renderTodoCheckbox, renderTodos } from "../../util/todo";
+import Drawer from "../Drawer/Drawer";
+import classes from "./Calendar.module.css";
 
 class Calendar extends Component {
   constructor() {
@@ -467,7 +467,7 @@ class Calendar extends Component {
                 <div className={classes.heading}>{this.state.date}</div>
                 <p className={classes.leftArrow}>➜</p>
                 <div className={classes.subheading}>
-                  {this.state.currentDay}
+                  {this.state.currentDay === "Friday" || this.state.currentDay === "Saturday" || this.state.currentDay === "Sunday" ? `Aww yeah, ${this.state.currentDay}!` : `It's a ${this.state.currentDay}!`}
                 </div>
               </div>
               <div className={classes.notDoneContainer}>

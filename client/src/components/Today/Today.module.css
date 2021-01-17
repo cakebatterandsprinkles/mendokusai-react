@@ -259,6 +259,7 @@
   margin-right: 3rem;
   margin-top: 1rem;
 }
+
 @media (max-width: 1450px) {
   .dataContainer {
     flex-direction: column;
