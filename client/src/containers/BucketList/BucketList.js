@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions/actionTypes";
-import classes from "./BucketList.module.css";
-import AddIcon from "../../assets/images/addbutton.png";
 import Modal from "react-modal";
+import { connect } from "react-redux";
+import AddIcon from "../../assets/images/addbutton.png";
 import ClosingButton from "../../assets/images/closeButton.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
+import * as actionTypes from "../../store/actions/actionTypes";
 import { renderTodoCheckbox, renderTodos } from "../../util/todo";
+import classes from "./BucketList.module.css";
 
 class BucketList extends Component {
   constructor() {
@@ -15,6 +15,7 @@ class BucketList extends Component {
       sortBy: "All",
       showModal: false,
       addInput: "",
+      dropdownBtnActive: false,
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -27,6 +28,8 @@ class BucketList extends Component {
     this.changeStatus = this.changeStatus.bind(this);
     this.setSortBy = this.setSortBy.bind(this);
     this.sortArray = this.sortArray.bind(this);
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
   }
 
   getBucketlist() {
@@ -143,6 +146,12 @@ class BucketList extends Component {
     );
   }
 
+  handleDropdownClick = () => {
+    this.state.dropdownBtnActive
+      ? this.setState({ dropdownBtnActive: false })
+      : this.setState({ dropdownBtnActive: true });
+  };
+
   renderTodos = (item) => {
     return item.todo;
   };
@@ -235,6 +244,12 @@ class BucketList extends Component {
     this.setState({ sortBy: e.target.dataset.name });
   }
 
+  closeDropdown() {
+    if (this.state.dropdownBtnActive) {
+      this.setState({ dropdownBtnActive: false });
+    }
+  }
+
   componentDidMount() {
     this.getBucketlist();
   }
@@ -243,69 +258,99 @@ class BucketList extends Component {
     let currentModal = this.renderModalContent();
     return (
       <Fragment>
-        <div className={classes.mainContainer}>
+        <div className={classes.mainContainer} onClick={this.closeDropdown}>
           <div className={classes.flexContainerColumn}>
-            <div className={classes.bgBlack}>
-              <p className={classes.header}>Your bucket list: </p>
-            </div>
-            <div className={classes.ruleContainer}>
-              <p className={classes.rules}>
-                The list items here have no expiration dates. You can do them
-                anytime you like.
-              </p>
+            <div className={classes.headerContainer}>
+              <p className={classes.header}>This is your bucket list: </p>
             </div>
             <div className={classes.flexContainerRow}>
-              <button className={classes.addBtn} onClick={this.handleOpenModal}>
-                <img src={AddIcon} alt="add icon" className={classes.addIcon} />
-                <p>Add items</p>
-              </button>
               <div className={classes.dropdown}>
-                <button className={classes.dropbtn}>
-                  Filter by: <span>{this.state.sortBy} ▼</span>
+                <button
+                  className={classes.dropbtn}
+                  onClick={this.handleDropdownClick}
+                >
+                  <span className={classes.title}>Filter by: </span>
+                  <span>
+                    {this.state.sortBy}
+                    <span className={classes.dropIcon}> ▼</span>
+                  </span>
+                  <div
+                    className={
+                      this.state.dropdownBtnActive
+                        ? `${classes.dropdownContentActive}`
+                        : `${classes.dropdownContent}`
+                    }
+                  >
+                    <p
+                      onClick={this.setSortBy}
+                      className={
+                        this.state.sortBy === "All" ? classes.active : ""
+                      }
+                      data-name="All"
+                    >
+                      All
+                    </p>
+                    <p
+                      onClick={this.setSortBy}
+                      className={
+                        this.state.sortBy === "Not Done" ? classes.active : ""
+                      }
+                      data-name="Not Done"
+                    >
+                      Not Done
+                    </p>
+                    <p
+                      onClick={this.setSortBy}
+                      className={
+                        this.state.sortBy === "In progress"
+                          ? classes.active
+                          : ""
+                      }
+                      data-name="In progress"
+                    >
+                      In progress
+                    </p>
+                    <p
+                      onClick={this.setSortBy}
+                      className={
+                        this.state.sortBy === "Done" ? classes.active : ""
+                      }
+                      data-name="Done"
+                    >
+                      Done
+                    </p>
+                  </div>
                 </button>
-                <div className={classes.dropdownContent}>
-                  <p
-                    onClick={this.setSortBy}
-                    className={
-                      this.state.sortBy === "All" ? classes.active : ""
-                    }
-                    data-name="All"
-                  >
-                    All
-                  </p>
-                  <p
-                    onClick={this.setSortBy}
-                    className={
-                      this.state.sortBy === "Not Done" ? classes.active : ""
-                    }
-                    data-name="Not Done"
-                  >
-                    Not Done
-                  </p>
-                  <p
-                    onClick={this.setSortBy}
-                    className={
-                      this.state.sortBy === "In progress" ? classes.active : ""
-                    }
-                    data-name="In progress"
-                  >
-                    In progress
-                  </p>
-                  <p
-                    onClick={this.setSortBy}
-                    className={
-                      this.state.sortBy === "Done" ? classes.active : ""
-                    }
-                    data-name="Done"
-                  >
-                    Done
-                  </p>
-                </div>
               </div>
+              <img
+                src={AddIcon}
+                alt="add icon"
+                className={classes.addIcon}
+                onClick={this.handleOpenModal}
+              />
             </div>
           </div>
-          <div className={classes.flexContainerColumn}>
-            {this.renderTodoList(this.props.bucketlist)}
+          <div className={classes.flexContainerColumnToDo}>
+            {this.props.bucketlist.length ? (
+              this.renderTodoList(this.props.bucketlist)
+            ) : (
+              <div className={classes.warning}>
+                <div>
+                  <span className={classes.star}>★</span>
+                  You can add new todos by clicking the plus icon on the right.
+                </div>
+                <div>
+                  <span className={classes.star}>★</span>
+                  Click on the checkbox icon to change the todo status to "in
+                  progress" or "done".
+                </div>
+                <div>
+                  <span className={classes.star}>★</span>
+                  The list items here have no expiration dates. You can do them
+                  anytime you like.
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <LegendFooter />

@@ -3,9 +3,11 @@
   flex-direction: column;
   flex: 1;
   max-width: 50%;
+  min-height: 80vh;
   margin: 2rem 3rem 3rem 3rem;
   border-radius: 10px;
   background-color: var(--lightgray);
+  color: var(--black);
   overflow-y: auto;
 }
 
@@ -346,10 +348,11 @@
 
   .formGroupContainer label {
     font-size: 0.9rem;
-    margin: 2rem 0 0.5rem 0;
+    margin-top: 1.5rem;
   }
 
   .formGroupContainer input {
+    padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
     margin-top: 0.5rem;
   }
@@ -360,6 +363,11 @@
 
   .date {
     font-size: 1.75rem;
+  }
+
+  .closingButton {
+    height: 1.25rem;
+    width: auto;
   }
 }
 
