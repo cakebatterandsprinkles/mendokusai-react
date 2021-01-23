@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import LandingMain from "./components/LandingMain/LandingMain";
-import UserMainPage from "./containers/UserMainPage/UserMainPage";
-import LoginForm from "./containers/LoginForm/LoginForm";
-import SignUpForm from "./containers/SignUpForm/SignUpForm";
-import ResetPassword from "./containers/ResetPassword/ResetPassword";
-import ConfirmEmail from "./containers/ConfirmEmail/ConfirmEmail";
-import Settings from "./containers/Settings/Settings";
-import Calendar from "./containers/Calendar/Calendar";
-import Error404 from "./components/404/404";
-import Layout from "./components/Layout/Layout";
-import BucketList from "./containers/BucketList/BucketList";
-import * as actionTypes from "./store/actions/actionTypes";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Error404 from "./components/404/404";
+import LandingMain from "./components/LandingMain/LandingMain";
+import Layout from "./components/Layout/Layout";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import BucketList from "./containers/BucketList/BucketList";
+import Calendar from "./containers/Calendar/Calendar";
+import ConfirmEmail from "./containers/ConfirmEmail/ConfirmEmail";
+import LoginForm from "./containers/LoginForm/LoginForm";
+import ResetPassword from "./containers/ResetPassword/ResetPassword";
+import Settings from "./containers/Settings/Settings";
+import SignUpForm from "./containers/SignUpForm/SignUpForm";
+import UserMainPage from "./containers/UserMainPage/UserMainPage";
+import * as actionTypes from "./store/actions/actionTypes";
 
 const App = (props) => {
   const getLocation = () => {
-    fetch("https://geoip.edelkrone.com/json/")
+    fetch("https://freegeoip.app/json/")
       .then((blob) => blob.json())
       .then((data) => {
         props.setLocation(data);
         getWeather(data.latitude, data.longitude);
       });
   };
+
   const getWeather = (lat, long) => {
     fetch(`/weather/now/${lat}/${long}`)
       .then((blob) => blob.json())
