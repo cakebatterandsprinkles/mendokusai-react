@@ -19,7 +19,7 @@ const ResetPassword = (props) => {
   if (!email || !token) {
     props.history.push("/login");
   }
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -42,16 +42,20 @@ const ResetPassword = (props) => {
   };
 
   const handleMagnifyingGlass = () => {
-    if (this.showPasswordRef1.current.type === 'password') {
-      this.showPasswordRef1.current.type = 'text'
-      this.showPasswordRef2.current.type = 'text'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
-    } else if (this.showPasswordRef1.current.type === 'text') {
-      this.showPasswordRef1.current.type = 'password'
-      this.showPasswordRef2.current.type = 'password'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    if (showPasswordRef1.current.type === "password") {
+      showPasswordRef1.current.type = "text";
+      showPasswordRef2.current.type = "text";
+      magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
+    } else if (showPasswordRef1.current.type === "text") {
+      showPasswordRef1.current.type = "password";
+      showPasswordRef2.current.type = "password";
+      magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
     }
-  }
+  };
 
   return (
     <Aux>
@@ -62,7 +66,15 @@ const ResetPassword = (props) => {
         <form className={classes.loginForm} onSubmit={handleSubmit}>
           <div className={classes.formGroupContainer}>
             <label htmlFor="password">New Password:</label>
-            <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+            <div
+              className={classes.magnifyingGlass}
+              onClick={handleMagnifyingGlass}
+              ref={magnifyingGlass}
+            >
+              <span role="img" aria-label="magnifying-glass">
+                🔍
+              </span>
+            </div>
             <input
               type="password"
               name="password"

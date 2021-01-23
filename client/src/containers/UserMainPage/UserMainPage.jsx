@@ -9,7 +9,7 @@ class UserMainPage extends Component {
     return (
       <div className={classes.mainContainer}>
         <div className={classes.flexRowContainer}>
-            <Today />
+          <Today />
         </div>
         <LegendFooter />
       </div>

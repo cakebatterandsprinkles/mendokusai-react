@@ -60,6 +60,7 @@
 
 .data {
   margin-right: 0.3rem;
+  white-space: nowrap;
 }
 
 .warning {
@@ -73,6 +74,10 @@
 
 .star {
   color: var(--yellow);
+}
+
+.tempData {
+  white-space: nowrap;
 }
 
 .tempData:hover {

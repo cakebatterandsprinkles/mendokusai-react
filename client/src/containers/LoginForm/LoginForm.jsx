@@ -55,13 +55,32 @@ class LoginForm extends Component {
         this.setState({ isSubmitting: true });
       })
       .then(() => {
-        setTimeout(function() {this.setState({ isSubmitted: true, isSubmitting: false })}.bind(this), 2000);
+        setTimeout(
+          function () {
+            this.setState({ isSubmitted: true, isSubmitting: false });
+          }.bind(this),
+          2000
+        );
       })
       .then(() => {
-        setTimeout(function() {this.handleCloseModal()}.bind(this), 5000);
+        setTimeout(
+          function () {
+            this.handleCloseModal();
+          }.bind(this),
+          5000
+        );
       })
       .then(() => {
-        setTimeout(function() {this.setState({ isSubmitted: false, isSubmitting: false, resetEmail: "" })}.bind(this), 6000);
+        setTimeout(
+          function () {
+            this.setState({
+              isSubmitted: false,
+              isSubmitting: false,
+              resetEmail: "",
+            });
+          }.bind(this),
+          6000
+        );
       })
       .catch((error) => {
         if (error.response) {
@@ -72,14 +91,18 @@ class LoginForm extends Component {
   }
 
   handleMagnifyingGlass = () => {
-    if (this.showPasswordRef.current.type === 'password') {
-      this.showPasswordRef.current.type = 'text'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
-    } else if (this.showPasswordRef.current.type === 'text') {
-      this.showPasswordRef.current.type = 'password'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    if (this.showPasswordRef.current.type === "password") {
+      this.showPasswordRef.current.type = "text";
+      this.magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
+    } else if (this.showPasswordRef.current.type === "text") {
+      this.showPasswordRef.current.type = "password";
+      this.magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
     }
-  }
+  };
 
   handleLoginSubmit(e) {
     e.preventDefault();
@@ -130,7 +153,7 @@ class LoginForm extends Component {
                 </div>
                 <div className={`${classes.btnWrapper} ${classes.resetButton}`}>
                   <button type="submit" className={classes.btn}>
-                   Reset
+                    Reset
                   </button>
                 </div>
               </form>
@@ -150,14 +173,18 @@ class LoginForm extends Component {
       return (
         <div className={classes.submitModalContainer}>
           <img src={BirbImage} alt="bird" className={classes.birbImage} />
-          <p className={classes.modalResultText}>Omg, is your request being submitted or what?</p>
+          <p className={classes.modalResultText}>
+            Omg, is your request being submitted or what?
+          </p>
         </div>
       );
     } else if (!this.state.isSubmitting && this.state.isSubmitted) {
       return (
         <div className={classes.submitModalContainer}>
           <img src={Sun} alt="sun" className={classes.birbImage} />
-          <p className={classes.modalResultText}>Congrats, you've got an email! Check your inbox.</p>
+          <p className={classes.modalResultText}>
+            Congrats, you've got an email! Check your inbox.
+          </p>
         </div>
       );
     }
@@ -174,7 +201,9 @@ class LoginForm extends Component {
               <p className={classes.heading}>Login from here</p>
             </div>
             <form onSubmit={this.handleLoginSubmit}>
-              <div className={`${classes.formGroupContainer} ${classes.margin}`}>
+              <div
+                className={`${classes.formGroupContainer} ${classes.margin}`}
+              >
                 <label htmlFor="email">Email:</label>
                 <input
                   type="email"
@@ -185,13 +214,21 @@ class LoginForm extends Component {
               </div>
               <div className={classes.formGroupContainer}>
                 <label htmlFor="password">Password:</label>
-                <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+                <div
+                  className={classes.magnifyingGlass}
+                  onClick={this.handleMagnifyingGlass}
+                  ref={this.magnifyingGlass}
+                >
+                  <span role="img" aria-label="magnifying-glass">
+                    🔍
+                  </span>
+                </div>
                 <input
                   type="password"
                   name="password"
                   id="password"
                   onChange={this.handleInputChange}
-                  ref= {this.showPasswordRef}
+                  ref={this.showPasswordRef}
                 ></input>
               </div>
               <div className={classes.resetPasswordLink}>
@@ -206,7 +243,7 @@ class LoginForm extends Component {
               </div>
             </form>
           </div>
-          <Footer/>
+          <Footer />
         </div>
         <Modal
           isOpen={this.state.showModal}

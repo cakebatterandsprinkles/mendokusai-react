@@ -71,18 +71,22 @@ class Settings extends Component {
   };
 
   handleMagnifyingGlass = () => {
-    if (this.showPasswordRefCurrent.current.type === 'password') {
-      this.showPasswordRefCurrent.current.type = 'text'
-      this.showPasswordRefNew1.current.type = 'text'
-      this.showPasswordRefNew2.current.type = 'text'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
-    } else if (this.showPasswordRefCurrent.current.type === 'text') {
-      this.showPasswordRefCurrent.current.type = 'password'
-      this.showPasswordRefNew1.current.type = 'password'
-      this.showPasswordRefNew2.current.type = 'password'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
+    if (this.showPasswordRefCurrent.current.type === "password") {
+      this.showPasswordRefCurrent.current.type = "text";
+      this.showPasswordRefNew1.current.type = "text";
+      this.showPasswordRefNew2.current.type = "text";
+      this.magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
+    } else if (this.showPasswordRefCurrent.current.type === "text") {
+      this.showPasswordRefCurrent.current.type = "password";
+      this.showPasswordRefNew1.current.type = "password";
+      this.showPasswordRefNew2.current.type = "password";
+      this.magnifyingGlass.current.classList.toggle(
+        `${classes.magnifyingGlassActive}`
+      );
     }
-  }
+  };
 
   render() {
     return (
@@ -114,13 +118,21 @@ class Settings extends Component {
             className={`${classes.formGroupContainer} ${classes.marginBottom}`}
           >
             <label htmlFor="currentPassword">Current Password:</label>
-            <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+            <div
+              className={classes.magnifyingGlass}
+              onClick={this.handleMagnifyingGlass}
+              ref={this.magnifyingGlass}
+            >
+              <span role="img" aria-label="magnifying-glass">
+                🔍
+              </span>
+            </div>
             <input
               type="password"
               name="currentPassword"
               id="currentPassword"
               onChange={this.handleInputChange}
-              ref= {this.showPasswordRefCurrent}
+              ref={this.showPasswordRefCurrent}
             ></input>
           </div>
           <div
@@ -132,7 +144,7 @@ class Settings extends Component {
               name="newPassword"
               id="newPassword"
               onChange={this.handleInputChange}
-              ref= {this.showPasswordRefNew1}
+              ref={this.showPasswordRefNew1}
             ></input>
           </div>
           <div
@@ -144,7 +156,7 @@ class Settings extends Component {
               name="repeatNewPassword"
               id="repeatNewPassword"
               onChange={this.handleInputChange}
-              ref= {this.showPasswordRefNew2}
+              ref={this.showPasswordRefNew2}
             ></input>
           </div>
           <div className={classes.btnWrapper}>

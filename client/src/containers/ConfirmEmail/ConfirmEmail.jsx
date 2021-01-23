@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import * as actionTypes from "../../store/actions/actionTypes";
 
 const ConfirmEmail = (props) => {
@@ -33,7 +33,7 @@ const ConfirmEmail = (props) => {
         }, 2000);
       }
     });
-  }, [email, token]);
+  }, [email, token, props]);
 
   return <div></div>;
 };

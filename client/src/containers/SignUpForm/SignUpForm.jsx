@@ -18,15 +18,14 @@ class SignUpForm extends Component {
       repeatPassword: "",
       showModal: false,
       isSubmitted: false,
+      showPassword: false,
     };
+
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.renderModalContent = this.renderModalContent.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.showPasswordRef1 = React.createRef();
-    this.showPasswordRef2 = React.createRef();
-    this.magnifyingGlass = React.createRef();
   }
 
   handleOpenModal() {
@@ -58,16 +57,8 @@ class SignUpForm extends Component {
   };
 
   handleMagnifyingGlass = () => {
-    if (this.showPasswordRef1.current.type === 'password') {
-      this.showPasswordRef1.current.type = 'text'
-      this.showPasswordRef2.current.type = 'text'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
-    } else if (this.showPasswordRef1.current.type === 'text') {
-      this.showPasswordRef1.current.type = 'password'
-      this.showPasswordRef2.current.type = 'password'
-      this.magnifyingGlass.current.classList.toggle(`${classes.magnifyingGlassActive}`)
-    }
-  }
+    this.setState({ showPassword: !this.state.showPassword });
+  };
 
   submitForm = () => {
     axios
@@ -141,13 +132,21 @@ class SignUpForm extends Component {
                 className={`${classes.formGroupContainer} ${classes.marginBottom}`}
               >
                 <label htmlFor="password">Password:</label>
-                <div className={classes.magnifyingGlass} onClick={this.handleMagnifyingGlass} ref= {this.magnifyingGlass}>🔍</div>
+                <div
+                  className={`${classes.magnifyingGlass} ${
+                    this.state.showPassword ? classes.magnifyingGlassActive : ""
+                  }`}
+                  onClick={this.handleMagnifyingGlass}
+                >
+                  <span role="img" aria-label="magnifying-glass">
+                    🔍
+                  </span>
+                </div>
                 <input
-                  type="password"
+                  type={this.state.showPassword ? "text" : "password"}
                   name="password"
                   id="password"
                   onChange={this.handleInputChange}
-                  ref= {this.showPasswordRef1}
                 ></input>
               </div>
               <div
@@ -155,11 +154,10 @@ class SignUpForm extends Component {
               >
                 <label htmlFor="repeat-password">Repeat Password:</label>
                 <input
-                  type="password"
+                  type={this.state.showPassword ? "text" : "password"}
                   name="repeatPassword"
                   id="repeat-password"
                   onChange={this.handleInputChange}
-                  ref= {this.showPasswordRef2}
                 ></input>
               </div>
               <div className={classes.subTextContainer}>
@@ -187,7 +185,7 @@ class SignUpForm extends Component {
               </div>
             </form>
           </div>
-          <Footer/>
+          <Footer />
         </div>
         <Modal
           isOpen={this.state.showModal}
