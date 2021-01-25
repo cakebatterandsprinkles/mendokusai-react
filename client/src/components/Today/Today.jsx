@@ -231,9 +231,7 @@ class Today extends Component {
   };
 
   getUserLocation() {
-    return fetch("https://geoip.edelkrone.com/json/").then((blob) =>
-      blob.json()
-    );
+    return fetch("https://freegeoip.app/json/").then((blob) => blob.json());
   }
 
   changeStatus(item) {
