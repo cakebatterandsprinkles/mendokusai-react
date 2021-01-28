@@ -11,4 +11,17 @@ const generateTokenAndSetCookie = (res, id, name) => {
     httpOnly: true,
   });
 };
-module.exports = generateTokenAndSetCookie;
+
+const generateRandomString = (length) => {
+  var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split(
+    ""
+  );
+  var result = [];
+  for (var i = 0; i < length; i++) {
+    var j = (Math.random() * (alphabet.length - 1)).toFixed(0);
+    result.push(alphabet[j]);
+  }
+  return result.join("");
+};
+
+module.exports = { generateTokenAndSetCookie, generateRandomString };
