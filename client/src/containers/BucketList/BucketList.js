@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Modal from "react-modal";
 import { connect } from "react-redux";
 import AddIcon from "../../assets/images/addbutton.png";
@@ -257,7 +257,7 @@ class BucketList extends Component {
   render() {
     let currentModal = this.renderModalContent();
     return (
-      <Fragment>
+      <div className={classes.layoutWrapper}>
         <div className={classes.mainContainer} onClick={this.closeDropdown}>
           <div className={classes.flexContainerColumn}>
             <div className={classes.headerContainer}>
@@ -363,7 +363,7 @@ class BucketList extends Component {
         >
           {currentModal}
         </Modal>
-      </Fragment>
+      </div>
     );
   }
 }

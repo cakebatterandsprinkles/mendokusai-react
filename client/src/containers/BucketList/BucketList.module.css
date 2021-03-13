@@ -1,8 +1,13 @@
+.layoutWrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .mainContainer {
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 50%;
+  max-width: 1300px;
   min-height: 80vh;
   margin: 2rem 3rem 3rem 3rem;
   border-radius: 10px;
@@ -296,10 +301,6 @@
 }
 
 @media (max-width: 1200px) {
-  .mainContainer {
-    max-width: 90%;
-  }
-
   .addIcon {
     margin-top: 0.5rem;
   }
@@ -312,7 +313,6 @@
 
 @media (max-width: 600px) {
   .mainContainer {
-    max-width: 100%;
     margin: 2rem 0rem 3rem 0rem;
     border-radius: 0;
   }
