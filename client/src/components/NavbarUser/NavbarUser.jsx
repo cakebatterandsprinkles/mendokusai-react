@@ -36,7 +36,9 @@ class NavbarUser extends Component {
       <div className={classes.mainFlexContainer}>
         <div className={classes.flexContainerRow}>
           <div className={classes.logoContainer}>
-            <Link className={classes.logo} to="/user">mendokusai</Link>
+            <Link className={classes.logo} to="/user">
+              mendokusai
+            </Link>
             <img
               src={mendokusai}
               alt="cat hanging upside down"
@@ -83,35 +85,31 @@ class NavbarUser extends Component {
               className={`${classes.settingsIcon} ${classes.dropbtn}`}
             />
             <div className={classes.dropdownContent}>
-              <div className={classes.linkContainer}>
-                <Link
-                  to="/settings"
-                  style={{
-                    textDecoration: "none",
-                    color: "var(--black)",
-                  }}
-                >
-                  Settings
-                </Link>
-              </div>
+              <Link
+                to="/settings"
+                style={{
+                  textDecoration: "none",
+                  color: "var(--black)",
+                }}
+              >
+                <div className={classes.linkContainer}>Settings</div>
+              </Link>
               <div
                 className={classes.linkContainer}
                 onClick={this.reverseColor}
               >
                 <p>Change Mode</p>
               </div>
-              <div className={classes.linkContainerBottom}>
-                <Link
-                  to="/login"
-                  style={{
-                    textDecoration: "none",
-                    color: "var(--black)",
-                  }}
-                  onClick={this.logout}
-                >
-                  Logout
-                </Link>
-              </div>
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                  color: "var(--black)",
+                }}
+                onClick={this.logout}
+              >
+                <div className={classes.linkContainerBottom}>Logout</div>
+              </Link>
             </div>
           </div>
         </div>
