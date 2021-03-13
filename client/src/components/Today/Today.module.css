@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 50%;
+  max-width: 1300px;
   min-height: 80vh;
   margin: 2rem 3rem 3rem 3rem;
   border-radius: 10px;
@@ -192,6 +192,7 @@
 
 .addToDoForm {
   width: 100%;
+  margin-left: .5rem;
 }
 
 .modal {
@@ -217,7 +218,7 @@
 }
 
 .btn {
-  padding: 0.5rem 0.6rem;
+  padding: 0.5rem 1.6rem;
   margin-left: auto;
   font-family: var(--regularFont);
   font-weight: bold;
@@ -291,7 +292,6 @@
   .mainContainer {
     min-height: 75vh;
     margin: 5 rem 4rem 3rem 4rem;
-    max-width: 90%;
   }
 
   .modal {

@@ -9,25 +9,12 @@
 
 .flexRowContainer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
 .calendarButton {
   width: 4rem;
-}
-
-.poster {
-  max-height: 80vh;
-  max-width: 60vw;
-  margin-top: 0.5rem;
-  border-radius: 10px;
-}
-
-.posterContainer {
-  margin: 0.5rem 0 5rem 3rem;
-  border-radius: 10px;
-  position: relative;
 }
 
 .buttonContainer {
@@ -39,47 +26,9 @@
   transform: rotate(90deg);
 }
 
-.posterText {
-  color: white !important;
-  position: absolute;
-  top: 2rem;
-  font-weight: bold;
-  padding: 0.4rem;
-  background-color: rgb(19, 19, 19);
-  left: 1.5rem;
-  z-index: 40;
-  border-radius: 5px;
-}
-
-.credit {
-  color: white !important;
-  position: absolute;
-  font-size: 0.7rem;
-  top: 4rem;
-  padding: 0.3rem;
-  background-color: rgba(19, 19, 19, 0.493);
-  left: 1.5rem;
-  z-index: 40;
-  border-radius: 5px;
-}
-
-.credit a {
-  text-decoration: none;
-  color: white !important;
-  font-weight: bold;
-}
-
 @media (max-width: 1300px) {
-  .posterContainer {
-    margin: 0.5rem 0 5rem 1.5rem;
-    border-radius: 10px;
-    position: relative;
-  }
-}
-
-@media (max-width: 1200px) {
-  .posterContainer {
-    display: none;
+  .flexRowContainer {
+    justify-content: flex-start;
   }
 
   .wrapper {
