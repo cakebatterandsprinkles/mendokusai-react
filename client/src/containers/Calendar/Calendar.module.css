@@ -175,8 +175,8 @@
 }
 
 .icon {
-  height: 1.2rem;
-  width: auto;
+  height: auto;
+  width: 1.2rem;
   cursor: pointer;
 }
 

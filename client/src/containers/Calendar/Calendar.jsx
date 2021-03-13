@@ -3,7 +3,10 @@ import Modal from "react-modal";
 import { connect } from "react-redux";
 import AddIcon from "../../assets/images/addbutton.png";
 import Circle from "../../assets/images/circle.png";
-import { default as CloseButton, default as ClosingButton } from "../../assets/images/closeButton.png";
+import {
+  default as CloseButton,
+  default as ClosingButton,
+} from "../../assets/images/closeButton.png";
 import Star from "../../assets/images/star.png";
 import Triangle from "../../assets/images/triangle.png";
 import LegendFooter from "../../components/LegendFooter/LegendFooter";
@@ -11,10 +14,9 @@ import Aux from "../../hoc/Aux";
 import * as actionTypes from "../../store/actions/actionTypes";
 import {
   getDaysInMonth,
-  getFirstDayOfMonth, getMonthName,
-
-
-  setCurrentDay
+  getFirstDayOfMonth,
+  getMonthName,
+  setCurrentDay,
 } from "../../util/date";
 import { renderTodoCheckbox, renderTodos } from "../../util/todo";
 import Drawer from "../Drawer/Drawer";
@@ -467,7 +469,11 @@ class Calendar extends Component {
                 <div className={classes.heading}>{this.state.date}</div>
                 <p className={classes.leftArrow}>➜</p>
                 <div className={classes.subheading}>
-                  {this.state.currentDay === "Friday" || this.state.currentDay === "Saturday" || this.state.currentDay === "Sunday" ? `Aww yeah, ${this.state.currentDay}!` : `It's a ${this.state.currentDay}!`}
+                  {this.state.currentDay === "Friday" ||
+                  this.state.currentDay === "Saturday" ||
+                  this.state.currentDay === "Sunday"
+                    ? `Aww yeah, ${this.state.currentDay}!`
+                    : `It's a ${this.state.currentDay}!`}
                 </div>
               </div>
               <div className={classes.notDoneContainer}>
